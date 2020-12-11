@@ -1,10 +1,27 @@
+* {
+  text-decoration: none !important;;
+}
+.fab {
+  color: #ffffff;
+}
+
+.page-footer
+{
+  background-color: rgb(0, 0, 0);
+}
+
+.fa
+{
+  color: #008f11;
+}
+
 .site-footer
 {
-  background-color:#26272b;
+  background-color:#008f11 !important;
   padding:45px 0 20px;
   font-size:15px;
   line-height:24px;
-  color:#737373;
+  color:#ffffff;
 }
 .site-footer hr
 {
@@ -29,7 +46,7 @@
 }
 .site-footer a:hover
 {
-  color:#3366cc;
+  color:#008f11;
   text-decoration:none;
 }
 .footer-links
@@ -47,7 +64,7 @@
 }
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
 {
-  color:#3366cc;
+  color:#008f11;
   text-decoration:none;
 }
 .footer-links.inline li
