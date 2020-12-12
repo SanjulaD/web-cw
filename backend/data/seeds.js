@@ -111,4 +111,4 @@ const Seeds = [
     },
 ]
 
-export default Seeds;
+module.exports = Seeds;

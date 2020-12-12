@@ -1,4 +1,4 @@
-const content = [
+const slider = [
     {
         title: "Vulputate Mollis Ultricies Fermentum Parturient",
         description:
@@ -19,4 +19,4 @@ const content = [
     }
 ];
 
-export default content;
+module.exports = slider;

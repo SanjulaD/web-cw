@@ -1,0 +1,24 @@
+.machine-product
+{
+    margin-top:30px;
+    margin-bottom:50px
+}
+
+.btn-go-back
+{
+    margin-top:20px;
+    font-size: 16px;
+    background-color:#10c61e
+}
+
+.productScreen
+{
+    margin-top: 100px
+}
+
+.image-machine
+{
+    margin: auto;    
+    display: block;
+    width: 350px;
+}

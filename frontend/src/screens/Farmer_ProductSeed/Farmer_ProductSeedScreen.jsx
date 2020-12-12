@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import { Container, Row, Button, Alert } from 'react-bootstrap'
 import PurchaseSeeds from '../../components/PurchaseSeeds/PurchaseSeeds';
-import Seeds from '../../data/seeds';
 import './Farmer_ProductSeedStyles.css'
 
 const Farmer_ProductSeedScreen = () => {
 
     const [numberOfItems, setNumberOfItems] = useState(3);
+    const [seeds, setSeeds] = useState([]);
+
+    useEffect(() => {
+        const fetchSeeds = async () => {
+            const { data } = await axios.get('/api/seeds')
+
+            setSeeds(data);
+        }
+        fetchSeeds();
+    },[])
 
     const showMore = () => {
-        if (numberOfItems + 3 <= Seeds.length) {
+        if (numberOfItems + 3 <= seeds.length) {
             setNumberOfItems(numberOfItems + 3)
         } else {
-            setNumberOfItems(Seeds.length)
+            setNumberOfItems(seeds.length)
         }
     }
 
@@ -23,7 +33,7 @@ const Farmer_ProductSeedScreen = () => {
                 <h1 className="p-3" style={{ textAlign: 'center' }}>Latest Seeds</h1>
                 <Row>
                     {
-                        Seeds
+                        seeds
                             .slice(0, numberOfItems)
                             .map(seed => (
                                 <PurchaseSeeds
@@ -38,7 +48,7 @@ const Farmer_ProductSeedScreen = () => {
                             ))
                     }
                     {
-                        numberOfItems >= Seeds.length
+                        numberOfItems >= seeds.length
                             ? <Alert style={{backgroundColor:'red'}} className="col-md-12 text-center">Finished</Alert>
                             : ''
                     }

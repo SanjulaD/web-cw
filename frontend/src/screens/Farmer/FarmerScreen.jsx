@@ -28,7 +28,7 @@ const FarmerScreen = () => {
                         <Card bg="success" border="primary" style={{ width: '18rem' }}>
                             <Card.Body>
                                 <Card.Title>Sell Your Producing Material through Us</Card.Title>
-                                <LinkContainer to="/farmers/sellMeterial">
+                                <LinkContainer to="/login">
                                     <Button>Explore More</Button>
                                 </LinkContainer>
                             </Card.Body>
@@ -41,7 +41,7 @@ const FarmerScreen = () => {
                         <Card bg="success" border="primary" style={{ width: '18rem' }}>
                             <Card.Body>
                                 <Card.Title>Lend All of Heavy Machine And Tractros</Card.Title>
-                                <LinkContainer to="/farmers/lendVehicales">
+                                <LinkContainer to="/farmers/lendMachines">
                                     <Button>Explore More</Button>
                                 </LinkContainer>
                             </Card.Body>

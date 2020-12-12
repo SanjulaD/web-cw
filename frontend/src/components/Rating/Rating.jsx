@@ -61,7 +61,7 @@ const Rating = ({ value, text, color }) => {
 }
 
 Rating.propTypes ={
-    value: PropTypes.number.isRequired,
+    value: PropTypes.number,
     text: PropTypes.string.isRequired, 
     color: PropTypes.string,
 }

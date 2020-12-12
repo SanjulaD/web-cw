@@ -1,20 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 import Rating from '../../components/Rating/Rating';
-import { 
-    Col, 
-    Container, 
-    Row, 
-    Image, 
-    ListGroup, 
-    Card, 
-    Button } from 'react-bootstrap';
-import Seeds from '../../data/seeds';
+import {
+    Col,
+    Container,
+    Row,
+    Image,
+    ListGroup,
+    Card,
+    Button
+} from 'react-bootstrap';
 import './SeedProduct.css'
 
 const SeedProductScreen = ({ match }) => {
 
-    const product = Seeds.find(p => p._id === match.params.id)
+    const [seeds, setSeeds] = useState([]);
+
+    useEffect(() => {
+        const fetchSeeds = async () => {
+            const { data } = await axios.get(`/api/seeds/${match.params.id}`)
+
+            setSeeds(data);
+        }
+        fetchSeeds();
+    }, [match.params.id])
+
 
     return (
         <div className="productScreen">
@@ -22,21 +33,21 @@ const SeedProductScreen = ({ match }) => {
                 <Link className="btn btn-go-back btn-dark" to="/farmers/purchaseSeeds">GO BACK</Link>
                 <Row className="p-3 seed-product" >
                     <Col md={6}>
-                        <Image className="mx-auto image-seed" src={product.image} alt={product.name} width={200} />
+                        <Image className="mx-auto image-seed" src={seeds.image} alt={seeds.name} width={200} />
                     </Col>
                     <Col md={3}>
                         <ListGroup className="borderless" variant='flush'>
                             <ListGroup.Item>
-                                <h2>{product.name}</h2>
+                                <h2>{seeds.name}</h2>
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <Rating value={product.rating} text={`${product.numReviews} reviews`} />
+                                <Rating value={seeds.rating} text={`${seeds.numReviews} reviews`} />
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <h4>Price: {product.price}</h4>
+                                <h4>Price: {seeds.price}</h4>
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <p>Description: {product.description}</p>
+                                <p>Description: {seeds.description}</p>
                             </ListGroup.Item>
                         </ListGroup>
                     </Col>
@@ -44,16 +55,16 @@ const SeedProductScreen = ({ match }) => {
                         <Card>
                             <ListGroup variant='flush'>
                                 <ListGroup.Item>
-                                <Row>
-                                    <Col>Price:</Col>
-                                    <Col><strong>RS. {product.price}</strong></Col>
-                                </Row>
+                                    <Row>
+                                        <Col>Price:</Col>
+                                        <Col><strong>RS. {seeds.price}</strong></Col>
+                                    </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
                                         <Col>Status:</Col>
                                         <Col>
-                                            {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                                            {seeds.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
                                         </Col>
                                     </Row>
                                 </ListGroup.Item>
