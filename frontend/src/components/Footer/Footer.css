@@ -10,6 +10,11 @@
   background-color: rgb(0, 0, 0);
 }
 
+.dark-grey-text p
+{
+  color: white !important;
+}
+
 .fa
 {
   color: #008f11;
