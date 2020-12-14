@@ -19,4 +19,4 @@ const slider = [
     }
 ];
 
-module.exports = slider;
+export default slider;

@@ -101,4 +101,4 @@ const lendMachines = [
     },
 ]
 
-module.exports = lendMachines;
+export default lendMachines;
