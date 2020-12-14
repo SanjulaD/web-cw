@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const seedReviewSchema = mongoose.Schema({
+const machineReviewSchema = mongoose.Schema({
     name: {
         type: String,
         requried: true,
@@ -17,7 +17,7 @@ const seedReviewSchema = mongoose.Schema({
     timestamps: true
 })
 
-const productSeedSchema = mongoose.Schema({
+const productLendMachineSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -35,18 +35,18 @@ const productSeedSchema = mongoose.Schema({
         type: String,
         required: true,
     }, 
-    category: {
+    target_plant: {
         type: String,
         required: true
     },
-    reviews: [seedReviewSchema],
+    reviews: [machineReviewSchema],
     rating: {
         type: Number,
         required: true,
         default: 0
     },
-    countInStock: {
-        type: Number,
+    machine_power: {
+        type: String,
         required: true,
         default: 0
     },
@@ -55,15 +55,8 @@ const productSeedSchema = mongoose.Schema({
         required: true,
         default: 0
     },
-    numReviews: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-}, {
-    timestamps: true
 })
 
-const farmer_product_seeds = mongoose.model('farmer_product_seeds', productSeedSchema);
+const farmer_lend_machines = mongoose.model('farmer_lend_machines', productLendMachineSchema);
 
-export default farmer_product_seeds;
+export default farmer_lend_machines;

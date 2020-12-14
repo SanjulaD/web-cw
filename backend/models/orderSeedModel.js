@@ -1,8 +1,8 @@
-import mongose from 'mongoose'
+import mongoose from 'mongoose'
 
-const orderSeedSchema = mongose.Schema({
+const orderSeedSchema = mongoose.Schema({
     user: {
-        type: mongose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
     },
@@ -13,7 +13,7 @@ const orderSeedSchema = mongose.Schema({
             image: { type: String, requried: true },
             price: { type: Number, requried: true },
             produst: { 
-                type: mongose.Schema.Types.ObjectId,
+                type: mongoose.Schema.Types.ObjectId,
                 required: true,
                 ref: 'productSeed'
              },
@@ -70,6 +70,6 @@ const orderSeedSchema = mongose.Schema({
     timestamps: true
 })
 
-const orderSeed = mongoose.model('User', orderSeedSchema);
+const orderSeed = mongoose.model('orderSeed', orderSeedSchema);
 
 export default orderSeed;
