@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
 import { Container, Row, Button, Alert } from 'react-bootstrap'
 import PurchaseSeeds from '../../components/PurchaseSeeds/PurchaseSeeds';
 import './Farmer_ProductSeedStyles.css'
 
+import Message from './../../components/Message/Message';
+import Loader from './../../components/Loader/Loader';
+
+import { listSeedProducts } from './../../actions/productSeedActions'
+
 const Farmer_ProductSeedScreen = () => {
+    const dispatch = useDispatch()
+
+    const prodcutSeedList = useSelector(state => state.prodcutSeedList)
+    const { loading, error, productSeeds } = prodcutSeedList
 
     const [numberOfItems, setNumberOfItems] = useState(3);
-    const [seeds, setSeeds] = useState([]);
 
     useEffect(() => {
-        const fetchSeeds = async () => {
-            const { data } = await axios.get('/api/seeds')
-
-            setSeeds(data);
-        }
-        fetchSeeds();
-    },[])
+        dispatch(listSeedProducts())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch])
 
     const showMore = () => {
-        if (numberOfItems + 3 <= seeds.length) {
+        if (numberOfItems + 3 <= productSeeds.length) {
             setNumberOfItems(numberOfItems + 3)
         } else {
-            setNumberOfItems(seeds.length)
+            setNumberOfItems(productSeeds.length)
         }
     }
 
@@ -31,30 +35,35 @@ const Farmer_ProductSeedScreen = () => {
         <div className="ProductSeedScreen">
             <Container>
                 <h1 className="p-3" style={{ textAlign: 'center' }}>Latest Seeds</h1>
-                <Row>
-                    {
-                        seeds
-                            .slice(0, numberOfItems)
-                            .map(seed => (
-                                <PurchaseSeeds
-                                    key={seed._id}
-                                    _id={seed._id}
-                                    name={seed.name}
-                                    image={seed.image}
-                                    rating={seed.rating}
-                                    reviews={seed.numReviews}
-                                    price={seed.price}
-                                />
-                            ))
-                    }
-                    {
-                        numberOfItems >= seeds.length
-                            ? <Alert style={{backgroundColor:'red'}} className="col-md-12 text-center">Finished</Alert>
-                            : ''
-                    }
-                    <Button className="col-md-12 text-center" variant="success outline-dark" onClick={showMore}>show more</Button>
-                </Row>
-
+                {
+                    loading
+                        ? <Loader />
+                        : error ? <Message variant='danger'>{error}</Message>
+                            :
+                            (<Row>
+                                {
+                                    productSeeds
+                                        .slice(0, numberOfItems)
+                                        .map(seed => (
+                                            <PurchaseSeeds
+                                                key={seed._id}
+                                                _id={seed._id}
+                                                name={seed.name}
+                                                image={seed.image}
+                                                rating={seed.rating}
+                                                reviews={seed.numReviews}
+                                                price={seed.price}
+                                            />
+                                        ))
+                                }
+                                {
+                                    numberOfItems >= productSeeds.length
+                                        ? <Alert style={{ backgroundColor: 'red' }} className="col-md-12 text-center">Finished</Alert>
+                                        : ''
+                                }
+                                <Button className="col-md-12 text-center" variant="success outline-dark" onClick={showMore}>show more</Button>
+                            </Row>)
+                }
             </Container>
         </div>
     )

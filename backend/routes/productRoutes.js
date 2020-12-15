@@ -11,7 +11,6 @@ const router = express.Router()
 // @access  public
 router.get('/seeds', asyncHandler(async (req, res) => {
     const productSeed = await ProductSeeds.find({})
-
     res.json(productSeed);
 }))
 
