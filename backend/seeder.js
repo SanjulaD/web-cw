@@ -11,7 +11,7 @@ import lendMachines from './data/lendMachines.js';
 import User from './models/userModel.js';
 import productSeeds from './models/productSeedModel.js';
 import orderSeeds from './models/orderSeedModel.js';
-import productLendMachineS from './models/productLendMachineModel.js';
+import productLendMachines from './models/productLendMachineModel.js';
 
 // connect db
 import connectDB from './config/db.js';
@@ -27,7 +27,7 @@ const importData = async () => {
         await orderSeeds.deleteMany();
         await productSeeds.deleteMany();
         await User.deleteMany();
-        await productLendMachineS.deleteMany();
+        await productLendMachines.deleteMany();
 
         // add users to the database
         const createdUser = await User.insertMany(users)
@@ -43,7 +43,7 @@ const importData = async () => {
         const sampleMachines = lendMachines.map(machine => {
             return { ...machine, user: adminUser }
         })
-        await productLendMachineS.insertMany(sampleMachines)
+        await productLendMachines.insertMany(sampleMachines)
 
         console.log('Data Imported'.green.inverse)
         process.exit()

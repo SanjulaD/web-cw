@@ -32,7 +32,8 @@ router.get('/seeds/:id', asyncHandler(async (req, res) => {
     if(productSeed) {
         res.json(productSeed);
     } else {
-        res.status(404).json({ message: 'Product not found' })
+        res.status(404)
+        throw new Error('Seed not Found')
     }
 }))
 
@@ -45,7 +46,8 @@ router.get('/lendMachines/:id', asyncHandler(async (req, res) => {
     if(productLendMachine) {
         res.json(productLendMachine);
     } else {
-        res.status(404).json({ message: 'Machine not found' })
+        res.status(404)
+        throw new Error('Machine not Found')
     }
 }))
 

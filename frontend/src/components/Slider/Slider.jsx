@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Slider from "react-animated-slider";
-import data from './slider';
+import data from './sliderData.js';
 import "react-animated-slider/build/horizontal.css";
 import "normalize.css/normalize.css";
 import './styles/slider-animation.css';
