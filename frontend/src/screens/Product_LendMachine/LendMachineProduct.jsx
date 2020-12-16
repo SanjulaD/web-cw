@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import {
@@ -8,7 +8,8 @@ import {
     Image,
     ListGroup,
     Card,
-    Button
+    Button,
+    Form
 } from 'react-bootstrap';
 import './LendMachineScreen.css';
 
@@ -16,7 +17,9 @@ import { listLendMachineProductsDetails } from './../../actions/productLendMachi
 import Loader from '../../components/Loader/Loader';
 import Message from '../../components/Message/Message';
 
-const LendMachineProduct = ({ match }) => {
+const LendMachineProduct = ({ history, match }) => {
+    const [qty, setQty] = useState(1);
+
     const dispatch = useDispatch()
 
     const productLendMachinesDetails = useSelector(state => state.productLendMachinesDetails)
@@ -27,6 +30,9 @@ const LendMachineProduct = ({ match }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, match])
 
+    const addtoCartHandler = () => {
+        history.push(`/cart/${match.params.id}?qty=${qty}`)
+    }
 
     return (
         <div className="productScreen">
@@ -54,7 +60,7 @@ const LendMachineProduct = ({ match }) => {
                                                 <p>Description: {productLendMachines.description}</p>
                                             </ListGroup.Item>
                                             <ListGroup.Item>
-                                                <p>Quantity Available: {productLendMachines.quantity}kg</p>
+                                                <p>Quantity Available: {productLendMachines.quantity}</p>
                                             </ListGroup.Item>
                                         </ListGroup>
                                     </Col>
@@ -75,8 +81,29 @@ const LendMachineProduct = ({ match }) => {
                                                         </Col>
                                                     </Row>
                                                 </ListGroup.Item>
+                                                {
+                                                    productLendMachines.quantity > 0 && (
+                                                        <ListGroup.Item>
+                                                            <Row>
+                                                                <Col>Qty</Col>
+                                                                <Col>
+                                                                    <Form.Control as='select' value={qty} onChange={(e => setQty(e.target.value))}>
+                                                                        {
+                                                                            [...Array(productLendMachines.quantity).keys()]
+                                                                                .map(x =>
+                                                                                    <option
+                                                                                        key={x + 1}
+                                                                                        value={x + 1}
+                                                                                    >{x + 1}</option>)
+                                                                        }
+                                                                    </Form.Control>
+                                                                </Col>
+                                                            </Row>
+                                                        </ListGroup.Item>
+                                                    )
+                                                }
                                                 <ListGroup.Item>
-                                                    <Button type="button" className="btn btn-block" >Add To Cart</Button>
+                                                    <Button type="button" className="btn btn-block" onClick={addtoCartHandler} >Add To Cart</Button>
                                                 </ListGroup.Item>
                                             </ListGroup>
                                         </Card>

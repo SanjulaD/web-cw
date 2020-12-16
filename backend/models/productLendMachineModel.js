@@ -55,6 +55,11 @@ const productLendMachineSchema = mongoose.Schema({
         required: true,
         default: 0
     },
+    quantity: {
+        type: Number,
+        required: true,
+        default: 0
+    },
 })
 
 const farmer_lend_machines = mongoose.model('farmer_lend_machines', productLendMachineSchema);

@@ -52,6 +52,7 @@ const Farmer_LendScreen = () => {
                                                     image={machine.image}
                                                     targetPlant={machine.target_plant}
                                                     price={machine.price}
+                                                    quantity={machine.quantity}
                                                 />
                                             ))
                                     }

@@ -60,7 +60,7 @@ const destroyData = async () => {
         await orderSeeds.deleteMany();
         await productSeeds.deleteMany();
         await User.deleteMany();
-        await productLendMachineS.deleteMany();
+        await productLendMachines.deleteMany();
 
         console.log('Data Destroyed'.red.inverse)
         process.exit()
