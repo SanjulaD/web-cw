@@ -14,19 +14,25 @@ const Header = () => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto ">
                     <LinkContainer to="/">
-                        <Nav.Link className="nav-cal">Home</Nav.Link>
+                        <Nav.Link className="nav-cal">HOME</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/farmer">
-                        <Nav.Link className="nav-cal">Farmer</Nav.Link>
+                        <Nav.Link className="nav-cal">FARMER</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/consumer">
-                        <Nav.Link  className="nav-cal">Consumer</Nav.Link>
+                        <Nav.Link className="nav-cal">CONSUMER</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/supplier">
-                        <Nav.Link  className="nav-cal">Supplier</Nav.Link>
+                        <Nav.Link className="nav-cal">SUPPLIER</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/login">
-                        <Nav.Link className="login nav-cal">Login</Nav.Link>
+                        <Nav.Link className="login nav-cal">LOGIN</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/cart">
+                        <Nav.Link className="cart nav-cal">
+                            <i className="fas fa-shopping-cart"></i>
+                            CART
+                        </Nav.Link>
                     </LinkContainer>
                 </Nav>
             </Navbar.Collapse>

@@ -7,14 +7,27 @@
 .nav-cal{
     width: auto;
     color: white !important;
+    font-size: 15px;
 }
-.login{
-    margin-right: 10px;
+
+.cart {
+    text-decoration: none !important;
+}
+
+.fa-shopping-cart {
+    margin-right: 8px ;
 }
 
 /* Desktop */
 @media only screen and (min-width: 992px) {
     .navbar {
         height: 90px;
+    }
+    .login {
+        float: right !important;
+        margin-left: 38rem !important;
+    }
+    .nav-cal{
+        margin-left: 10px;
     }
 }
