@@ -33,7 +33,6 @@ const LendMachineProduct = ({ history, match }) => {
     const addtoCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`)
     }
-
     return (
         <div className="productScreen">
             <Container>

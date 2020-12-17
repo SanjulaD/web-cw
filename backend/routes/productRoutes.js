@@ -1,54 +1,13 @@
 import express from 'express'
-import asyncHandler from 'express-async-handler'
-
-import ProductSeeds from './../models/productSeedModel.js';
-import ProductLendMachines from './../models/productLendMachineModel.js';
-
 const router = express.Router()
 
-// @desc    Fetch all products
-// @rout    GET /seeds
-// @access  public
-router.get('/seeds', asyncHandler(async (req, res) => {
-    const productSeed = await ProductSeeds.find({})
-    res.json(productSeed);
-}))
+import { getSeedProducts, getSeedProductById } from './../controllers/productSeedController.js'
+import { getLendMachnines, getLendMachnineById } from './../controllers/productLendMachineController.js'
 
-// @desc    Fetch all lending Machines
-// @rout    GET /lendMachines
-// @access  public
-router.get('/lendMachines', asyncHandler(async (req, res) => {
-    const productLendMachine = await ProductLendMachines.find({})
-    res.json(productLendMachine);
-}))
+router.route('/seeds').get(getSeedProducts)
+router.route('/seeds/:id').get(getSeedProductById)
 
-// @desc    Fetch product by id
-// @rout    GET /seeds/:id
-// @access  public
-router.get('/seeds/:id', asyncHandler(async (req, res) => {
-    const productSeed = await ProductSeeds.findById(req.params.id);
-
-    if(productSeed) {
-        res.json(productSeed);
-    } else {
-        res.status(404)
-        throw new Error('Seed not Found')
-    }
-}))
-
-// @desc    Fetch machine by id
-// @rout    GET /lendMachines/:id
-// @access  public
-router.get('/lendMachines/:id', asyncHandler(async (req, res) => {
-    const productLendMachine = await ProductLendMachines.findById(req.params.id);
-
-    if(productLendMachine) {
-        res.json(productLendMachine);
-    } else {
-        res.status(404)
-        throw new Error('Machine not Found')
-    }
-}))
-
+router.route('/lendMachines').get(getLendMachnines)
+router.route('/lendMachines/:id').get(getLendMachnineById)
 
 export default router

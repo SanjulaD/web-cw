@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: 'green'
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -78,7 +78,7 @@ const Login = () => {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        color="primary"
+                        style={{backgroundColor: 'green'}}
                         className={classes.submit}
                     >
                         Sign In
