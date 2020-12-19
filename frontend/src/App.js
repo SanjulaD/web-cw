@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import Login from './components/Login/Login';
+import LoginComponent from './components/Login/LoginComponent';
 import Register from './components/Register/Register';
 
 import HomeScreen from './screens/Home/HomeScreen';
@@ -27,8 +27,8 @@ const App = () => {
           <Route exact path="/farmer" component={Farmer} />
           <Route exact path="/consumer" component={Consumer} />
           <Route exact path="/supplier" component={Supplier} />
-          <Route exact path="/farmers/sellMeterial" component={Login} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/farmers/sellMeterial" component={LoginComponent} />
+          <Route exact path="/login" component={LoginComponent} />
           <Route exact path="/register" component={Register} />
           <Route path="/cart/:id?" component={Cart} />
           <Route exact path="/farmers/purchaseSeeds" component={Farmer_ProductSeed} />
