@@ -26,13 +26,20 @@
 /* Desktop */
 @media only screen and (min-width: 992px) {
     .navbar {
-        height: 90px;
+        height: 90px;      
     }
     .cart {
         float: right !important;
-        margin-left: 38rem !important;
+        margin-left: 40rem !important;
     }
     .nav-cal{
         margin-left: 10px;
+    }
+}
+
+/* Phone */
+@media only screen and (max-width:320px) {
+    .nav-cal{
+        font-size: 15px !important;
     }
 }

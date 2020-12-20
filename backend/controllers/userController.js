@@ -17,6 +17,7 @@ const authUser = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
+            cropSelection: user.cropSelection,
             token: generateToken(user._id)
         })
     } else {
@@ -29,7 +30,7 @@ const authUser = asyncHandler(async (req, res) => {
 // @rout    POST /api/users/
 // @access  public
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body
+    const { name, email, password, cropSelection } = req.body
     
     const userExists = await User.findOne({ email })
 
@@ -41,7 +42,8 @@ const registerUser = asyncHandler(async (req, res) => {
     const user = await User.create({
         name,
         email,
-        password
+        password,
+        cropSelection
     })
 
     if (user) {
@@ -49,6 +51,7 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            cropSelection: user.cropSelection,
             isAdmin: user.isAdmin,
             token: generateToken(user._id)
         })
@@ -69,6 +72,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            cropSelection: user.cropSelection,
             isAdmin: user.isAdmin,
         })
     } else {

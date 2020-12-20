@@ -41,17 +41,17 @@ const LoginComponent = ({ location, history }) => {
             { loading && <Loader /> }
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
+                    <Form.Label>Email Address / NIC <span style={{color:'red'}}>*</span></Form.Label>
                     <Form.Control
                         type="email"
-                        placeholder="Enter email"
+                        placeholder="Enter email or NIC"
                         value={email}
                         required
                         onChange={(e) => setEmail(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='password'>
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Password <span style={{color:'red'}}>*</span></Form.Label>
                     <Form.Control
                         type="password"
                         placeholder="Enter password"
