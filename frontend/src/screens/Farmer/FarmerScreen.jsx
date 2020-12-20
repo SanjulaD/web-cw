@@ -28,7 +28,7 @@ const FarmerScreen = () => {
                         <Card bg="success" border="primary" style={{ width: '18rem' }}>
                             <Card.Body>
                                 <Card.Title>Sell Your Producing Material through Us</Card.Title>
-                                <LinkContainer to="/login">
+                                <LinkContainer to="/login?redirect=sellProducts">
                                     <Button>Explore More</Button>
                                 </LinkContainer>
                             </Card.Body>

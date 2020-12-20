@@ -10,12 +10,12 @@ import HomeScreen from './screens/Home/HomeScreen';
 import Consumer from './screens/Consumer/ConsumerScreen';
 import Farmer from './screens/Farmer/FarmerScreen';
 import Supplier from './screens/Supplier/SupplierScreen';
+import ProfileScreen from './screens/Profile/ProfileScreen';
 import Farmer_ProductSeed from './screens/Farmer_ProductSeed/Farmer_ProductSeedScreen';
 import SeedProductScreen from './screens/Product_Seed/SeedProductScreen';
 import Farmer_LendScreen from './screens/Farmer_LendMachine/Farmer_LendScreen';
 import LendMachineProduct from './screens/Product_LendMachine/LendMachineProduct';
 import Cart from './screens/Cart/Cart';
-
 
 const App = () => {
   return (
@@ -30,6 +30,7 @@ const App = () => {
           <Route exact path="/farmers/sellMeterial" component={LoginComponent} />
           <Route exact path="/login" component={LoginComponent} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/profile" component={ProfileScreen} />
           <Route path="/cart/:id?" component={Cart} />
           <Route exact path="/farmers/purchaseSeeds" component={Farmer_ProductSeed} />
           <Route exact path="/farmers/purchaseSeeds/:id" component={SeedProductScreen} /> 
