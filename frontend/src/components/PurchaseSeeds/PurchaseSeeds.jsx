@@ -25,7 +25,7 @@ const PurchaseSeeds = ({ _id, name, rating, image, reviews, price }) => {
                         RS.{price}
                     </Card.Text>
                     <LinkContainer to={`/farmers/purchaseSeeds/${_id}`}>
-                        <Button varient="success">Preview here</Button>
+                        <Button className="btn-preview" varient="success">Preview here</Button>
                     </LinkContainer>
                 </Card.Body>
             </Card>

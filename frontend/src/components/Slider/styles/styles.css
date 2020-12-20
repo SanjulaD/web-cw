@@ -82,14 +82,14 @@ button:hover {
 
 .slider-wrapper {
   position: relative;
-  height: 90vh;
+  height: 100vh;
   overflow: hidden;
   font-family: 'Lato', sans-serif;
   box-sizing: border-box;
 } 
 
 .slide {
-  height: 90vh;
+  height: 100vh;
   background-size: cover !important;
 }
 

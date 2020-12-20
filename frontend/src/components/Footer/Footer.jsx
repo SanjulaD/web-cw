@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, BrowserRouter } from 'react-router-dom';
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+import { Form, Button } from 'react-bootstrap'
 
 import './Footer.css'
 
@@ -12,7 +13,7 @@ const Footer = () => {
                     <MDBContainer>
                         <MDBRow className="py-4 d-flex align-items-center">
                             <MDBCol md="6" lg="5" className="text-center text-md-left mb-4 mb-md-0">
-                                <h6 className="mb-0 " style={{color: "white"}}> Get connected with us on social networks!</h6>
+                                <h6 className="mb-0 " style={{ color: "white" }}> Get connected with us on social networks!</h6>
                             </MDBCol>
                             <MDBCol md="6" lg="7" className="text-center text-md-right">
                                 <Link to="/" className="fb-ic ml-0">
@@ -27,7 +28,7 @@ const Footer = () => {
                                 <Link to="/" className="li-ic">
                                     <i className="fab fa-linkedin-in white-text mr-lg-4"> </i>
                                 </Link>
-                                <Link to="/"className="ins-ic">
+                                <Link to="/" className="ins-ic">
                                     <i className="fab fa-instagram white-text mr-lg-4"> </i>
                                 </Link>
                             </MDBCol>
@@ -36,36 +37,24 @@ const Footer = () => {
                 </div>
                 <MDBContainer className="mt-5 mb-4 text-center text-md-left">
                     <MDBRow className="mt-3">
-                        <MDBCol md="3" lg="4" xl="3" className="mb-4 dark-grey-text">
+                        <MDBCol md="3" lg="3    " xl="3" className="mb-4 dark-grey-text">
                             <h6 className="text-uppercase font-weight-bold">
-                                <strong>Company name</strong>
+                                <strong>AgriCom</strong>
                             </h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
-                            <p>Here you can use rows and columns here to organize your footer
-                            content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. </p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac nunc non arcu aliquet sollicitudin. Sed elementum placerat ex. Donec a lectus vel lectus faucibus mattis. </p>
                         </MDBCol>
                         <MDBCol md="2" lg="2" xl="2" className="mb-4 dark-grey-text">
                             <h6 className="text-uppercase font-weight-bold">
-                                <strong>Products</strong>
+                                <strong>Links</strong>
                             </h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
-                            <p><Link to="/" className="dark-grey-text"> MDBootstrap</Link></p>
-                            <p><Link to="/" className="dark-grey-text">MDWordPress </Link></p>
-                            <p><Link to="/" className="dark-grey-text">BrandFlow</Link></p>
-                            <p><Link to="/" className="dark-grey-text">ootstrap Angular</Link></p>
+                            <p><Link to="/farmer" className="dark-grey-text">Famer</Link></p>
+                            <p><Link to="/consumer" className="dark-grey-text">Consumer </Link></p>
+                            <p><Link to="/supplier" className="dark-grey-text">Supplier</Link></p>
+                            <p><Link to="/cart" className="dark-grey-text">Cart</Link></p>
                         </MDBCol>
-                        <MDBCol md="3" lg="2" xl="2" className="mb-4 dark-grey-text">
-                            <h6 className="text-uppercase font-weight-bold">
-                                <strong>Useful links</strong>
-                            </h6>
-                            <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
-                            <p><Link to="/"className="dark-grey-text">Your Account</Link></p>
-                            <p><Link to="/"className="dark-grey-text">Become an Affiliate</Link></p>
-                            <p><Link to="/"className="dark-grey-text">Shipping Rates</Link></p>
-                            <p><Link to="/"className="dark-grey-text">Help</Link></p>
-                        </MDBCol>
-                        <MDBCol md="4" lg="3" xl="3" className="mb-4 dark-grey-text">
+                        <MDBCol md="3" lg="3" xl="4" className="mb-4 dark-grey-text">
                             <h6 className="text-uppercase font-weight-bold">
                                 <strong>Contact</strong>
                             </h6>
@@ -74,6 +63,23 @@ const Footer = () => {
                             <p><i className="fa fa-envelope mr-3" /> info@example.com</p>
                             <p><i className="fa fa-phone mr-3" /> + 01 234 567 88</p>
                             <p><i className="fa fa-print mr-3" /> + 01 234 567 89</p>
+                        </MDBCol>
+                        <MDBCol md="3" lg="4" xl="3" className="mb-4 dark-grey-text">
+                            <h6 className="text-uppercase font-weight-bold">
+                                <strong>Get in touch</strong>
+                            </h6>
+                            <Form>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Control type="email" placeholder="Email" />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Comment</Form.Label>
+                                    <Form.Control as="textarea" rows={3} type="text" placeholder="Write Your Thoughts" />
+                                </Form.Group>
+                                <Button variant="primary" type="submit">Send message</Button>
+                            </Form>
                         </MDBCol>
                     </MDBRow>
                 </MDBContainer>

@@ -1,0 +1,18 @@
+
+.consumerContainer {
+    margin-top: 130px !important;
+    margin-bottom: 50px !important;
+}
+
+.consumer-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 22px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;   
+    font-weight: bold; 
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}

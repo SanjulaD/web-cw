@@ -73,7 +73,7 @@ const Register = ({ location, history }) => {
                     <Form.Label>Crop Selection (optional)</Form.Label>
                     <Form.Control
                         type="cropSelection"
-                        placeholder="Enter cropSelection"
+                        placeholder="Enter crop               "
                         value={cropSelection}
                         onChange={(e) => setCropSelection(e.target.value)}
                     ></Form.Control>

@@ -9,7 +9,7 @@ const LendMachines = ({ _id, name, image, targetPlant, price }) => {
             <Card className="my-3 p-3 ">
                 <Card.Img className="image mx-auto" src={image} variant="top" />
                 <Card.Body>
-                    <LinkContainer to={`/farmers/purchaseSeeds/${_id}`}>
+                    <LinkContainer to={`/farmers/lendMachines/${_id}`}>
                         <Card.Title className="title" as="div">
                             <strong>{name}</strong>
                         </Card.Title>
@@ -21,7 +21,7 @@ const LendMachines = ({ _id, name, image, targetPlant, price }) => {
                         RS.{price}
                     </Card.Text>
                     <LinkContainer to={`/farmers/lendMachines/${_id}`}>
-                        <Button varient="success">Preview here</Button>
+                        <Button className="btn-preview" varient="success">Preview here</Button>
                     </LinkContainer>
                 </Card.Body>
             </Card>

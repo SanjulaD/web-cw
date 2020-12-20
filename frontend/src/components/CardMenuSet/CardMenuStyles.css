@@ -1,0 +1,22 @@
+.title {
+  font-weight: bold;
+  text-align: center;
+  font-size: 28px;
+}
+
+.card-deck {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.card-text {
+  text-align: center;
+}
+
+.btn-explore {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  align-items: center;
+  margin-left: 25% !important;
+}

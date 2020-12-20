@@ -2,7 +2,7 @@ import React from 'react'
 import {
     Container,
     Row,
-    Col,
+    CardDeck,
     Card,
     Button
 } from 'react-bootstrap';
@@ -12,53 +12,37 @@ import './FarmerStyle.css'
 const FarmerScreen = () => {
     return (
         <div>
-            <Container>
-                <Row className="row-one">
-                    <Col>
-                        <Card bg="success" border="primary" style={{ width: '18rem' }}>
+            <Container className='farmerContainer'>
+                <h1 className='title'>FARMER</h1>
+                <h4 className="farmer-title">If you are a farmer then you are at perfect platfrom from where you can order all of your farming related products and you can sell your production also.</h4>
+                <Row className="row-one justify">
+                    <CardDeck>
+                        <Card border="primary" style={{ width: '25rem' }}>
                             <Card.Body>
-                                <Card.Title>Purchase Seeds, Pesticides & Fertilizer</Card.Title>
+                                <Card.Title className="card-titile">Purchase Seeds, Pesticides & Fertilizer</Card.Title>
                                 <LinkContainer to="/farmers/purchaseSeeds">
-                                    <Button>Explore More</Button>
+                                    <Button className="btn-explore btn-md m-2">EXPLORE MORE</Button>
                                 </LinkContainer>
                             </Card.Body>
                         </Card>
-                    </Col>
-                    <Col>
-                        <Card bg="success" border="primary" style={{ width: '18rem' }}>
+                        <Card border="primary" style={{ width: '25rem' }}>
                             <Card.Body>
-                                <Card.Title>Sell Your Producing Material through Us</Card.Title>
+                                <Card.Title className="card-titile">Sell Your Producing Material through Us</Card.Title>
                                 <LinkContainer to="/login?redirect=sellProducts">
-                                    <Button>Explore More</Button>
+                                    <Button className="btn-explore btn-md m-2">EXPLORE MORE</Button>
                                 </LinkContainer>
                             </Card.Body>
                         </Card>
-                    </Col>
-                </Row>
-                <br />
-                <Row>
-                    <Col>
-                        <Card bg="success" border="primary" style={{ width: '18rem' }}>
+                        <Card border="primary" style={{ width: '25rem' }}>
                             <Card.Body>
-                                <Card.Title>Lend All of Heavy Machine And Tractros</Card.Title>
+                                <Card.Title className="card-titile">Lend All of Heavy Machine And Tractros</Card.Title>
                                 <LinkContainer to="/farmers/lendMachines">
-                                    <Button>Explore More</Button>
+                                    <Button className="btn-explore btn-md m-2">EXPLORE MORE</Button>
                                 </LinkContainer>
                             </Card.Body>
                         </Card>
-                    </Col>
-                    <Col>
-                        <Card bg="success" border="primary" style={{ width: '18rem' }}>
-                            <Card.Body>
-                                <Card.Title>Twa monhri danna</Card.Title>
-                                <LinkContainer to="/farmers/...">
-                                    <Button>Explore More</Button>
-                                </LinkContainer>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                    </CardDeck>
                 </Row>
-                <br />
             </Container>
         </div>
     )
