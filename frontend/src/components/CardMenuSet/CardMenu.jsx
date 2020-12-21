@@ -28,7 +28,7 @@ const CardMenu = () => {
                         <Card.Text className='card-text'>
                             Sell your wide variety of products related to farming, through our platform. We have millions of farmers connected from all parts of country.
                         </Card.Text>
-                        <Link to='/supplier'>
+                        <Link to='login?redirect=supplier'>
                             <Button variant="success" className="btn-explore btn-md m-2">EXPLORE MORE</Button>
                         </Link>
                     </Card.Body>

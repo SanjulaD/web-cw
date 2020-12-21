@@ -36,7 +36,7 @@ const consumer = [
         avalaible_location: "Dehiwala"
     },
     {
-        prod_name: "RWheat Sona",
+        prod_name: "Wheat Sona",
         seller_name: "Alwis",
         image:'images/consumer/sona.jpg',
         price: 50,

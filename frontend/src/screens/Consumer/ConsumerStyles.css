@@ -13,6 +13,12 @@
 .title {
     text-align: center;
     margin-bottom: 20px;   
-    font-weight: bold; 
+    font-weight: bold !important; 
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.consumerProductScreen
+{
+    margin-top: 100px;
+    margin-bottom: 50px;
 }

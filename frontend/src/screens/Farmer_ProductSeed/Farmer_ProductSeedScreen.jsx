@@ -61,7 +61,7 @@ const Farmer_ProductSeedScreen = () => {
                                         ? <Alert style={{ backgroundColor: 'red' }} className="col-md-12 text-center">Finished</Alert>
                                         : ''
                                 }
-                                <Button className="col-md-12 text-center" variant="success outline-dark" onClick={showMore}>show more</Button>
+                                <Button className="col-md-12 text-center" variant="success outline-dark" onClick={showMore}>Show more</Button>
                             </Row>)
                 }
             </Container>
