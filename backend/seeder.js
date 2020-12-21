@@ -6,12 +6,14 @@ import colors from 'colors'
 import users from './data/users.js';
 import seeds from './data/seeds.js';
 import lendMachines from './data/lendMachines.js';
+import consumer from './data/consumer.js'
 
 // import models
 import User from './models/userModel.js';
 import productSeeds from './models/productSeedModel.js';
 import orderSeeds from './models/orderSeedModel.js';
 import productLendMachines from './models/productLendMachineModel.js';
+import consumerProducts from './models/consumerProductModel.js'
 
 // connect db
 import connectDB from './config/db.js';
@@ -28,6 +30,7 @@ const importData = async () => {
         await productSeeds.deleteMany();
         await User.deleteMany();
         await productLendMachines.deleteMany();
+        await consumerProducts.deleteMany();
 
         // add users to the database
         const createdUser = await User.insertMany(users)
@@ -45,6 +48,11 @@ const importData = async () => {
         })
         await productLendMachines.insertMany(sampleMachines)
 
+        const sampleConsumer = consumer.map(consumer => {
+            return { ...consumer, user: adminUser }
+        })
+        await consumerProducts.insertMany(sampleConsumer)
+
         console.log('Data Imported'.green.inverse)
         process.exit()
     } catch (error) {
@@ -61,6 +69,7 @@ const destroyData = async () => {
         await productSeeds.deleteMany();
         await User.deleteMany();
         await productLendMachines.deleteMany();
+        await consumerProducts.deleteMany();
 
         console.log('Data Destroyed'.red.inverse)
         process.exit()

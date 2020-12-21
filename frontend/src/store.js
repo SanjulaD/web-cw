@@ -6,6 +6,7 @@ import { prodcutSeedListReducer, prodcutSeedDetailsReducer } from './reducers/pr
 import { productLendMachinesListReducer, productLendMachinesDetailsReducer } from './reducers/productLendMachineReducer'
 import { cartSeedReducer } from './reducers/cartReducers'
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer } from './reducers/userReducer.js'
+import { consumerProductListReducer } from './reducers/consumerProductsReducer'
 
 const reducer = combineReducers({
     prodcutSeedList: prodcutSeedListReducer,
@@ -14,12 +15,14 @@ const reducer = combineReducers({
     productLendMachinesList: productLendMachinesListReducer,
     productLendMachinesDetails: productLendMachinesDetailsReducer,
 
+    consumerProductList: consumerProductListReducer,
+
     cartSeed: cartSeedReducer,
 
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
-    userUpdateProfile: userUpdateProfileReducer
+    userUpdateProfile: userUpdateProfileReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
