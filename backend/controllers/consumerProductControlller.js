@@ -11,6 +11,21 @@ const getConsumerProducts = asyncHandler(async (req, res) => {
     res.json(consumerProducts);
 })
 
+// @desc    Fetch Consumer Product by id
+// @rout    GET /consumer/:id
+// @access  public
+const getConsumerProductById = asyncHandler(async (req, res) => {
+    const consumerProduct = await ConsumerProducts.findById(req.params.id);
+
+    if(consumerProduct) {
+        res.json(consumerProduct);
+    } else {
+        res.status(404)
+        throw new Error('Consumer Product not Found')
+    }
+})
+
 export {
-    getConsumerProducts
+    getConsumerProducts,
+    getConsumerProductById
 }

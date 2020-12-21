@@ -16,18 +16,33 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
             }
         })
     } catch (error) {
-        const { data } = await axios.get(`/api/lendMachines/${id}`)
-        dispatch({
-            type: CART_ADD_ITEM,
-            payload: {
-                seed: data._id,
-                name: data.name,
-                image: data.image,
-                price: data.price,
-                countInStock: data.quantity,
-                qty,
-            }
-        })
+        try {
+            const { data } = await axios.get(`/api/lendMachines/${id}`)
+            dispatch({
+                type: CART_ADD_ITEM,
+                payload: {
+                    seed: data._id,
+                    name: data.name,
+                    image: data.image,
+                    price: data.price,
+                    countInStock: data.quantity,
+                    qty,
+                }
+            })
+        } catch (error) { 
+            const { data } = await axios.get(`/api/consumer/${id}`)
+            dispatch({
+                type: CART_ADD_ITEM,
+                payload: {
+                    seed: data._id,
+                    name: data.prod_name,
+                    image: data.image,
+                    price: data.price,
+                    countInStock: data.quantity,
+                    qty,
+                }
+            })
+        }
     }
 
     localStorage.setItem('cartItems', JSON.stringify(getState().cartSeed.cartItems))

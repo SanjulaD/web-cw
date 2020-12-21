@@ -15,6 +15,7 @@ import Farmer_ProductSeed from './screens/Farmer_ProductSeed/Farmer_ProductSeedS
 import SeedProductScreen from './screens/Product_Seed/SeedProductScreen';
 import Farmer_LendScreen from './screens/Farmer_LendMachine/Farmer_LendScreen';
 import LendMachineProduct from './screens/Product_LendMachine/LendMachineProduct';
+import ConsumerProductDetailScreen from './screens/Product_Consumer/ConsumerProductDetailScreen'
 import Cart from './screens/Cart/Cart';
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
           <Route exact path="/farmers/purchaseSeeds/:id" component={SeedProductScreen} /> 
           <Route exact path="/farmers/lendMachines" component={Farmer_LendScreen} />
           <Route exact path="/farmers/lendMachines/:id" component={LendMachineProduct} />
+          <Route exact path="/consumer/:id" component={ConsumerProductDetailScreen} />
         </Switch>
         <Footer />
       </Router>
