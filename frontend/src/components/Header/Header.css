@@ -17,6 +17,7 @@
 
 .cart {
     text-decoration: none !important;
+    margin-left: 0rem !important;
 }
 
 .fa-shopping-cart {

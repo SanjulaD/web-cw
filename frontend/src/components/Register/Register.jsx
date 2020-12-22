@@ -43,66 +43,73 @@ const Register = ({ location, history }) => {
     }
 
     return (
+
         <FormContainer>
             <h1 style={{ marginTop: '120px' }}>Sign Up</h1>
-            { message && <Message variant='danger'>{message}</Message>}
-            { error && <Message variant='danger'>{error}</Message>}
-            { loading && <Loader />}
+            {message && <Message variant='danger'>{message}</Message>}
+            {error && <Message variant='danger'>{error}</Message>}
+            {loading && <Loader />}
             <Form onSubmit={submitHandler}>
-                <Form.Group controlId='name'>
-                    <Form.Label>Name <span style={{ color: 'red' }}>*</span></Form.Label>
-                    <Form.Control
-                        type="name"
-                        placeholder="Enter name"
-                        value={name}
-                        required
-                        onChange={(e) => setName(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
-                <Form.Group controlId='email'>
-                    <Form.Label>Email Address / NIC <span style={{ color: 'red' }}>*</span></Form.Label>
-                    <Form.Control
-                        type="email"
-                        placeholder="Enter email or NIC"
-                        value={email}
-                        required
-                        onChange={(e) => setEmail(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
-                <Form.Group controlId='cropSelection'>
-                    <Form.Label>Crop Selection (optional)</Form.Label>
-                    <Form.Control
-                        type="cropSelection"
-                        placeholder="Enter crop               "
-                        value={cropSelection}
-                        onChange={(e) => setCropSelection(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
-                <Form.Group controlId='password'>
-                    <Form.Label>Password <span style={{ color: 'red' }}>*</span></Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Enter password"
-                        value={password}
-                        required
-                        onChange={(e) => setPassword(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
-                <Form.Group controlId='confirmPassword'>
-                    <Form.Label>Confirm password <span style={{ color: 'red' }}>*</span></Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Confirm password"
-                        value={confirmPassword}
-                        required
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
-                <Button type="submit" variant="primary">Register</Button>
+                <Row>
+                    <Col md={6}>
+                        <Form.Group controlId='name'>
+                            <Form.Label>Name <span style={{ color: 'red' }}>*</span></Form.Label>
+                            <Form.Control
+                                type="name"
+                                placeholder="Enter name"
+                                value={name}
+                                required
+                                onChange={(e) => setName(e.target.value)}
+                            ></Form.Control>
+                        </Form.Group>
+                        <Form.Group controlId='email'>
+                            <Form.Label>Email Address / NIC <span style={{ color: 'red' }}>*</span></Form.Label>
+                            <Form.Control
+                                type="email"
+                                placeholder="Enter email or NIC"
+                                value={email}
+                                required
+                                onChange={(e) => setEmail(e.target.value)}
+                            ></Form.Control>
+                        </Form.Group>
+                        <Form.Group controlId='cropSelection'>
+                            <Form.Label>Crop Selection (optional)</Form.Label>
+                            <Form.Control
+                                type="cropSelection"
+                                placeholder="Enter crop               "
+                                value={cropSelection}
+                                onChange={(e) => setCropSelection(e.target.value)}
+                            ></Form.Control>
+                        </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                        <Form.Group controlId='password'>
+                            <Form.Label>Password <span style={{ color: 'red' }}>*</span></Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Enter password"
+                                value={password}
+                                required
+                                onChange={(e) => setPassword(e.target.value)}
+                            ></Form.Control>
+                        </Form.Group>
+                        <Form.Group controlId='confirmPassword'>
+                            <Form.Label>Confirm password <span style={{ color: 'red' }}>*</span></Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Confirm password"
+                                value={confirmPassword}
+                                required
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            ></Form.Control>
+                        </Form.Group>
+                        <Button type="submit" variant="primary">Register</Button>
+                    </Col>
+                </Row>
             </Form>
             <Row className='py-3'>
                 <Col style={{ marginBottom: '30px' }}>
-                   Have an Account? <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>Login</Link>
+                    Have an Account? <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>Login</Link>
                 </Col>
             </Row>
         </FormContainer>

@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import LoginComponent from './components/Login/LoginComponent';
 import Register from './components/Register/Register';
+import PlaceOrder from './components/PlaceOrder/PlaceOrder.jsx'
 
 import HomeScreen from './screens/Home/HomeScreen';
 import Consumer from './screens/Consumer/ConsumerScreen';
@@ -36,6 +37,7 @@ const App = () => {
           <Route exact path="/profile" component={ProfileScreen} />
           <Route exact path="/shipping" component={ShippingScreen} />
           <Route exact path="/payment" component={PaymentMethodScreen} />
+          <Route exact path="/placeorder" component={PlaceOrder} />
           <Route path="/cart/:id?" component={Cart} />
           <Route exact path="/farmers/purchaseSeeds" component={Farmer_ProductSeed} />
           <Route exact path="/farmers/purchaseSeeds/:id" component={SeedProductScreen} /> 
