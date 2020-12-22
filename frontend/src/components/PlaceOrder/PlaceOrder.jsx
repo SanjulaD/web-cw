@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import {
     Container,
     Button,
@@ -11,8 +11,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from './../../components/CheckoutSteps/CheckoutSteps'
 import Message from '../../components/Message/Message'
+import { createOrder } from './../../actions/orderAction'
 
-const PlaceOrder = () => {
+const PlaceOrder = ({ history }) => {
+
+    const dispatch = useDispatch()
 
     const cart = useSelector(state => state.cartSeed)
 
@@ -26,8 +29,26 @@ const PlaceOrder = () => {
     cart.taxPrice = addDecimals(Number(0.15 * cart.itemsPrice).toFixed(2))
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
 
-    const placeOrder = () => {
+    const orderCreate = useSelector(state => state.orderCreate)
+    const { order, success, error } = orderCreate
 
+    useEffect(() => {
+        if (success) {
+            history.push(`/order/${order._id}`)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [history, success])
+
+    const placeOrder = () => {
+        dispatch(createOrder({
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod,
+            itemsPrice: cart.itemsPrice,
+            shippingPrice: cart.shippingPrice,
+            taxPrice: cart.taxPrice,
+            totalPrice: cart.totalPrice
+        }))
     }
 
     return (
@@ -116,6 +137,9 @@ const PlaceOrder = () => {
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
+                                    <ListGroup.Item>
+                                        {error && <Message variant="danger">{error}</Message>}
+                                    </ListGroup.Item>
                                     <Button
                                         type="button"
                                         className="btn-block"

@@ -12,10 +12,10 @@ const orderSeedSchema = mongoose.Schema({
             qty: { type: Number, requried: true },
             image: { type: String, requried: true },
             price: { type: Number, requried: true },
-            produst: { 
+            seed: { 
                 type: mongoose.Schema.Types.ObjectId,
                 required: true,
-                ref: 'productSeed'
+                ref: 'farmer_product_seeds',
              },
         }
     ],
