@@ -7,7 +7,7 @@ import { productLendMachinesListReducer, productLendMachinesDetailsReducer } fro
 import { cartSeedReducer } from './reducers/cartReducers'
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer } from './reducers/userReducer.js'
 import { consumerProductListReducer, consumerProductDetailsReducer } from './reducers/consumerProductsReducer'
-import { orderCreateReducer } from './reducers/orderReducers'
+import { orderCreateReducer, orderDetailsReducer } from './reducers/orderReducers'
 
 const reducer = combineReducers({
     prodcutSeedList: prodcutSeedListReducer,
@@ -22,6 +22,7 @@ const reducer = combineReducers({
     cartSeed: cartSeedReducer,
 
     orderCreate: orderCreateReducer,
+    orderDetails: orderDetailsReducer,
 
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,

@@ -137,9 +137,10 @@ const PlaceOrder = ({ history }) => {
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
-                                    <ListGroup.Item>
-                                        {error && <Message variant="danger">{error}</Message>}
+                                    {error && <ListGroup.Item>
+                                        <Message variant="danger">{error}</Message>
                                     </ListGroup.Item>
+                                    }
                                     <Button
                                         type="button"
                                         className="btn-block"

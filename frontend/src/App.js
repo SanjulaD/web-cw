@@ -19,6 +19,7 @@ import LendMachineProduct from './screens/Product_LendMachine/LendMachineProduct
 import PaymentMethodScreen from './screens/Payment/PaymentMethodScreen'
 import ConsumerProductDetailScreen from './screens/Product_Consumer/ConsumerProductDetailScreen'
 import ShippingScreen from './screens/Shipping/ShippingScreen';
+import OrderScreen from './screens/Order/OrderScreen';
 import Cart from './screens/Cart/Cart';
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
           <Route exact path="/payment" component={PaymentMethodScreen} />
           <Route exact path="/placeorder" component={PlaceOrder} />
           <Route path="/cart/:id?" component={Cart} />
+          <Route path="/order/:id" component={OrderScreen} />
           <Route exact path="/farmers/purchaseSeeds" component={Farmer_ProductSeed} />
           <Route exact path="/farmers/purchaseSeeds/:id" component={SeedProductScreen} /> 
           <Route exact path="/farmers/lendMachines" component={Farmer_LendScreen} />
