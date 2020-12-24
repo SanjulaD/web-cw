@@ -39,8 +39,8 @@ const Header = () => {
                     <LinkContainer to="login?redirect=supplier">
                         <Nav.Link className="nav-cal">SUPPLIER</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to="/cart">
-                        <Nav.Link className="cart nav-cal">
+                    <LinkContainer to="/cart" >
+                        <Nav.Link className={`${userInfo ? "remove-space" : "add-space cart nav-cal"} `}>
                             <i className="fas fa-shopping-cart"></i>
                             CART
                         </Nav.Link>
@@ -58,6 +58,21 @@ const Header = () => {
                                     <Nav.Link className="login nav-cal">SIGN IN</Nav.Link>
                                 </LinkContainer>
                             )
+                    }
+                    {
+                        userInfo && userInfo.isAdmin && (
+                            <NavDropdown title="ADMIN" id='adminmenu'>
+                                <LinkContainer to='/admin/userlist'>
+                                    <NavDropdown.Item>USERS</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to='/admin/productlist'>
+                                    <NavDropdown.Item>PRODUCTS</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to='/admin/orderlist'>
+                                    <NavDropdown.Item>ORDERS</NavDropdown.Item>
+                                </LinkContainer>
+                            </NavDropdown>
+                        )
                     }
                 </Nav>
             </Navbar.Collapse>

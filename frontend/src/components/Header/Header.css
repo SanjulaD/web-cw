@@ -10,7 +10,7 @@
     font-size: 14px;
 }
 
-#username {
+#username, #adminmenu {
     color: white !important;
     font-size: 14px;
 }
@@ -18,10 +18,12 @@
 .cart {
     text-decoration: none !important;
     margin-left: 0rem !important;
+    font-size: 14px !important;
 }
 
 .fa-shopping-cart {
     margin-right: 8px ;
+    color: white;
 }
 
 /* Desktop */
@@ -31,7 +33,16 @@
     }
     .cart {
         float: right !important;
-        margin-left: 38rem !important;
+        margin-left: 35rem !important;
+        color: white !important;
+        font-size: 14px !important;
+        font-size: 14px;
+    }
+    .remove-space {
+        float: right !important;
+        margin-left: 35rem !important;
+        color: white !important;
+        font-size: 14px !important;
     }
     .nav-cal{
         margin-left: 10px;

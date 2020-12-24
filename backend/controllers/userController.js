@@ -8,10 +8,10 @@ import generateToken from './../utils/genarateToken.js'
 // @access  public
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
-    
+
     const user = await User.findOne({ email })
 
-    if(user && (await user.matchPassword(password))) {
+    if (user && (await user.matchPassword(password))) {
         res.json({
             _id: user._id,
             name: user.name,
@@ -31,14 +31,14 @@ const authUser = asyncHandler(async (req, res) => {
 // @access  public
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, cropSelection } = req.body
-    
+
     const userExists = await User.findOne({ email })
 
     if (userExists) {
         res.status(400)
         throw new Error('User already exists')
-    } 
-    
+    }
+
     const user = await User.create({
         name,
         email,
@@ -111,9 +111,76 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc    GET all users
+// @rout    GET /api/users/
+// @access  Private/ADMIN
+const getUsers = asyncHandler(async (req, res) => {
+    const users = await User.find({})
+    res.json(users)
+})
+
+// @desc    delete user profile
+// @rout    DELETE /api/users/:id
+// @access  Private/Admin
+const deleteUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id)
+
+    if (user) {
+        await user.remove()
+        res.json({ message: 'User Removed' })
+    } else {
+        res.status(401)
+        throw new Error('User not found!!')
+    }
+})
+
+// @desc    GET user by id
+// @rout    GET /api/users/:id
+// @access  Private/ADMIN
+const getUserById = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id).select('-password')
+    if (user) {
+        res.json(user)
+    } else {
+        res.status(401)
+        throw new Error('User not found!!')
+    }
+})
+
+// @desc    update user
+// @rout    PUT /api/users/=
+// @access  Private/Admin
+const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id)
+
+    if (user) {
+        user.name = req.body.name || user.name
+        user.email = req.body.email || user.email
+        user.cropSelection = req.body.cropSelection || user.cropSelection
+        user.isAdmin = req.body.isAdmin
+
+        const updatedUser = await user.save()
+
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            cropSelection: updatedUser.cropSelection,
+        })
+    } else {
+        res.status(401)
+        throw new Error('User not found!!')
+    }
+})
+
 export {
     authUser,
     getUserProfile,
     registerUser,
-    updateUserProfile
+    updateUserProfile,
+    getUsers,
+    deleteUser,
+    getUserById,
+    updateUser
 }
