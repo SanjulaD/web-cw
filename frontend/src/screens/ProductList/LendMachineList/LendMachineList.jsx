@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import Message from './../../../components/Message/Message'
 import Loader from './../../../components/Loader/Loader'
-import { listLendMachineProducts } from './../../../actions/productLendMachinesActions'
+import { listLendMachineProducts, deleteLendMachineProduct } from './../../../actions/productLendMachinesActions'
 
 const SeedList = ({ history }) => {
 
@@ -18,6 +18,9 @@ const SeedList = ({ history }) => {
 
     const productLendMachinesList = useSelector(state => state.productLendMachinesList)
     const { loading: loadingMachine, error: errorMachine, productLendMachines } = productLendMachinesList
+
+    const productLendMachinesDelete = useSelector(state => state.productLendMachinesDelete)
+    const { loading: loadingDelete, error: errorDelete, success: successDelete } = productLendMachinesDelete
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -28,14 +31,14 @@ const SeedList = ({ history }) => {
         } else {
             history.push('/login')
         }
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, userInfo, successDelete])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure')) {
-            // Product delte
+            dispatch(deleteLendMachineProduct(id))
         }
     }
-    
+
     const createMachineProductHandler = (machine) => {
         //  CREATE MACHINE PRODUCT
     }
@@ -52,6 +55,8 @@ const SeedList = ({ history }) => {
                     </Button>
                 </Col>
             </Row>
+            { loadingDelete && <Loader />}
+            { errorDelete && <Message variant='danger'>{errorDelete}</Message>}
             {loadingMachine ? <Loader />
                 : errorMachine ? <Message variant='danger'>{errorMachine}</Message>
                     : (
@@ -74,7 +79,7 @@ const SeedList = ({ history }) => {
                                             <td>{machine.target_plant}</td>
                                             <td>{machine.machine_power}</td>
                                             <td>
-                                                <LinkContainer to={`/admin/user/productlist/${machine._id}/edit`}>
+                                                <LinkContainer to={`/admin/user/productlist/machine/${machine._id}/edit`}>
                                                     <Button variant="light" className="btn btn-sm">
                                                         <i className="fas fa-edit"></i>
                                                     </Button>

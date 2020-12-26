@@ -25,4 +25,19 @@ const getLendMachnineById = asyncHandler(async(req, res) => {
     }
 })
 
-export { getLendMachnines, getLendMachnineById }
+// @desc    Fetch machine by id
+// @rout    GET /lendMachines/:id
+// @access  private/admin
+const deleteLendMachnine = asyncHandler(async(req, res) => {
+    const lendMachine = await ProductLendMachines.findById(req.params.id);
+
+    if(lendMachine) {
+        lendMachine.remove()
+        res.json({ message: 'Machine Removed' });
+    } else {
+        res.status(404)
+        throw new Error('Machine not Found')
+    }
+})
+
+export { getLendMachnines, getLendMachnineById, deleteLendMachnine }

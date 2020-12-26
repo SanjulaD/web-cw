@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import Message from './../../../components/Message/Message'
 import Loader from './../../../components/Loader/Loader'
-import { listConsumerProducts } from './../../../actions/consumerProductAction'
+import { listConsumerProducts, deleteConsumerProduct } from './../../../actions/consumerProductAction'
 
 const ConsumerList = ({ history }) => {
 
@@ -18,6 +18,9 @@ const ConsumerList = ({ history }) => {
 
     const consumerProductList = useSelector(state => state.consumerProductList)
     const { loading: loadingConsumer, error: errorConsumer, consumerProducts } = consumerProductList
+
+    const consumerProductDelete = useSelector(state => state.consumerProductDelete)
+    const { loading: deleteLoadingConsumer, error: errorDeleteConsumer, success: successDelete } = consumerProductDelete
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -28,11 +31,11 @@ const ConsumerList = ({ history }) => {
         } else {
             history.push('/login')
         }
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, userInfo, successDelete])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure')) {
-            // Product delte
+            dispatch(deleteConsumerProduct(id))
         }
     }
 
@@ -52,6 +55,8 @@ const ConsumerList = ({ history }) => {
                     </Button>
                 </Col>
             </Row>
+            { deleteLoadingConsumer && <Loader />}
+            { errorDeleteConsumer && <Message variant='danger'>{errorDeleteConsumer}</Message>}
             {loadingConsumer ? <Loader />
                 : errorConsumer ? <Message variant='danger'>{errorConsumer}</Message>
                     : (
@@ -59,9 +64,9 @@ const ConsumerList = ({ history }) => {
                             <thead>
                                 <tr>
                                     <td>ID</td>
-                                    <td>NAME</td>
-                                    <td>TARGET PLANT</td>
-                                    <td>MACHINE POWER</td>
+                                    <td>SELLER NAME</td>
+                                    <td>PRODUCT NAME</td>
+                                    <td>AVALAIBLE LOCATION</td>
                                     <td>EDIT / DELETE</td>
                                 </tr>
                             </thead>
@@ -69,14 +74,12 @@ const ConsumerList = ({ history }) => {
                                 {
                                     consumerProducts.map(consumer => (
                                         <tr key={consumer._id}>
-                                            <td>{consumer.prod_name}</td>
-                                            <td>{consumer.name}</td>
+                                            <td>{consumer._id}</td>
                                             <td>{consumer.seller_name}</td>
-                                            <td>{consumer.price}</td>
-                                            <td>{consumer.prod_size}</td>
+                                            <td>{consumer.prod_name}</td>
                                             <td>{consumer.avalaible_location}</td>
                                             <td>
-                                                <LinkContainer to={`/admin/user/productlist/${consumer._id}/edit`}>
+                                                <LinkContainer to={`/admin/user/productlist/consumer/${consumer._id}/edit`}>
                                                     <Button variant="light" className="btn btn-sm">
                                                         <i className="fas fa-edit"></i>
                                                     </Button>

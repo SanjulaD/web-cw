@@ -2,22 +2,25 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { prodcutSeedListReducer, prodcutSeedDetailsReducer } from './reducers/productSeedReducer'
-import { productLendMachinesListReducer, productLendMachinesDetailsReducer } from './reducers/productLendMachineReducer'
+import { prodcutSeedListReducer, prodcutSeedDetailsReducer, prodcutSeedDeleteReducer } from './reducers/productSeedReducer'
+import { productLendMachinesListReducer, productLendMachinesDetailsReducer, productLendMachinesDeleteReducer } from './reducers/productLendMachineReducer'
 import { cartSeedReducer } from './reducers/cartReducers'
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userListeReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducer.js'
-import { consumerProductListReducer, consumerProductDetailsReducer } from './reducers/consumerProductsReducer'
+import { consumerProductListReducer, consumerProductDetailsReducer, consumerProductDeleteReducer } from './reducers/consumerProductsReducer'
 import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderListMyReducer } from './reducers/orderReducers'
 
 const reducer = combineReducers({
     prodcutSeedList: prodcutSeedListReducer,
     prodcutSeedDetails: prodcutSeedDetailsReducer,
+    prodcutSeedDelete: prodcutSeedDeleteReducer,
 
     productLendMachinesList: productLendMachinesListReducer,
     productLendMachinesDetails: productLendMachinesDetailsReducer,
+    productLendMachinesDelete: productLendMachinesDeleteReducer,
 
     consumerProductList: consumerProductListReducer,
     consumerProductDetails: consumerProductDetailsReducer,
+    consumerProductDelete: consumerProductDeleteReducer,
 
     cartSeed: cartSeedReducer,
 

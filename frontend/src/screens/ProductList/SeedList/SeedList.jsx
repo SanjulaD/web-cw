@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import Message from './../../../components/Message/Message'
 import Loader from './../../../components/Loader/Loader'
-import { listSeedProducts } from './../../../actions/productSeedActions'
+import { listSeedProducts, deleteSeedProducts } from './../../../actions/productSeedActions'
 
 const SeedList = ({ history }) => {
 
@@ -18,6 +18,9 @@ const SeedList = ({ history }) => {
 
     const prodcutSeedList = useSelector(state => state.prodcutSeedList)
     const { loading: loadingSeed, error: errorSeed, productSeeds } = prodcutSeedList
+
+    const prodcutSeedDelete = useSelector(state => state.prodcutSeedDelete)
+    const { success: successSeedDelete, loading: loadingDelete, error: errorDelete } = prodcutSeedDelete
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -28,11 +31,11 @@ const SeedList = ({ history }) => {
         } else {
             history.push('/login')
         }
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, userInfo, successSeedDelete])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure')) {
-            // Product delte
+            dispatch(deleteSeedProducts(id))
         }
     }
 
@@ -52,6 +55,8 @@ const SeedList = ({ history }) => {
                     </Button>
                 </Col>
             </Row>
+            { loadingDelete && <Loader /> }
+            { errorDelete && <Message variant='danger'>{errorDelete}</Message> }
             {loadingSeed ? <Loader />
                 : errorSeed ? <Message variant='danger'>{errorSeed}</Message>
                     : (
@@ -74,7 +79,7 @@ const SeedList = ({ history }) => {
                                             <td>{productSeed.category}</td>
                                             <td>{productSeed.price}</td>
                                             <td>
-                                                <LinkContainer to={`/admin/user/productlist/${productSeed._id}/edit`}>
+                                                <LinkContainer to={`/admin/user/productlist/seed/${productSeed._id}/edit`}>
                                                     <Button variant="light" className="btn btn-sm">
                                                         <i className="fas fa-edit"></i>
                                                     </Button>

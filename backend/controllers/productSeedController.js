@@ -25,4 +25,19 @@ const getSeedProductById = asyncHandler(async (req, res) => {
     }
 })
 
-export { getSeedProducts, getSeedProductById }
+// @desc    Delete Seed
+// @rout    DELETE /seeds/:id
+// @access  private/ Admin
+const deleteSeedProduct = asyncHandler(async (req, res) => {
+    const productSeed = await ProductSeeds.findById(req.params.id);
+
+    if(productSeed) {
+        productSeed.remove()
+        res.json({ message: "Product removed" });
+    } else {
+        res.status(404)
+        throw new Error('Seed not Found')
+    }
+})
+
+export { getSeedProducts, getSeedProductById, deleteSeedProduct }

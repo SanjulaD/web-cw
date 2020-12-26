@@ -1,10 +1,13 @@
-import { 
-    PRODUCT_SEED_LIST_REQUEST, 
-    PRODUCT_SEED_LIST_SUCCESS, 
+import {
+    PRODUCT_SEED_LIST_REQUEST,
+    PRODUCT_SEED_LIST_SUCCESS,
     PRODUCT_SEED_LIST_FAIL,
-    PRODUCT_SEED_DETAILS_REQUEST, 
-    PRODUCT_SEED_DETAILS_SUCCESS, 
-    PRODUCT_SEED_DETAILS_FAIL  
+    PRODUCT_SEED_DETAILS_REQUEST,
+    PRODUCT_SEED_DETAILS_SUCCESS,
+    PRODUCT_SEED_DETAILS_FAIL,
+    SEED_DELETE_REQUEST,
+    SEED_DELETE_SUCCESS,
+    SEED_DELETE_FAIL
 } from './../constants/productConstants.js'
 
 export const prodcutSeedListReducer = (state = { productSeeds: [] }, action) => {
@@ -27,6 +30,19 @@ export const prodcutSeedDetailsReducer = (state = { productSeed: { reviews: [] }
         case PRODUCT_SEED_DETAILS_SUCCESS:
             return { loading: false, productSeed: action.payload }
         case PRODUCT_SEED_DETAILS_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+export const prodcutSeedDeleteReducer = (state = {}, action) => {
+    switch (action.type) {
+        case SEED_DELETE_REQUEST:
+            return { loading: true }
+        case SEED_DELETE_SUCCESS:
+            return { loading: false, success: true }
+        case SEED_DELETE_FAIL:
             return { loading: false, error: action.payload }
         default:
             return state

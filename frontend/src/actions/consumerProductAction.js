@@ -6,6 +6,9 @@ import {
     CONSUMER_PRODUCT_DETAILS_REQUEST,
     CONSUMER_PRODUCT_DETAILS_SUCCESS,
     CONSUMER_PRODUCT_DETAILS_FAIL,
+    CONSUMER_DELETE_REQUEST,
+    CONSUMER_DELETE_SUCCESS,
+    CONSUMER_DELETE_FAIL
 } from './../constants/productConstants'
 
 export const listConsumerProducts = () => async (dispatch) => {
@@ -42,6 +45,34 @@ export const listConsumerProductsDetails = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: CONSUMER_PRODUCT_DETAILS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        })
+    }
+}
+
+export const deleteConsumerProduct = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: CONSUMER_DELETE_REQUEST })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            },
+        }
+
+        await axios.delete(`/api/consumer/${id}`, config)
+
+        dispatch({
+            type: CONSUMER_DELETE_SUCCESS,
+        })
+    } catch (error) {
+        dispatch({
+            type: CONSUMER_DELETE_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
