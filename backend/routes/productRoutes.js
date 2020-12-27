@@ -1,27 +1,60 @@
 import express from 'express'
 const router = express.Router()
 
-import { getSeedProducts, getSeedProductById, deleteSeedProduct } from './../controllers/productSeedController.js'
-import { getLendMachnines, getLendMachnineById, deleteLendMachnine } from './../controllers/productLendMachineController.js'
-import { getConsumerProducts, getConsumerProductById, deleteConsumerProduct } from './../controllers/consumerProductControlller.js'
+import { 
+    getSeedProducts, 
+    getSeedProductById, 
+    deleteSeedProduct,
+    createSeedProduct,
+    updateSeedProduct
+} from './../controllers/productSeedController.js'
+import { 
+    getLendMachnines, 
+    getLendMachnineById, 
+    deleteLendMachnine,
+    updateLendMachine,
+    createLendMachine
+} from './../controllers/productLendMachineController.js'
+import { 
+    getConsumerProducts, 
+    getConsumerProductById, 
+    deleteConsumerProduct,
+    createConsumer,
+    updateConsumer
+} from './../controllers/consumerProductControlller.js'
 import { protect, admin } from './../middleware/authMiddleware.js'
 
-router.route('/seeds').get(getSeedProducts)
+router
+    .route('/seeds')
+    .get(getSeedProducts)
+    .post(protect, admin, createSeedProduct)
+
 router
     .route('/seeds/:id')
     .get(getSeedProductById)
     .delete(protect, admin, deleteSeedProduct)
+    .put(protect, admin, updateSeedProduct)
 
-router.route('/lendMachines').get(getLendMachnines)
+router
+    .route('/lendMachines')
+    .get(getLendMachnines)
+    .post(protect, admin, createLendMachine)
+
 router
     .route('/lendMachines/:id')
     .get(getLendMachnineById)
     .delete(protect, admin, deleteLendMachnine)
+    .put(protect, admin, updateLendMachine)
 
-router.route('/consumer').get(getConsumerProducts)
+router
+    .route('/consumer')
+    .get(getConsumerProducts)
+    .post(protect, admin, createConsumer)
+
 router
     .route('/consumer/:id')
     .get(getConsumerProductById)
     .delete(protect, admin,deleteConsumerProduct)
+    .put(protect, admin, updateConsumer)
 
 export default router

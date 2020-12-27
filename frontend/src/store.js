@@ -2,21 +2,50 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { prodcutSeedListReducer, prodcutSeedDetailsReducer, prodcutSeedDeleteReducer } from './reducers/productSeedReducer'
-import { productLendMachinesListReducer, productLendMachinesDetailsReducer, productLendMachinesDeleteReducer } from './reducers/productLendMachineReducer'
+import { 
+    prodcutSeedListReducer, 
+    prodcutSeedDetailsReducer, 
+    prodcutSeedDeleteReducer,
+    seedCreateReducer
+} from './reducers/productSeedReducer'
+import { 
+    productLendMachinesListReducer, 
+    productLendMachinesDetailsReducer, 
+    productLendMachinesDeleteReducer,
+    LendMachinesCreateReducer
+} from './reducers/productLendMachineReducer'
 import { cartSeedReducer } from './reducers/cartReducers'
-import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userListeReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducer.js'
-import { consumerProductListReducer, consumerProductDetailsReducer, consumerProductDeleteReducer } from './reducers/consumerProductsReducer'
-import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderListMyReducer } from './reducers/orderReducers'
+import { 
+    userLoginReducer, 
+    userRegisterReducer, 
+    userDetailsReducer, 
+    userUpdateProfileReducer, 
+    userListeReducer, 
+    userDeleteReducer, 
+    userUpdateReducer 
+} from './reducers/userReducer.js'
+import { 
+    consumerProductListReducer, 
+    consumerProductDetailsReducer, 
+    consumerProductDeleteReducer 
+} from './reducers/consumerProductsReducer'
+import { 
+    orderCreateReducer, 
+    orderDetailsReducer, 
+    orderPayReducer, 
+    orderListMyReducer 
+} from './reducers/orderReducers'
 
 const reducer = combineReducers({
     prodcutSeedList: prodcutSeedListReducer,
     prodcutSeedDetails: prodcutSeedDetailsReducer,
     prodcutSeedDelete: prodcutSeedDeleteReducer,
+    seedCreate: seedCreateReducer,
 
     productLendMachinesList: productLendMachinesListReducer,
     productLendMachinesDetails: productLendMachinesDetailsReducer,
     productLendMachinesDelete: productLendMachinesDeleteReducer,
+    LendMachinesCreate: LendMachinesCreateReducer,
 
     consumerProductList: consumerProductListReducer,
     consumerProductDetails: consumerProductDetailsReducer,

@@ -8,7 +8,10 @@ import {
     PRODUCT_MACHINE_DETAILS_FAIL,
     MACHINE_DELETE_REQUEST,
     MACHINE_DELETE_SUCCESS,
-    MACHINE_DELETE_FAIL
+    MACHINE_DELETE_FAIL,
+    MACHINE_CREATE_REQUEST,
+    MACHINE_CREATE_SUCCESS,
+    MACHINE_CREATE_FAIL
 } from './../constants/productConstants.js'
 
 export const listLendMachineProducts = () => async (dispatch) => {
@@ -73,6 +76,35 @@ export const deleteLendMachineProduct = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: MACHINE_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        })
+    }
+}
+
+export const createLendMachine = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: MACHINE_CREATE_REQUEST })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            },
+        }
+
+        const { data } = await axios.post(`/api/lendMachines`, {}, config)
+
+        dispatch({
+            type: MACHINE_CREATE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: MACHINE_CREATE_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

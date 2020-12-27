@@ -8,7 +8,10 @@ import {
     PRODUCT_SEED_DETAILS_FAIL,
     SEED_DELETE_REQUEST,
     SEED_DELETE_SUCCESS,
-    SEED_DELETE_FAIL
+    SEED_DELETE_FAIL,
+    SEED_CREATE_REQUEST,
+    SEED_CREATE_SUCCESS,
+    SEED_CREATE_FAIL
 } from './../constants/productConstants.js'
 
 export const listSeedProducts = () => async (dispatch) => {
@@ -73,6 +76,35 @@ export const deleteSeedProducts = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: SEED_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        })
+    }
+}
+
+export const createSeedProducts = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: SEED_CREATE_REQUEST })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            },
+        }
+
+        const { data } = await axios.post(`/api/seeds`, {}, config)
+
+        dispatch({
+            type: SEED_CREATE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: SEED_CREATE_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

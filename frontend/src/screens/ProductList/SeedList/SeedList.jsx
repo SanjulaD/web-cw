@@ -7,14 +7,17 @@ import {
     Col,
     Container
 } from 'react-bootstrap'
+import { useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import Message from './../../../components/Message/Message'
 import Loader from './../../../components/Loader/Loader'
-import { listSeedProducts, deleteSeedProducts } from './../../../actions/productSeedActions'
+import { listSeedProducts, deleteSeedProducts, createSeedProducts } from './../../../actions/productSeedActions'
+import { SEED_CREATE_RESET } from './../../../constants/productConstants'
 
-const SeedList = ({ history }) => {
+const SeedList = () => {
 
     const dispatch = useDispatch()
+    let history = useHistory()
 
     const prodcutSeedList = useSelector(state => state.prodcutSeedList)
     const { loading: loadingSeed, error: errorSeed, productSeeds } = prodcutSeedList
@@ -22,16 +25,29 @@ const SeedList = ({ history }) => {
     const prodcutSeedDelete = useSelector(state => state.prodcutSeedDelete)
     const { success: successSeedDelete, loading: loadingDelete, error: errorDelete } = prodcutSeedDelete
 
+    const seedCreate = useSelector(state => state.seedCreate)
+    const {
+        success: successSeedCreate,
+        loading: loadingCreate,
+        error: errorCreate,
+        product: productCreate
+    } = seedCreate
+
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
     useEffect(() => {
-        if (userInfo && userInfo.isAdmin) {
-            dispatch(listSeedProducts())
-        } else {
+        dispatch({ type: SEED_CREATE_RESET })
+        if (!userInfo.isAdmin) {
             history.push('/login')
         }
-    }, [dispatch, history, userInfo, successSeedDelete])
+
+        if (successSeedCreate) {
+            history.push(`/admin/productlist/seed/${productCreate._id}/edit`)
+        } else {
+            dispatch(listSeedProducts())
+        }
+    }, [dispatch, history, userInfo, successSeedDelete, successSeedCreate, productCreate])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure')) {
@@ -39,8 +55,8 @@ const SeedList = ({ history }) => {
         }
     }
 
-    const createSeedProductHandler = (seedProduct) => {
-        // CREATE PRODUCT
+    const createSeedProductHandler = () => {
+        dispatch(createSeedProducts())
     }
 
     return (
@@ -55,8 +71,10 @@ const SeedList = ({ history }) => {
                     </Button>
                 </Col>
             </Row>
-            { loadingDelete && <Loader /> }
-            { errorDelete && <Message variant='danger'>{errorDelete}</Message> }
+            { loadingCreate && <Loader />}
+            { loadingDelete && <Loader />}
+            { errorCreate && <Message variant='danger'>{errorCreate}</Message>}
+            { errorDelete && <Message variant='danger'>{errorDelete}</Message>}
             {loadingSeed ? <Loader />
                 : errorSeed ? <Message variant='danger'>{errorSeed}</Message>
                     : (
@@ -79,7 +97,7 @@ const SeedList = ({ history }) => {
                                             <td>{productSeed.category}</td>
                                             <td>{productSeed.price}</td>
                                             <td>
-                                                <LinkContainer to={`/admin/user/productlist/seed/${productSeed._id}/edit`}>
+                                                <LinkContainer to={`/admin/productlist/seed/${productSeed._id}/edit`}>
                                                     <Button variant="light" className="btn btn-sm">
                                                         <i className="fas fa-edit"></i>
                                                     </Button>

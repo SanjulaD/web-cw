@@ -7,14 +7,17 @@ import {
     Col,
     Row
 } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from './../../../components/Message/Message'
 import Loader from './../../../components/Loader/Loader'
-import { listLendMachineProducts, deleteLendMachineProduct } from './../../../actions/productLendMachinesActions'
+import { listLendMachineProducts, deleteLendMachineProduct, createLendMachine } from './../../../actions/productLendMachinesActions'
+import { MACHINE_CREATE_RESET } from './../../../constants/productConstants'
 
-const SeedList = ({ history }) => {
+const SeedList = () => {
 
     const dispatch = useDispatch()
+    let history = useHistory()
 
     const productLendMachinesList = useSelector(state => state.productLendMachinesList)
     const { loading: loadingMachine, error: errorMachine, productLendMachines } = productLendMachinesList
@@ -22,16 +25,24 @@ const SeedList = ({ history }) => {
     const productLendMachinesDelete = useSelector(state => state.productLendMachinesDelete)
     const { loading: loadingDelete, error: errorDelete, success: successDelete } = productLendMachinesDelete
 
+    const LendMachinesCreate = useSelector(state => state.LendMachinesCreate)
+    const { loading: loadingCreate, error: errorCreate, success: successCreate, product: productCreate } = LendMachinesCreate
+
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
     useEffect(() => {
-        if (userInfo && userInfo.isAdmin) {
-            dispatch(listLendMachineProducts())
-        } else {
+        dispatch({ type: MACHINE_CREATE_RESET })
+        if (!userInfo.isAdmin) {
             history.push('/login')
         }
-    }, [dispatch, history, userInfo, successDelete])
+
+        if (successCreate) {
+            history.push(`/admin/productlist/machine/${productCreate._id}/edit`)
+        } else {
+            dispatch(listLendMachineProducts())
+        }
+    }, [dispatch, history, userInfo, successDelete, successCreate, productCreate])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure')) {
@@ -39,15 +50,15 @@ const SeedList = ({ history }) => {
         }
     }
 
-    const createMachineProductHandler = (machine) => {
-        //  CREATE MACHINE PRODUCT
+    const createMachineProductHandler = () => {
+        dispatch(createLendMachine())
     }
 
     return (
         <Container>
             <Row>
                 <Col>
-                    <h1 style={{ marginBottom: '20px' }}>Consumer</h1>
+                    <h1 style={{ marginBottom: '20px' }}>Lend Machines</h1>
                 </Col>
                 <Col className="text-right">
                     <Button className='my-3' onClick={createMachineProductHandler}>
@@ -55,6 +66,8 @@ const SeedList = ({ history }) => {
                     </Button>
                 </Col>
             </Row>
+            { loadingCreate && <Loader />}
+            { errorCreate && <Message variant='danger'>{errorCreate}</Message>}
             { loadingDelete && <Loader />}
             { errorDelete && <Message variant='danger'>{errorDelete}</Message>}
             {loadingMachine ? <Loader />
@@ -79,7 +92,7 @@ const SeedList = ({ history }) => {
                                             <td>{machine.target_plant}</td>
                                             <td>{machine.machine_power}</td>
                                             <td>
-                                                <LinkContainer to={`/admin/user/productlist/machine/${machine._id}/edit`}>
+                                                <LinkContainer to={`/admin/productlist/machine/${machine._id}/edit`}>
                                                     <Button variant="light" className="btn btn-sm">
                                                         <i className="fas fa-edit"></i>
                                                     </Button>

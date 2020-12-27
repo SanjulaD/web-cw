@@ -42,11 +42,11 @@ const App = () => {
           <Route exact path="/shipping" component={ShippingScreen} />
           <Route exact path="/payment" component={PaymentMethodScreen} />
           <Route exact path="/placeorder" component={PlaceOrder} />
-          <Route path="/cart/:id?" component={Cart} />
-          <Route path="/order/:id" component={OrderScreen} />
-          <Route path="/admin/userList" component={UserListScreen} />
-          <Route path="/admin/productlist" component={ProductListScreen} />
-          <Route path="/admin/user/:id/edit" component={UserEditScreen} />
+          <Route exact path="/cart/:id?" component={Cart} />
+          <Route exact path="/order/:id" component={OrderScreen} />
+          <Route exact path="/admin/userList" component={UserListScreen} />
+          <Route exact path="/admin/productlist" component={ProductListScreen} />
+          <Route exact path="/admin/user/:id/edit" component={UserEditScreen} />
           <Route exact path="/farmers/purchaseSeeds" component={Farmer_ProductSeed} />
           <Route exact path="/farmers/purchaseSeeds/:id" component={SeedProductScreen} /> 
           <Route exact path="/farmers/lendMachines" component={Farmer_LendScreen} />

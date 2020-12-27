@@ -17,7 +17,7 @@ const getSeedProducts = asyncHandler(async (req, res) => {
 const getSeedProductById = asyncHandler(async (req, res) => {
     const productSeed = await ProductSeeds.findById(req.params.id);
 
-    if(productSeed) {
+    if (productSeed) {
         res.json(productSeed);
     } else {
         res.status(404)
@@ -31,7 +31,7 @@ const getSeedProductById = asyncHandler(async (req, res) => {
 const deleteSeedProduct = asyncHandler(async (req, res) => {
     const productSeed = await ProductSeeds.findById(req.params.id);
 
-    if(productSeed) {
+    if (productSeed) {
         productSeed.remove()
         res.json({ message: "Product removed" });
     } else {
@@ -40,4 +40,54 @@ const deleteSeedProduct = asyncHandler(async (req, res) => {
     }
 })
 
-export { getSeedProducts, getSeedProductById, deleteSeedProduct }
+// @desc    Create Product Seed
+// @rout    POST /seeds/
+// @access  private/ Admin
+const createSeedProduct = asyncHandler(async (req, res) => {
+    const productSeed = new ProductSeeds({
+        name: 'Sample Seed',
+        user: req.user._id,
+        image: '/images/sample.png',
+        description: 'Sample Description',
+        category: 'Sample Category',
+        price: 0,
+        countInStock: 0,
+        numReviews: 0
+    })
+
+    const createdProduct = await productSeed.save()
+    res.status(201).json(createdProduct)
+})
+
+// @desc    Update Product Seed
+// @rout    PUT /seeds/:id
+// @access  private/ Admin
+const updateSeedProduct = asyncHandler(async (req, res) => {
+    const { name, price, image, description, category, countInStock } = req.body
+
+    const updateProductSeed = await ProductSeeds.findById(req.params.id)
+
+    if (updateProductSeed) {
+
+        updateProductSeed.name = name
+        updateProductSeed.price = price
+        updateProductSeed.image = image
+        updateProductSeed.description = description
+        updateProductSeed.category = category
+        updateProductSeed.countInStock = countInStock
+
+        const updatedProduct = await updateProductSeed.save()
+        res.status(201).json(updatedProduct)
+    } else {
+        res.status(401)
+        throw new Error('Product not found')
+    }
+})
+
+export {
+    getSeedProducts,
+    getSeedProductById,
+    deleteSeedProduct,
+    createSeedProduct,
+    updateSeedProduct
+}
