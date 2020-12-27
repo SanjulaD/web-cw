@@ -6,7 +6,8 @@ import {
     prodcutSeedListReducer, 
     prodcutSeedDetailsReducer, 
     prodcutSeedDeleteReducer,
-    seedCreateReducer
+    seedCreateReducer,
+    seedUpdateReducer
 } from './reducers/productSeedReducer'
 import { 
     productLendMachinesListReducer, 
@@ -27,7 +28,8 @@ import {
 import { 
     consumerProductListReducer, 
     consumerProductDetailsReducer, 
-    consumerProductDeleteReducer 
+    consumerProductDeleteReducer,
+    consumerCreateReducer
 } from './reducers/consumerProductsReducer'
 import { 
     orderCreateReducer, 
@@ -41,6 +43,7 @@ const reducer = combineReducers({
     prodcutSeedDetails: prodcutSeedDetailsReducer,
     prodcutSeedDelete: prodcutSeedDeleteReducer,
     seedCreate: seedCreateReducer,
+    seedUpdate: seedUpdateReducer,
 
     productLendMachinesList: productLendMachinesListReducer,
     productLendMachinesDetails: productLendMachinesDetailsReducer,
@@ -50,6 +53,7 @@ const reducer = combineReducers({
     consumerProductList: consumerProductListReducer,
     consumerProductDetails: consumerProductDetailsReducer,
     consumerProductDelete: consumerProductDeleteReducer,
+    consumerCreate: consumerCreateReducer,
 
     cartSeed: cartSeedReducer,
 

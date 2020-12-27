@@ -11,7 +11,11 @@ import {
     SEED_DELETE_FAIL,
     SEED_CREATE_REQUEST,
     SEED_CREATE_SUCCESS,
-    SEED_CREATE_FAIL
+    SEED_CREATE_FAIL,
+    SEED_UPDATE_REQUEST,
+    SEED_UPDATE_FAIL,
+    SEED_UPDATE_SUCCESS,
+    SEED_UPDATE_RESET
 } from './../constants/productConstants.js'
 
 export const listSeedProducts = () => async (dispatch) => {
@@ -105,6 +109,41 @@ export const createSeedProducts = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: SEED_CREATE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        })
+    }
+}
+
+export const updateSeedProducts = (seed) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: SEED_UPDATE_REQUEST })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            },
+        }
+
+        const { data } = await axios.put(`/api/seeds/${seed._id}`, seed, config)
+
+        dispatch({ type: SEED_UPDATE_SUCCESS })
+
+        dispatch({
+            type: PRODUCT_SEED_DETAILS_SUCCESS,
+            payload: data
+        })
+
+        dispatch({ type: SEED_UPDATE_RESET })
+
+    } catch (error) {
+        dispatch({
+            type: SEED_UPDATE_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

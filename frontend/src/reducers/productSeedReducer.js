@@ -11,7 +11,11 @@ import {
     SEED_CREATE_REQUEST,
     SEED_CREATE_SUCCESS,
     SEED_CREATE_FAIL,
-    SEED_CREATE_RESET
+    SEED_CREATE_RESET,
+    SEED_UPDATE_REQUEST,
+    SEED_UPDATE_SUCCESS,
+    SEED_UPDATE_FAIL,
+    SEED_UPDATE_RESET
 } from './../constants/productConstants.js'
 
 export const prodcutSeedListReducer = (state = { productSeeds: [] }, action) => {
@@ -63,6 +67,23 @@ export const seedCreateReducer = (state = {}, action) => {
             return { loading: false, error: action.payload }
         case SEED_CREATE_RESET:
             return {}
+        default:
+            return state
+    }
+}
+
+export const seedUpdateReducer = (state = { seed: {} }, action) => {
+    switch (action.type) {
+        case SEED_UPDATE_REQUEST:
+            return { loading: true }
+        case SEED_UPDATE_SUCCESS:
+            return { loading: false, success: true }
+        case SEED_UPDATE_FAIL:
+            return { loading: false, error: action.payload }
+        case SEED_UPDATE_RESET:
+            return {
+                seed: {}
+            }
         default:
             return state
     }

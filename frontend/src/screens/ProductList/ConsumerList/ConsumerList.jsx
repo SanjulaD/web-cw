@@ -7,14 +7,17 @@ import {
     Col,
     Container
 } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from './../../../components/Message/Message'
 import Loader from './../../../components/Loader/Loader'
-import { listConsumerProducts, deleteConsumerProduct } from './../../../actions/consumerProductAction'
+import { listConsumerProducts, deleteConsumerProduct, createConsumer } from './../../../actions/consumerProductAction'
+import { CONSUMER_CREATE_RESET } from './../../../constants/productConstants'
 
-const ConsumerList = ({ history }) => {
+const ConsumerList = () => {
 
     const dispatch = useDispatch()
+    let history = useHistory()
 
     const consumerProductList = useSelector(state => state.consumerProductList)
     const { loading: loadingConsumer, error: errorConsumer, consumerProducts } = consumerProductList
@@ -22,16 +25,29 @@ const ConsumerList = ({ history }) => {
     const consumerProductDelete = useSelector(state => state.consumerProductDelete)
     const { loading: deleteLoadingConsumer, error: errorDeleteConsumer, success: successDelete } = consumerProductDelete
 
+    const consumerCreate = useSelector(state => state.consumerCreate)
+    const {
+        loading: createLoadingConsumer,
+        error: errorcreateConsumer,
+        success: successCreate,
+        product: consumerProduct
+    } = consumerCreate
+
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
     useEffect(() => {
-        if (userInfo && userInfo.isAdmin) {
-            dispatch(listConsumerProducts())
-        } else {
+        dispatch({ type: CONSUMER_CREATE_RESET })
+        if (!userInfo.isAdmin) {
             history.push('/login')
         }
-    }, [dispatch, history, userInfo, successDelete])
+
+        if (successCreate) {
+            history.push(`/admin/productlist/consumer/${consumerProduct._id}/edit`)
+        } else {
+            dispatch(listConsumerProducts())
+        }
+    }, [dispatch, history, userInfo, successDelete, successCreate, consumerProduct])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure')) {
@@ -39,8 +55,8 @@ const ConsumerList = ({ history }) => {
         }
     }
 
-    const createConsumerProductHandler = (seedProduct) => {
-        // CREATE PRODUCT
+    const createConsumerProductHandler = () => {
+        dispatch(createConsumer())
     }
 
     return (
@@ -55,6 +71,8 @@ const ConsumerList = ({ history }) => {
                     </Button>
                 </Col>
             </Row>
+            { createLoadingConsumer && <Loader />}
+            { errorcreateConsumer && <Message variant='danger'>{errorcreateConsumer}</Message>}
             { deleteLoadingConsumer && <Loader />}
             { errorDeleteConsumer && <Message variant='danger'>{errorDeleteConsumer}</Message>}
             {loadingConsumer ? <Loader />
@@ -79,7 +97,7 @@ const ConsumerList = ({ history }) => {
                                             <td>{consumer.prod_name}</td>
                                             <td>{consumer.avalaible_location}</td>
                                             <td>
-                                                <LinkContainer to={`/admin/user/productlist/consumer/${consumer._id}/edit`}>
+                                                <LinkContainer to={`/admin/productlist/consumer/${consumer._id}/edit`}>
                                                     <Button variant="light" className="btn btn-sm">
                                                         <i className="fas fa-edit"></i>
                                                     </Button>
