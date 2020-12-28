@@ -6,50 +6,63 @@ import {
     Row,
     Col
 } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from './../../../components/Message/Message'
 import Loader from './../../../components/Loader/Loader'
 import FormContainer from './../../../components/FormContainer/FormContainer'
-import { listSeedProductsDetails } from './../../../actions/productSeedActions'
+import { listSeedProductsDetails, updateSeedProducts } from './../../../actions/productSeedActions'
+import { SEED_UPDATE_RESET } from '../../../constants/productConstants'
 
-const SeedListEdit = ({ history, match }) => {
+const SeedListEdit = ({ match }) => {
 
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
+    const [category, setCategory] = useState('')
     const [countInStock, setCountInStock] = useState(0)
 
     const productId = match.params.id
 
     const dispatch = useDispatch()
+    let history = useHistory()
 
     const prodcutSeedDetails = useSelector(state => state.prodcutSeedDetails)
     const { loading, productSeed, error } = prodcutSeedDetails
 
     const seedUpdate = useSelector(state => state.seedUpdate)
-    const { success } = seedUpdate
+    const { loading: loadingUpdate, success: successUpdate, error: errorUpdate } = seedUpdate
 
     useEffect(() => {
-        if (!productSeed.name || productSeed._id !== productId) {
-            dispatch(listSeedProductsDetails(productId))
+        if (successUpdate) {
+            dispatch({ type: SEED_UPDATE_RESET })
+            history.push('/admin/productlist')
         } else {
-            setName(productSeed.name)
-            setDescription(productSeed.description)
-            setPrice(productSeed.price)
-            setImage(productSeed.image)
-            setCountInStock(productSeed.countInStock)
+            if (!productSeed.name || productSeed._id !== productId) {
+                dispatch(listSeedProductsDetails(productId))
+            } else {
+                setName(productSeed.name)
+                setDescription(productSeed.description)
+                setPrice(productSeed.price)
+                setCategory(productSeed.category)
+                setImage(productSeed.image)
+                setCountInStock(productSeed.countInStock)
+            }
         }
-    }, [history, productSeed, dispatch, productId])
+    }, [history, productSeed, dispatch, productId, successUpdate])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        // if (password !== confirmPassword) {
-        //     setMessage('Passwords do not match')
-        // } else {
-        //     dispatch(updateUserProfile({ id: user._id, name, email, password, cropSelection }))
-        // }
+        dispatch(updateSeedProducts({
+            _id: productId,
+            name,
+            image,
+            description,
+            category,
+            price,
+            countInStock
+        }))
     }
 
     return (
@@ -61,7 +74,9 @@ const SeedListEdit = ({ history, match }) => {
                 </Link>
                 {loading && <Loader />}
                 {error && <Message variant='danger'>{error}</Message>}
-                {success && <Message variant='success'>Profile Updated!</Message>}
+                {loadingUpdate && <Loader />}
+                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+                {successUpdate && <Message variant='success'>Profile Updated!</Message>}
                 <Form onSubmit={submitHandler}>
                     <Row>
                         <Col md={6}>
@@ -96,6 +111,15 @@ const SeedListEdit = ({ history, match }) => {
                             </Form.Group>
                         </Col>
                         <Col md={6}>
+                            <Form.Group controlId='category'>
+                                <Form.Label>Category</Form.Label>
+                                <Form.Control
+                                    type="category"
+                                    placeholder="Enter price"
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
+                                ></Form.Control>
+                            </Form.Group>
                             <Form.Group controlId='price'>
                                 <Form.Label>Price</Form.Label>
                                 <Form.Control

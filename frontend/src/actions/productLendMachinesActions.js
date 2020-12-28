@@ -11,7 +11,11 @@ import {
     MACHINE_DELETE_FAIL,
     MACHINE_CREATE_REQUEST,
     MACHINE_CREATE_SUCCESS,
-    MACHINE_CREATE_FAIL
+    MACHINE_CREATE_FAIL,
+    MACHINE_UPDATE_REQUEST,
+    MACHINE_UPDATE_SUCCESS,
+    MACHINE_UPDATE_FAIL,
+    MACHINE_UPDATE_RESET,
 } from './../constants/productConstants.js'
 
 export const listLendMachineProducts = () => async (dispatch) => {
@@ -105,6 +109,39 @@ export const createLendMachine = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: MACHINE_CREATE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        })
+    }
+}
+
+export const updateLendMachine = (machine) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: MACHINE_UPDATE_REQUEST })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            },
+        }
+
+        const { data } = await axios.put(`/api/lendMachines/${machine._id}`, machine, config)
+
+        dispatch({
+            type: MACHINE_UPDATE_SUCCESS,
+            payload: data
+        })
+
+        dispatch({ type: MACHINE_UPDATE_RESET })
+        
+    } catch (error) {
+        dispatch({
+            type: MACHINE_UPDATE_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

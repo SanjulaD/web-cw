@@ -11,7 +11,11 @@ import {
     CONSUMER_CREATE_REQUEST,
     CONSUMER_CREATE_SUCCESS,
     CONSUMER_CREATE_FAIL,
-    CONSUMER_CREATE_RESET
+    CONSUMER_CREATE_RESET,
+    CONSUMER_UPDATE_REQUEST,
+    CONSUMER_UPDATE_SUCCESS,
+    CONSUMER_UPDATE_FAIL,
+    CONSUMER_UPDATE_RESET
 } from '../constants/productConstants'
 
 export const consumerProductListReducer = (state = { consumerProducts: [] }, action) => {
@@ -63,6 +67,23 @@ export const consumerCreateReducer = (state = {}, action) => {
             return { loading: false, error: action.payload }
         case CONSUMER_CREATE_RESET:
             return {}
+        default:
+            return state
+    }
+}
+
+export const consumerUpdateReducer = (state = { consumer: {} }, action) => {
+    switch (action.type) {
+        case CONSUMER_UPDATE_REQUEST:
+            return { loading: true }
+        case CONSUMER_UPDATE_SUCCESS:
+            return { loading: false, success: true, consumer: action.payload }
+        case CONSUMER_UPDATE_FAIL:
+            return { loading: false, error: action.payload }
+        case CONSUMER_UPDATE_RESET:
+            return {
+                consumer: {}
+            }
         default:
             return state
     }

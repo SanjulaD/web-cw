@@ -6,14 +6,15 @@ import {
     Row,
     Col
 } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from './../../../components/Message/Message'
 import Loader from './../../../components/Loader/Loader'
 import FormContainer from './../../../components/FormContainer/FormContainer'
-import { listConsumerProductsDetails } from './../../../actions/consumerProductAction'
+import { listConsumerProductsDetails, updateConsumer } from './../../../actions/consumerProductAction'
+import { CONSUMER_UPDATE_RESET } from '../../../constants/productConstants'
 
-const ConsumerListEdit = ({ history, match }) => {
+const ConsumerListEdit = ({ match }) => {
 
     const [prodName, setProdName] = useState('')
     const [image, setImage] = useState('')
@@ -26,35 +27,45 @@ const ConsumerListEdit = ({ history, match }) => {
     const productId = match.params.id
 
     const dispatch = useDispatch()
+    let history = useHistory()
 
     const consumerProductDetails = useSelector(state => state.consumerProductDetails)
     const { loading, consumerProduct, error } = consumerProductDetails
 
-    const seedUpdate = useSelector(state => state.seedUpdate)
-    const { success } = seedUpdate
+    const consumerUpdate = useSelector(state => state.consumerUpdate)
+    const { loading: loadingUpdate, success: successUpdate, error: errorUpdate } = consumerUpdate
 
     useEffect(() => {
-        if (!consumerProduct.prod_name || consumerProduct._id !== productId) {
-            dispatch(listConsumerProductsDetails(productId))
+        if (successUpdate) {
+            dispatch({ type: CONSUMER_UPDATE_RESET })
+            history.push('/admin/productlist')
         } else {
-            setProdName(consumerProduct.prod_name)
-            setSellerName(consumerProduct.seller_name)
-            setPrice(consumerProduct.price)
-            setImage(consumerProduct.image)
-            setProdSize(consumerProduct.prod_size)
-            setQuantity(consumerProduct.quantity)
-            setAvalaibleLoc(consumerProduct.avalaible_location)
+            if (!consumerProduct.prod_name || consumerProduct._id !== productId) {
+                dispatch(listConsumerProductsDetails(productId))
+            } else {
+                setProdName(consumerProduct.prod_name)
+                setSellerName(consumerProduct.seller_name)
+                setPrice(consumerProduct.price)
+                setImage(consumerProduct.image)
+                setProdSize(consumerProduct.prod_size)
+                setQuantity(consumerProduct.quantity)
+                setAvalaibleLoc(consumerProduct.avalaible_location)
+            }
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[history, consumerProduct, dispatch, productId])
+    }, [history, consumerProduct, dispatch, productId, successUpdate])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        // if (password !== confirmPassword) {
-        //     setMessage('Passwords do not match')
-        // } else {
-        //     dispatch(updateUserProfile({ id: user._id, name, email, password, cropSelection }))
-        // }
+        dispatch(updateConsumer({
+            _id: productId,
+            prod_name: prodName,
+            image: image,
+            price: price,
+            seller_name: sellerName,
+            prod_size: prodSize,
+            quantity: quantity,
+            avalaible_location: avalaibleLoc
+        }))
     }
 
     return (
@@ -64,9 +75,11 @@ const ConsumerListEdit = ({ history, match }) => {
                 <Link to='/admin/productlist' className='btn btn-light my-3'>
                     GO BACK
                 </Link>
+                {loadingUpdate && <Loader />}
+                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
                 {loading && <Loader />}
                 {error && <Message variant='danger'>{error}</Message>}
-                {success && <Message variant='success'>Profile Updated!</Message>}
+                {successUpdate && <Message variant='success'>Profile Updated!</Message>}
                 <Form onSubmit={submitHandler}>
                     <Row>
                         <Col md={6}>

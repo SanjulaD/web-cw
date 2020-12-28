@@ -132,10 +132,8 @@ export const updateSeedProducts = (seed) => async (dispatch, getState) => {
 
         const { data } = await axios.put(`/api/seeds/${seed._id}`, seed, config)
 
-        dispatch({ type: SEED_UPDATE_SUCCESS })
-
         dispatch({
-            type: PRODUCT_SEED_DETAILS_SUCCESS,
+            type: SEED_UPDATE_SUCCESS,
             payload: data
         })
 

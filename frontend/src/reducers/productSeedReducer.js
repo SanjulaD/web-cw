@@ -77,7 +77,7 @@ export const seedUpdateReducer = (state = { seed: {} }, action) => {
         case SEED_UPDATE_REQUEST:
             return { loading: true }
         case SEED_UPDATE_SUCCESS:
-            return { loading: false, success: true }
+            return { loading: false, success: true, seed: action.payload }
         case SEED_UPDATE_FAIL:
             return { loading: false, error: action.payload }
         case SEED_UPDATE_RESET:

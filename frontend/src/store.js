@@ -13,7 +13,8 @@ import {
     productLendMachinesListReducer, 
     productLendMachinesDetailsReducer, 
     productLendMachinesDeleteReducer,
-    LendMachinesCreateReducer
+    LendMachinesCreateReducer,
+    LendMachinesUpdateReducer
 } from './reducers/productLendMachineReducer'
 import { cartSeedReducer } from './reducers/cartReducers'
 import { 
@@ -29,7 +30,8 @@ import {
     consumerProductListReducer, 
     consumerProductDetailsReducer, 
     consumerProductDeleteReducer,
-    consumerCreateReducer
+    consumerCreateReducer,
+    consumerUpdateReducer
 } from './reducers/consumerProductsReducer'
 import { 
     orderCreateReducer, 
@@ -49,11 +51,13 @@ const reducer = combineReducers({
     productLendMachinesDetails: productLendMachinesDetailsReducer,
     productLendMachinesDelete: productLendMachinesDeleteReducer,
     LendMachinesCreate: LendMachinesCreateReducer,
+    LendMachinesUpdate: LendMachinesUpdateReducer,
 
     consumerProductList: consumerProductListReducer,
     consumerProductDetails: consumerProductDetailsReducer,
     consumerProductDelete: consumerProductDeleteReducer,
     consumerCreate: consumerCreateReducer,
+    consumerUpdate: consumerUpdateReducer,
 
     cartSeed: cartSeedReducer,
 

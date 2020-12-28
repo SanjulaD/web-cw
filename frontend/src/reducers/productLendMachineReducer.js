@@ -11,7 +11,11 @@ import {
     MACHINE_CREATE_REQUEST,
     MACHINE_CREATE_SUCCESS,
     MACHINE_CREATE_FAIL,
-    MACHINE_CREATE_RESET
+    MACHINE_CREATE_RESET,
+    MACHINE_UPDATE_SUCCESS,
+    MACHINE_UPDATE_FAIL,
+    MACHINE_UPDATE_RESET,
+    MACHINE_UPDATE_REQUEST
 } from './../constants/productConstants.js'
 
 export const productLendMachinesListReducer = (state = { productLendMachines: [] }, action) => {
@@ -63,6 +67,23 @@ export const LendMachinesCreateReducer = (state = {}, action) => {
             return { loading: false, error: action.payload }
         case MACHINE_CREATE_RESET:
             return {}
+        default:
+            return state
+    }
+}
+
+export const LendMachinesUpdateReducer = (state = { machine: {} }, action) => {
+    switch (action.type) {
+        case MACHINE_UPDATE_REQUEST:
+            return { loading: true }
+        case MACHINE_UPDATE_SUCCESS:
+            return { loading: false, success: true, machine: action.payload }
+        case MACHINE_UPDATE_FAIL:
+            return { loading: false, error: action.payload }
+        case MACHINE_UPDATE_RESET:
+            return {
+                machine: {}
+            }
         default:
             return state
     }

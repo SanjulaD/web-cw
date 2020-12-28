@@ -6,54 +6,66 @@ import {
     Row,
     Col
 } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from './../../../components/Message/Message'
 import Loader from './../../../components/Loader/Loader'
 import FormContainer from './../../../components/FormContainer/FormContainer'
-import { listLendMachineProductsDetails } from './../../../actions/productLendMachinesActions'
+import { listLendMachineProductsDetails, updateLendMachine } from './../../../actions/productLendMachinesActions'
+import { MACHINE_UPDATE_RESET } from '../../../constants/productConstants'
 
-const SeedListEdit = ({ history, match }) => {
+const SeedListEdit = ({ match }) => {
 
     const [name, setName] = useState('')
     const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [targetPlant, setTargetPlant] = useState('')
+    const [target_plant, setTarget_plant] = useState('')
     const [quantity, setQuantity] = useState('')
-    const [machinePower, setMachinePower] = useState('')
+    const [machine_power, setMachine_power] = useState('')
 
     const productId = match.params.id
 
     const dispatch = useDispatch()
+    let history = useHistory()
 
     const productLendMachinesDetails = useSelector(state => state.productLendMachinesDetails)
     const { loading, productLendMachines, error } = productLendMachinesDetails
 
-    const seedUpdate = useSelector(state => state.seedUpdate)
-    const { success } = seedUpdate
+    const LendMachinesUpdate = useSelector(state => state.LendMachinesUpdate)
+    const { loading: loadingUpdate, success: successUpdate, error: errorUpdate } = LendMachinesUpdate
 
     useEffect(() => {
-        if (!productLendMachines.name || productLendMachines._id !== productId) {
-            dispatch(listLendMachineProductsDetails(productId))
+        if (successUpdate) {
+            dispatch({ type: MACHINE_UPDATE_RESET })
+            history.push('/admin/productlist')
         } else {
-            setName(productLendMachines.name)
-            setDescription(productLendMachines.description)
-            setPrice(productLendMachines.price)
-            setImage(productLendMachines.image)
-            setTargetPlant(productLendMachines.target_plant)
-            setQuantity(productLendMachines.quantity)
-            setMachinePower(productLendMachines.machine_power)
+            if (!productLendMachines.name || productLendMachines._id !== productId) {
+                dispatch(listLendMachineProductsDetails(productId))
+            } else {
+                setName(productLendMachines.name)
+                setDescription(productLendMachines.description)
+                setPrice(productLendMachines.price)
+                setImage(productLendMachines.image)
+                setTarget_plant(productLendMachines.target_plant)
+                setQuantity(productLendMachines.quantity)
+                setMachine_power(productLendMachines.machine_power)
+            }
         }
-    }, [history, productLendMachines, dispatch, productId])
+    }, [history, productLendMachines, dispatch, productId, successUpdate])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        // if (password !== confirmPassword) {
-        //     setMessage('Passwords do not match')
-        // } else {
-        //     dispatch(updateUserProfile({ id: user._id, name, email, password, cropSelection }))
-        // }
+        dispatch(updateLendMachine({
+            _id: productId,
+            name,
+            image,
+            price,
+            description,
+            target_plant,
+            quantity,
+            machine_power
+        }))
     }
 
     return (
@@ -65,7 +77,9 @@ const SeedListEdit = ({ history, match }) => {
                 </Link>
                 {loading && <Loader />}
                 {error && <Message variant='danger'>{error}</Message>}
-                {success && <Message variant='success'>Profile Updated!</Message>}
+                {loadingUpdate && <Loader />}
+                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+                {successUpdate && <Message variant='success'>Profile Updated!</Message>}
                 <Form onSubmit={submitHandler}>
                     <Row>
                         <Col md={6}>
@@ -114,8 +128,8 @@ const SeedListEdit = ({ history, match }) => {
                                 <Form.Control
                                     type="countInStock"
                                     placeholder="Enter target plant"
-                                    value={targetPlant}
-                                    onChange={(e) => setTargetPlant(e.target.value)}
+                                    value={target_plant}
+                                    onChange={(e) => setTarget_plant(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
                             <Form.Group controlId='quantity'>
@@ -132,8 +146,8 @@ const SeedListEdit = ({ history, match }) => {
                                 <Form.Control
                                     type="machinepower"
                                     placeholder="Enter machine power"
-                                    value={machinePower}
-                                    onChange={(e) => setMachinePower(e.target.value)}
+                                    value={machine_power}
+                                    onChange={(e) => setMachine_power(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
                             <Button type="submit" variant="primary">Update</Button>
