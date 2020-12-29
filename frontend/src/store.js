@@ -2,42 +2,44 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { 
-    prodcutSeedListReducer, 
-    prodcutSeedDetailsReducer, 
+import {
+    prodcutSeedListReducer,
+    prodcutSeedDetailsReducer,
     prodcutSeedDeleteReducer,
     seedCreateReducer,
     seedUpdateReducer
 } from './reducers/productSeedReducer'
-import { 
-    productLendMachinesListReducer, 
-    productLendMachinesDetailsReducer, 
+import {
+    productLendMachinesListReducer,
+    productLendMachinesDetailsReducer,
     productLendMachinesDeleteReducer,
     LendMachinesCreateReducer,
     LendMachinesUpdateReducer
 } from './reducers/productLendMachineReducer'
 import { cartSeedReducer } from './reducers/cartReducers'
-import { 
-    userLoginReducer, 
-    userRegisterReducer, 
-    userDetailsReducer, 
-    userUpdateProfileReducer, 
-    userListeReducer, 
-    userDeleteReducer, 
-    userUpdateReducer 
+import {
+    userLoginReducer,
+    userRegisterReducer,
+    userDetailsReducer,
+    userUpdateProfileReducer,
+    userListeReducer,
+    userDeleteReducer,
+    userUpdateReducer
 } from './reducers/userReducer.js'
-import { 
-    consumerProductListReducer, 
-    consumerProductDetailsReducer, 
+import {
+    consumerProductListReducer,
+    consumerProductDetailsReducer,
     consumerProductDeleteReducer,
     consumerCreateReducer,
     consumerUpdateReducer
 } from './reducers/consumerProductsReducer'
-import { 
-    orderCreateReducer, 
-    orderDetailsReducer, 
-    orderPayReducer, 
-    orderListMyReducer 
+import {
+    orderCreateReducer,
+    orderDetailsReducer,
+    orderPayReducer,
+    orderListMyReducer,
+    orderListReducer,
+    orderDeliverReducer
 } from './reducers/orderReducers'
 
 const reducer = combineReducers({
@@ -58,6 +60,7 @@ const reducer = combineReducers({
     consumerProductDelete: consumerProductDeleteReducer,
     consumerCreate: consumerCreateReducer,
     consumerUpdate: consumerUpdateReducer,
+    orderDeliver: orderDeliverReducer,
 
     cartSeed: cartSeedReducer,
 
@@ -65,6 +68,7 @@ const reducer = combineReducers({
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
     orderListMy: orderListMyReducer,
+    orderList: orderListReducer,
 
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,

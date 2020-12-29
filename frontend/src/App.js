@@ -27,6 +27,7 @@ import ProductListScreen from './screens/ProductList/ProductListScreen'
 import SeedListEdit from './screens/ProductListEdit/SeedListEdit/SeedListEdit'
 import MachineListEdit from './screens/ProductListEdit/MachineListEdit/MachineListEdit'
 import ConsumerListEdit from './screens/ProductListEdit/ConsumerListEdit/ConsumerListEdit'
+import OrderListScreen from './screens/OrderList/OrderListScreen'
 
 const App = () => {
   return (
@@ -46,10 +47,11 @@ const App = () => {
           <Route exact path="/payment" component={PaymentMethodScreen} />
           <Route exact path="/placeorder" component={PlaceOrder} />
           <Route exact path="/cart/:id?" component={Cart} />
-          <Route exact path="/order/:id" component={OrderScreen} />
+          <Route path="/order/:id" component={OrderScreen} />
 
           <Route exact path="/admin/userList" component={UserListScreen} />
           <Route exact path="/admin/productlist" component={ProductListScreen} />
+          <Route exact path="/admin/orderlist" component={OrderListScreen} />
           <Route exact path="/admin/productlist/seed/:id/edit" component={SeedListEdit} />
           <Route exact path="/admin/productlist/machine/:id/edit" component={MachineListEdit} />
           <Route exact path="/admin/productlist/consumer/:id/edit" component={ConsumerListEdit} />
