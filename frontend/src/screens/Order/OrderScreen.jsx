@@ -26,9 +26,6 @@ const OrderScreen = ({ match }) => {
     const dispatch = useDispatch()
     let history = useHistory()
 
-    const cart = useSelector(state => state.cartSeed)
-    cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)
-
     const orderDetails = useSelector(state => state.orderDetails)
     const { order, loading, error } = orderDetails
 
@@ -41,8 +38,9 @@ const OrderScreen = ({ match }) => {
     const orderDeliver = useSelector(state => state.orderDeliver)
     const { success: successDeliver, loading: loadingDeliver } = orderDeliver
 
+
     useEffect(() => {
-        if(!userInfo) {
+        if (!userInfo) {
             history.push('/login')
         }
 
@@ -80,6 +78,7 @@ const OrderScreen = ({ match }) => {
     const deliverHandler = () => {
         dispatch(deliverOrder(order))
     }
+    // const itemsPrice = order.totalPrice - (order.taxPrice + order.shippingPrice)
 
     return (
         <div>
@@ -162,7 +161,7 @@ const OrderScreen = ({ match }) => {
                                                 <ListGroup.Item>
                                                     <Row>
                                                         <Col>Total Price</Col>
-                                                        <Col>{`RS. ${cart.itemsPrice}`}</Col>
+                                                        <Col>{`RS. ${(order.totalPrice - (order.taxPrice + order.shippingPrice).toFixed(2))}`}</Col>
                                                     </Row>
                                                 </ListGroup.Item>
                                                 <ListGroup.Item>
@@ -195,7 +194,7 @@ const OrderScreen = ({ match }) => {
                                                         </ListGroup.Item>
                                                     )
                                                 }
-                                                { loadingDeliver && <Loader /> }
+                                                {loadingDeliver && <Loader />}
                                                 {
                                                     userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                                                         <ListGroup.Item>
