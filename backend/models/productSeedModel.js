@@ -12,7 +12,12 @@ const seedReviewSchema = mongoose.Schema({
     comment: {
         type: String,
         requried: true,
-    }
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
 }, {
     timestamps: true
 })
@@ -34,7 +39,7 @@ const productSeedSchema = mongoose.Schema({
     description: {
         type: String,
         required: true,
-    }, 
+    },
     category: {
         type: String,
         required: true
@@ -57,7 +62,6 @@ const productSeedSchema = mongoose.Schema({
     },
     numReviews: {
         type: Number,
-        required: true,
         default: 0
     },
 }, {

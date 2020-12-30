@@ -38,14 +38,14 @@ const ConsumerList = () => {
 
     useEffect(() => {
         dispatch({ type: CONSUMER_CREATE_RESET })
-        if (!userInfo.isAdmin) {
+        if (!userInfo.isAdmin && !userInfo) {
             history.push('/login')
-        }
-
-        if (successCreate) {
-            history.push(`/admin/productlist/consumer/${consumerProduct._id}/edit`)
         } else {
-            dispatch(listConsumerProducts())
+            if (successCreate) {
+                history.push(`/admin/productlist/consumer/${consumerProduct._id}/edit`)
+            } else {
+                dispatch(listConsumerProducts())
+            }
         }
     }, [dispatch, history, userInfo, successDelete, successCreate, consumerProduct])
 

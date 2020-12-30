@@ -84,10 +84,49 @@ const updateSeedProduct = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc    Update Product Review
+// @rout    POST /seeds/:id/review
+// @access  private/ Admin
+const createSeedProductReview = asyncHandler(async (req, res) => {
+    const { rating, comment } = req.body
+
+    const productSeed = await ProductSeeds.findById(req.params.id)
+
+    if (productSeed) {
+        const alreadyReviewed = productSeed.reviews.find(r => r.user.toString() === req.user._id.toString())
+        if (alreadyReviewed) {
+            res.status(400)
+            throw new Error('Product already reviewed')
+        }
+
+        const review = {
+            name: req.user.name,
+            rating: Number(rating),
+            comment,
+            user: req.user._id
+        }
+
+        productSeed.reviews.push(review)
+
+        productSeed.numReviews = productSeed.reviews.length
+
+        productSeed.rating = productSeed.reviews.reduce((acc, item) => item.rating + acc, 0) / productSeed.reviews.length
+
+        await productSeed.save()
+        
+        res.status(201).json({ message: 'Review added' })
+
+    } else {
+        res.status(401)
+        throw new Error('Product not found')
+    }
+})
+
 export {
     getSeedProducts,
     getSeedProductById,
     deleteSeedProduct,
     createSeedProduct,
-    updateSeedProduct
+    updateSeedProduct,
+    createSeedProductReview
 }

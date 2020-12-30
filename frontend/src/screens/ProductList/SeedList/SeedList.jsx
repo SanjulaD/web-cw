@@ -38,14 +38,14 @@ const SeedList = () => {
 
     useEffect(() => {
         dispatch({ type: SEED_CREATE_RESET })
-        if (!userInfo.isAdmin) {
+        if (!userInfo.isAdmin && !userInfo) {
             history.push('/login')
-        }
-
-        if (successSeedCreate) {
-            history.push(`/admin/productlist/seed/${productCreate._id}/edit`)
         } else {
-            dispatch(listSeedProducts())
+            if (successSeedCreate) {
+                history.push(`/admin/productlist/seed/${productCreate._id}/edit`)
+            } else {
+                dispatch(listSeedProducts())
+            }
         }
     }, [dispatch, history, userInfo, successSeedDelete, successSeedCreate, productCreate])
 

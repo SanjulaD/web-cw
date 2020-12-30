@@ -1,23 +1,24 @@
 import express from 'express'
 const router = express.Router()
 
-import { 
-    getSeedProducts, 
-    getSeedProductById, 
+import {
+    getSeedProducts,
+    getSeedProductById,
     deleteSeedProduct,
     createSeedProduct,
-    updateSeedProduct
+    updateSeedProduct,
+    createSeedProductReview
 } from './../controllers/productSeedController.js'
-import { 
-    getLendMachnines, 
-    getLendMachnineById, 
+import {
+    getLendMachnines,
+    getLendMachnineById,
     deleteLendMachnine,
     updateLendMachine,
     createLendMachine
 } from './../controllers/productLendMachineController.js'
-import { 
-    getConsumerProducts, 
-    getConsumerProductById, 
+import {
+    getConsumerProducts,
+    getConsumerProductById,
     deleteConsumerProduct,
     createConsumer,
     updateConsumer
@@ -28,6 +29,10 @@ router
     .route('/seeds')
     .get(getSeedProducts)
     .post(protect, admin, createSeedProduct)
+
+router
+    .route('/seeds/:id/reviews')
+    .post(protect, createSeedProductReview)
 
 router
     .route('/seeds/:id')
@@ -54,7 +59,7 @@ router
 router
     .route('/consumer/:id')
     .get(getConsumerProductById)
-    .delete(protect, admin,deleteConsumerProduct)
+    .delete(protect, admin, deleteConsumerProduct)
     .put(protect, admin, updateConsumer)
 
 export default router

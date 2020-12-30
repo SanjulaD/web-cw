@@ -7,7 +7,8 @@ import {
     prodcutSeedDetailsReducer,
     prodcutSeedDeleteReducer,
     seedCreateReducer,
-    seedUpdateReducer
+    seedUpdateReducer,
+    productReviewCreateReducer
 } from './reducers/productSeedReducer'
 import {
     productLendMachinesListReducer,
@@ -48,6 +49,7 @@ const reducer = combineReducers({
     prodcutSeedDelete: prodcutSeedDeleteReducer,
     seedCreate: seedCreateReducer,
     seedUpdate: seedUpdateReducer,
+    productReviewCreate: productReviewCreateReducer,
 
     productLendMachinesList: productLendMachinesListReducer,
     productLendMachinesDetails: productLendMachinesDetailsReducer,

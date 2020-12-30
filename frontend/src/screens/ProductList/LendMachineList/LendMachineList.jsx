@@ -33,14 +33,14 @@ const SeedList = () => {
 
     useEffect(() => {
         dispatch({ type: MACHINE_CREATE_RESET })
-        if (!userInfo.isAdmin) {
+        if (!userInfo.isAdmin && !userInfo) {
             history.push('/login')
-        }
-
-        if (successCreate) {
-            history.push(`/admin/productlist/machine/${productCreate._id}/edit`)
         } else {
-            dispatch(listLendMachineProducts())
+            if (successCreate) {
+                history.push(`/admin/productlist/machine/${productCreate._id}/edit`)
+            } else {
+                dispatch(listLendMachineProducts())
+            }
         }
     }, [dispatch, history, userInfo, successDelete, successCreate, productCreate])
 
