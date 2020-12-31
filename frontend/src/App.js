@@ -13,6 +13,7 @@ import Farmer from './screens/Farmer/FarmerScreen';
 import Supplier from './screens/Supplier/SupplierScreen';
 import ProfileScreen from './screens/Profile/ProfileScreen';
 import DashboardScreen from './screens/Dashboard/DashboardScreen';
+import AdminProfileScreen from './screens/Dashboard/ProfileScreen';
 import Farmer_ProductSeed from './screens/Farmer_ProductSeed/Farmer_ProductSeedScreen';
 import SeedProductScreen from './screens/Product_Seed/SeedProductScreen';
 import Farmer_LendScreen from './screens/Farmer_LendMachine/Farmer_LendScreen';
@@ -22,13 +23,13 @@ import ConsumerProductDetailScreen from './screens/Product_Consumer/ConsumerProd
 import ShippingScreen from './screens/Shipping/ShippingScreen';
 import OrderScreen from './screens/Order/OrderScreen';
 import Cart from './screens/Cart/Cart';
-import UserListScreen from './screens/UserList/UserListScree';
+import UserListScreen from './screens/Dashboard/UserListScreen';
 import UserEditScreen from './screens/UserEdit/UserEditScreen';
-import ProductListScreen from './screens/ProductList/ProductListScreen'
+import ProductListScreen from './screens/Dashboard/ProductListScreen'
 import SeedListEdit from './screens/ProductListEdit/SeedListEdit/SeedListEdit'
 import MachineListEdit from './screens/ProductListEdit/MachineListEdit/MachineListEdit'
 import ConsumerListEdit from './screens/ProductListEdit/ConsumerListEdit/ConsumerListEdit'
-import OrderListScreen from './screens/OrderList/OrderListScreen'
+import OrderListScreen from './screens/Dashboard/OrderListScreen'
 
 const App = () => {
   return (
@@ -52,6 +53,7 @@ const App = () => {
 
           <Route exact path="/admin/userList" component={UserListScreen} />
           <Route exact path="/admin/dashboard" component={DashboardScreen} />
+          <Route exact path="/admin/profile" component={AdminProfileScreen} />
           <Route exact path="/admin/productlist" component={ProductListScreen} />
           <Route exact path="/admin/orderlist" component={OrderListScreen} />
           <Route exact path="/admin/productlist/seed/:id/edit" component={SeedListEdit} />

@@ -51,11 +51,12 @@ const UserEditScreen = ({ match, history }) => {
 
     return (
         <>
-            <Link to='/admin/userList' className="btn btn-light my-3">GO BACK</Link>
+
             <FormContainer>
-                <h1 style={{ marginTop: '50px' }}>Edit User</h1>
-                { loadingUpdate && <Loader /> }
-                { errorUpdate && <Message variant='danger'>{errorUpdate}</Message> }
+                <h1 style={{ marginTop: '120px' }}>Edit User</h1>
+                <Link to='/admin/userList' className="btn btn-light my-2">GO BACK</Link>
+                {loadingUpdate && <Loader />}
+                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
                 {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message>
                     : (
                         <Form onSubmit={submitHandler} style={{ marginBottom: '50px' }}>

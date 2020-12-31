@@ -13,27 +13,27 @@ const SideBarComponents = () => {
                         <i className="fas icon-fas fa-chart-line"></i>Dashboard
                     </ListGroup.Item>
                 </LinkContainer>
-                <LinkContainer className='link-contain' to='/admin/dashboard/profile'>
+                <LinkContainer className='link-contain' to='/admin/profile'>
                     <ListGroup.Item className="border-0 item">
                         <i className="fas icon-fas fa-user-alt"></i> Profile
                     </ListGroup.Item>
                 </LinkContainer>
-                <LinkContainer className='link-contain' to='/admin/dashboard/userlist'>
+                <LinkContainer className='link-contain' to='/admin/userlist'>
                     <ListGroup.Item className="border-0 item">
                         <i className="fas icon-fas fa-users-cog"></i> User List
                     </ListGroup.Item>
                 </LinkContainer>
-                <LinkContainer className='link-contain' to='/admin/dashboard/productlist'>
+                <LinkContainer className='link-contain' to='/admin/productlist'>
                     <ListGroup.Item className="border-0 item">
                         <i className="fas icon-fas fa-seedling"></i>Product List
                     </ListGroup.Item>
                 </LinkContainer>
-                <LinkContainer className='link-contain' to='/admin/dashboard/orderlist'>
+                <LinkContainer className='link-contain' to='/admin/orderlist'>
                     <ListGroup.Item className="border-0 item">
                         <i className="fas icon-fas fa-sort-amount-up-alt"></i>Order List
                     </ListGroup.Item>
                 </LinkContainer>
-                <LinkContainer className='link-contain' to='/admin/dashboard/map'>
+                <LinkContainer className='link-contain' to='/admin/map'>
                     <ListGroup.Item className="border-0 item">
                         <i className="fas icon-fas fa-map-marker-alt"></i>Map
                     </ListGroup.Item>
