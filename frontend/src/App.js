@@ -12,6 +12,7 @@ import Consumer from './screens/Consumer/ConsumerScreen';
 import Farmer from './screens/Farmer/FarmerScreen';
 import Supplier from './screens/Supplier/SupplierScreen';
 import ProfileScreen from './screens/Profile/ProfileScreen';
+import DashboardScreen from './screens/Dashboard/DashboardScreen';
 import Farmer_ProductSeed from './screens/Farmer_ProductSeed/Farmer_ProductSeedScreen';
 import SeedProductScreen from './screens/Product_Seed/SeedProductScreen';
 import Farmer_LendScreen from './screens/Farmer_LendMachine/Farmer_LendScreen';
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/order/:id" component={OrderScreen} />
 
           <Route exact path="/admin/userList" component={UserListScreen} />
+          <Route exact path="/admin/dashboard" component={DashboardScreen} />
           <Route exact path="/admin/productlist" component={ProductListScreen} />
           <Route exact path="/admin/orderlist" component={OrderListScreen} />
           <Route exact path="/admin/productlist/seed/:id/edit" component={SeedListEdit} />

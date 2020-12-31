@@ -1,0 +1,30 @@
+.card-icon {
+    font-size: 45px;
+    color: rgb(255, 202, 58);
+}
+
+.card-set-deck {
+    margin-left: 45px;
+    margin-top: 10px;
+}
+
+.fa-sort-amount-down-alt {
+    font-size: 45px;
+    color: rgb(120, 255, 58);
+}
+
+.fa-truck {
+    font-size: 45px;
+    color: rgb(255, 120, 58);
+}
+
+.card-text-name {
+    font-size: 20px;
+    float: right !important;
+}
+
+.card-count {
+    font-size: 35px;
+    font-weight: bold;
+    float: right !important;
+}

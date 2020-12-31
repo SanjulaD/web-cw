@@ -1,0 +1,27 @@
+.item:hover{
+    background-color: #0bc521 !important;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.item {
+    font-size: 20px;
+    margin-bottom: 18px;
+    color: white;
+    border-radius: 10px !important;
+    align-items: center !important;
+    display:inherit;
+}
+
+.list-group-sidebar {
+    height: 25rem;
+}
+
+.icon-fas {
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.link-contain {
+    background-color: #53a83d !important;
+}

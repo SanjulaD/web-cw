@@ -48,7 +48,8 @@ const SeedProductScreen = ({ history, match }) => {
             dispatch(listSeedProductsDetails(match.params.id))
             dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
         }
-    }, [dispatch, match, successProductReview, productSeed._id])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch, match, successProductReview])
 
     const addToCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`)

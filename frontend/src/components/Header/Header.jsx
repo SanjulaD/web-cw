@@ -48,6 +48,13 @@ const Header = () => {
                     {
                         userInfo ? (
                             <NavDropdown title={userInfo.name.toUpperCase()} id='username'>
+                                {
+                                    userInfo && userInfo.isAdmin && (
+                                        <LinkContainer to='/admin/dashboard'>
+                                            <NavDropdown.Item>DASHBOARD</NavDropdown.Item>
+                                        </LinkContainer>
+                                    )
+                                }
                                 <LinkContainer to='/profile'>
                                     <NavDropdown.Item>PROFILE</NavDropdown.Item>
                                 </LinkContainer>
