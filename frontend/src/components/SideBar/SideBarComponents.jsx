@@ -10,7 +10,7 @@ const SideBarComponents = () => {
             <ListGroup className="list-group-sidebar">
                 <LinkContainer className='link-contain' to='/admin/dashboard'>
                     <ListGroup.Item className="border-0 item">
-                        <i className="fas icon-fas fa-chart-line"></i>Dashboard
+                        <i className="fas icon-fas fa-chart-line"></i> Dashboard
                     </ListGroup.Item>
                 </LinkContainer>
                 <LinkContainer className='link-contain' to='/admin/profile'>
@@ -25,12 +25,17 @@ const SideBarComponents = () => {
                 </LinkContainer>
                 <LinkContainer className='link-contain' to='/admin/productlist'>
                     <ListGroup.Item className="border-0 item">
-                        <i className="fas icon-fas fa-seedling"></i>Product List
+                        <i className="fas icon-fas fa-list"></i>Product List
                     </ListGroup.Item>
                 </LinkContainer>
                 <LinkContainer className='link-contain' to='/admin/orderlist'>
                     <ListGroup.Item className="border-0 item">
                         <i className="fas icon-fas fa-sort-amount-up-alt"></i>Order List
+                    </ListGroup.Item>
+                </LinkContainer>
+                <LinkContainer className='link-contain' to='/admin/map'>
+                    <ListGroup.Item className="border-0 item">
+                    <i className="fas icon-fas fa-seedling"></i>Harvest
                     </ListGroup.Item>
                 </LinkContainer>
                 <LinkContainer className='link-contain' to='/admin/map'>

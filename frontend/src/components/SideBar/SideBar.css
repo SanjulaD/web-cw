@@ -5,16 +5,17 @@
 }
 
 .item {
-    font-size: 20px;
-    margin-bottom: 18px;
+    font-size: 18px;
+    margin-bottom: 16px;
     color: white;
     border-radius: 10px !important;
     align-items: center !important;
     display:inherit;
+    text-align: center;
 }
 
 .list-group-sidebar {
-    height: 25rem;
+    height: 30rem;
 }
 
 .icon-fas {

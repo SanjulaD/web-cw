@@ -14,7 +14,7 @@ const ProductListHome = () => {
     return (
         <Scrollbar style={{ width: '100%', height: 450 }}>
             <Container>
-                <Row>
+                <Row className="list-container">
                     <SeedList />
                     <LendMachineList />
                     <ConsumerList />
