@@ -43,6 +43,10 @@ import {
     orderDeliverReducer
 } from './reducers/orderReducers'
 
+import {
+    productCreateReducer
+} from './reducers/supplierReducers'
+
 const reducer = combineReducers({
     prodcutSeedList: prodcutSeedListReducer,
     prodcutSeedDetails: prodcutSeedDetailsReducer,
@@ -63,6 +67,8 @@ const reducer = combineReducers({
     consumerCreate: consumerCreateReducer,
     consumerUpdate: consumerUpdateReducer,
     orderDeliver: orderDeliverReducer,
+
+    productCreate: productCreateReducer,
 
     cartSeed: cartSeedReducer,
 

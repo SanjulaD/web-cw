@@ -2,6 +2,7 @@ import React from 'react'
 import {
     Container,
 } from 'react-bootstrap';
+import AddSupplierProduct from '../../components/SupplierProduct/AddSupplierProduct';
 import './supplierStyles.css'
 
 const SupplierScreen = () => {
@@ -11,6 +12,7 @@ const SupplierScreen = () => {
             <h4 className="supplier-title">
                 Sell your wide variety of products related to farming, through our platform. We have millions of farmers connected from all parts of country.</h4>
             <br />
+            <AddSupplierProduct />
         </Container>
     )
 }
