@@ -105,7 +105,7 @@ const AddSupplierProduct = () => {
                             <Form.Label>Crop Selection <span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
                                 type="cropSelection"
-                                placeholder="Enter cropSelection"
+                                placeholder="Enter crop selection"
                                 value={cropSelection}
                                 required
                                 onChange={(e) => setCropSelection(e.target.value)}

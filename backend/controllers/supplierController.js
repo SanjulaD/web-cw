@@ -39,4 +39,21 @@ const createSupplierProduct = asyncHandler(async (req, res) => {
     }
 })
 
-export { createSupplierProduct }
+// @desc    Get logged in user products
+// @route   GET /api/supplier/myproducts
+// @access  Private
+const getMyProducts = asyncHandler(async (req, res) => {
+    const products = await Supplier.find({ user: req.user._id })
+    res.json(products)
+})
+
+// @desc    Get all orders
+// @route   GET /api/supplier
+// @access  Private/Admin
+const getProducts = asyncHandler(async (req, res) => {
+    const products = await Supplier.find({}).populate('user', 'id name')
+    res.json(products)
+})
+
+
+export { createSupplierProduct, getMyProducts,getProducts }
