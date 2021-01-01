@@ -1,5 +1,27 @@
 import mongoose from 'mongoose'
 
+const farmerProductReviewSchema = mongoose.Schema({
+    name: {
+        type: String,
+        requried: true,
+    },
+    rating: {
+        type: Number,
+        requried: true,
+    },
+    comment: {
+        type: String,
+        requried: true,
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
+}, {
+    timestamps: true
+})
+
 const supplierSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -18,6 +40,7 @@ const supplierSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    reviews: [farmerProductReviewSchema],
     longitude: {
         type: String,
         required: false
@@ -37,7 +60,17 @@ const supplierSchema = mongoose.Schema({
     description: {
         type: String,
         requried: true
-    }
+    },
+    isReviwed: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    rating: {
+        type: Number,
+        required: true,
+        default: 0
+    },
 }, {
     timestamps: true
 })

@@ -57,7 +57,7 @@ const EditProfile = ({ history }) => {
     }
 
     return (
-        <Container style={{ marginBottom: '50px' }}>
+        <Container style={{ marginBottom: '50px', marginTop: '20px' }}>
             {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
             {success && <Message variant='success'>Profile Updated!</Message>}

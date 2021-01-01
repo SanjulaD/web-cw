@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
     Form,
     Button,
@@ -6,7 +6,9 @@ import {
     Col,
     Container,
     Table,
-    Image
+    Image,
+    Overlay,
+    Popover
 } from 'react-bootstrap'
 import { Scrollbar } from "react-scrollbars-custom";
 import { LinkContainer } from 'react-router-bootstrap'
@@ -18,6 +20,10 @@ import { listMyOrders } from './../../actions/orderAction'
 import { listMyProducts } from './../../actions/supplierProduct'
 
 const ProfileScreen = ({ history }) => {
+
+    const [show, setShow] = useState(false);
+    const [target, setTarget] = useState(null);
+    const ref = useRef(null);
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -67,6 +73,12 @@ const ProfileScreen = ({ history }) => {
             dispatch(updateUserProfile({ id: user._id, name, email, password, cropSelection }))
         }
     }
+
+    const handleClick = (event) => {
+        setShow(!show);
+        setTarget(event.target);
+    };
+
 
     return (
         <Container style={{ marginBottom: '50px' }}>
@@ -144,7 +156,7 @@ const ProfileScreen = ({ history }) => {
                                                         <th>TOTAL</th>
                                                         <th>PAID</th>
                                                         <th>DELIVERED</th>
-                                                        <th></th>
+                                                        <th>MORE</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -161,7 +173,7 @@ const ProfileScreen = ({ history }) => {
                                                             }</td>
                                                             <td>
                                                                 <LinkContainer to={`/order/${order._id}`}>
-                                                                    <Button className="btn-sm" variant="light">Details</Button>
+                                                                    <Button className="btn-sm" variant="success">Details</Button>
                                                                 </LinkContainer>
                                                             </td>
                                                         </tr>
@@ -183,9 +195,8 @@ const ProfileScreen = ({ history }) => {
                                                         <th>EMAIL/NIC</th>
                                                         <th>ADDRESS</th>
                                                         <th>IMAGE</th>
-                                                        <th>DESCRIPTION</th>
-                                                        <th>CROP SELECTION</th>
-                                                        <th></th>
+                                                        <th>CROP</th>
+                                                        <th>REVIEWED</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -197,12 +208,38 @@ const ProfileScreen = ({ history }) => {
                                                             <td>
                                                                 <Image width={70} rounded src={product.image} />
                                                             </td>
-                                                            <td>{product.description}</td>
                                                             <td>{product.cropSelection}</td>
-                                                            <td>
-                                                                <LinkContainer to={`/order/${product._id}`}>
-                                                                    <Button className="btn-sm" variant="light">Details</Button>
-                                                                </LinkContainer>
+                                                            <td style={{ textAlign: "center" }}>
+                                                                {
+                                                                    product.isReviwed ? (
+                                                                        <Button
+                                                                            className="mt-2"
+                                                                            ref={target}
+                                                                            onClick={handleClick}
+                                                                        >
+                                                                            <i className="fas fa-check mr-2" style={{ color: 'green', fontSize: '24px' }}></i>
+                                                                            Check
+                                                                        </Button>
+                                                                    ) : <i className="fas fa-times" style={{ color: 'red', fontSize: '24px' }}></i>
+                                                                }
+                                                                <Overlay
+                                                                    show={show}
+                                                                    target={target}
+                                                                    placement="bottom"
+                                                                    container={ref.current}
+                                                                    containerPadding={10}
+                                                                >
+                                                                    <Popover id="popover-contained">
+                                                                        <Popover.Title as="h3">Rating: {product.rating}</Popover.Title>
+                                                                        {
+                                                                            product.reviews.map(review => (
+                                                                                <Popover.Content>
+                                                                                    <strong>Feedback: {review.comment}</strong>
+                                                                                </Popover.Content>
+                                                                            ))
+                                                                        }
+                                                                    </Popover>
+                                                                </Overlay>
                                                             </td>
                                                         </tr>
                                                     ))}

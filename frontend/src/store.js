@@ -45,7 +45,11 @@ import {
 
 import {
     productCreateReducer,
-    supplierProdictListMyReducer
+    supplierProdictListMyReducer,
+    supplierProductListReducer,
+    FarmerProductDetailsReducer,
+    farmerReviewCreateReducer,
+    farmerProductUpdateReducer
 } from './reducers/supplierReducers'
 
 const reducer = combineReducers({
@@ -71,6 +75,10 @@ const reducer = combineReducers({
 
     productCreate: productCreateReducer,
     supplierProdictListMy: supplierProdictListMyReducer,
+    supplierProductList: supplierProductListReducer,
+    FarmerProductDetails: FarmerProductDetailsReducer,
+    farmerReviewCreate: farmerReviewCreateReducer,
+    farmerProductUpdate: farmerProductUpdateReducer,
 
     cartSeed: cartSeedReducer,
 

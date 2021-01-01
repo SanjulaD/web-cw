@@ -7,7 +7,18 @@ import {
     SUPPLIER_PRODUCT_LIST_FAIL,
     SUPPLIER_PRODUCT_LIST_MY_REQUEST,
     SUPPLIER_PRODUCT_LIST_MY_SUCCESS,
-    SUPPLIER_PRODUCT_LIST_MY_FAIL
+    SUPPLIER_PRODUCT_LIST_MY_FAIL,
+    SUPPLIER_PRODUCT_REQUEST,
+    SUPPLIER_PRODUCT_SUCCESS,
+    SUPPLIER_PRODUCT_FAIL,
+    FARMER_PRODUCT_CREATE_REVIEW_REQUEST,
+    FARMER_PRODUCT_CREATE_REVIEW_SUCCESS,
+    FARMER_PRODUCT_CREATE_REVIEW_FAIL,
+    FARMER_PRODUCT_CREATE_REVIEW_RESET,
+    SUPPLIER_PRODUCT_UPDATE_REQUEST,
+    SUPPLIER_PRODUCT_UPDATE_SUCCESS,
+    SUPPLIER_PRODUCT_UPDATE_FAIL,
+    SUPPLIER_PRODUCT_UPDATE_RESET
 } from './../constants/supplierConstant'
 
 export const productCreateReducer = (state = {}, action) => {
@@ -59,6 +70,51 @@ export const supplierProdictListMyReducer = (state = { products: [] }, action) =
             return {
                 loading: false,
                 error: action.payload,
+            }
+        default:
+            return state
+    }
+}
+
+export const FarmerProductDetailsReducer = (state = { product: {} }, action) => {
+    switch (action.type) {
+        case SUPPLIER_PRODUCT_REQUEST:
+            return { loading: true, ...state }
+        case SUPPLIER_PRODUCT_SUCCESS:
+            return { loading: false, product: action.payload }
+        case SUPPLIER_PRODUCT_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+export const farmerReviewCreateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case FARMER_PRODUCT_CREATE_REVIEW_REQUEST:
+            return { loading: true }
+        case FARMER_PRODUCT_CREATE_REVIEW_SUCCESS:
+            return { loading: false, success: true }
+        case FARMER_PRODUCT_CREATE_REVIEW_FAIL:
+            return { loading: false, error: action.payload }
+        case FARMER_PRODUCT_CREATE_REVIEW_RESET:
+            return {}
+        default:
+            return state
+    }
+}
+
+export const farmerProductUpdateReducer = (state = { productReviewed: {} }, action) => {
+    switch (action.type) {
+        case SUPPLIER_PRODUCT_UPDATE_REQUEST:
+            return { loading: true }
+        case SUPPLIER_PRODUCT_UPDATE_SUCCESS:
+            return { loading: false, success: true }
+        case SUPPLIER_PRODUCT_UPDATE_FAIL:
+            return { loading: false, error: action.payload }
+        case SUPPLIER_PRODUCT_UPDATE_RESET:
+            return {
+                productReviewed: {}
             }
         default:
             return state

@@ -5,7 +5,19 @@ import {
     SUPPLIER_PRODUCT_CREATE_SUCCESS,
     SUPPLIER_PRODUCT_LIST_MY_REQUEST,
     SUPPLIER_PRODUCT_LIST_MY_SUCCESS,
-    SUPPLIER_PRODUCT_LIST_MY_FAIL
+    SUPPLIER_PRODUCT_LIST_MY_FAIL,
+    SUPPLIER_PRODUCT_LIST_REQUEST,
+    SUPPLIER_PRODUCT_LIST_SUCCESS,
+    SUPPLIER_PRODUCT_LIST_FAIL,
+    SUPPLIER_PRODUCT_REQUEST,
+    SUPPLIER_PRODUCT_SUCCESS,
+    SUPPLIER_PRODUCT_FAIL,
+    FARMER_PRODUCT_CREATE_REVIEW_REQUEST,
+    FARMER_PRODUCT_CREATE_REVIEW_SUCCESS,
+    FARMER_PRODUCT_CREATE_REVIEW_FAIL,
+    SUPPLIER_PRODUCT_UPDATE_FAIL,
+    SUPPLIER_PRODUCT_UPDATE_REQUEST,
+    SUPPLIER_PRODUCT_UPDATE_SUCCESS
 } from './../constants/supplierConstant'
 import { logout } from './userActions'
 
@@ -79,6 +91,149 @@ export const listMyProducts = () => async (dispatch, getState) => {
         dispatch({
             type: SUPPLIER_PRODUCT_LIST_MY_FAIL,
             payload: message,
+        })
+    }
+}
+
+export const listSupplierProducts = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: SUPPLIER_PRODUCT_LIST_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        const { data } = await axios.get(`/api/supplier`, config)
+
+        dispatch({
+            type: SUPPLIER_PRODUCT_LIST_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+        }
+        dispatch({
+            type: SUPPLIER_PRODUCT_LIST_FAIL,
+            payload: message,
+        })
+    }
+}
+
+export const getroductsDetails = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: SUPPLIER_PRODUCT_REQUEST })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        const { data } = await axios.get(`/api/supplier/product/${id}`, config)
+
+        dispatch({
+            type: SUPPLIER_PRODUCT_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: SUPPLIER_PRODUCT_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        })
+    }
+}
+
+export const createProductReview = (productId, review) => async (
+    dispatch,
+    getState
+) => {
+    try {
+        dispatch({
+            type: FARMER_PRODUCT_CREATE_REVIEW_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        await axios.post(`/api/supplier/product/${productId}/reviews`, review, config)
+
+        dispatch({
+            type: FARMER_PRODUCT_CREATE_REVIEW_SUCCESS,
+        })
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+        }
+        dispatch({
+            type: FARMER_PRODUCT_CREATE_REVIEW_FAIL,
+            payload: message,
+        })
+    }
+}
+
+export const updateReviewed = (product) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: SUPPLIER_PRODUCT_UPDATE_REQUEST,
+        })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            },
+        }
+
+        const { data } = await axios.put(`/api/supplier/product/${product._id}/reviews`, product, config)
+
+        dispatch({ type: FARMER_PRODUCT_CREATE_REVIEW_SUCCESS })
+
+        dispatch({
+            type: SUPPLIER_PRODUCT_UPDATE_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: SUPPLIER_PRODUCT_UPDATE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
         })
     }
 }
