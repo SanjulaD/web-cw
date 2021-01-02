@@ -10,6 +10,7 @@ import {
     Overlay,
     Popover
 } from 'react-bootstrap'
+import Geocode from "react-geocode";
 import { Scrollbar } from "react-scrollbars-custom";
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -50,6 +51,12 @@ const ProfileScreen = ({ history }) => {
     const { loading: loadingProducts, error: errorProducts, products } = supplierProdictListMy
 
     useEffect(() => {
+
+        Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
+        Geocode.setLanguage("en");
+        Geocode.setRegion("es");
+        Geocode.enableDebug();
+
         if (!userInfo) {
             history.push('/login')
         } else {
@@ -77,6 +84,15 @@ const ProfileScreen = ({ history }) => {
     const handleClick = (event) => {
         setShow(!show);
         setTarget(event.target);
+        Geocode.fromAddress("Eiffel Tower").then(
+            response => {
+                const { lat, lng } = response.results[0].geometry.location;
+                console.log(lat, lng);
+            },
+            error => {
+                console.error(error);
+            }
+        );
     };
 
 
@@ -141,7 +157,7 @@ const ProfileScreen = ({ history }) => {
                     </Form>
                 </Col>
                 <Col md={9}>
-                    <Scrollbar style={{ width: '100%', height: 600 }}>
+                    <Scrollbar style={{ width: '100%', height: 630 }}>
                         <Container fluid>
                             <Row>
                                 <h2 style={{ marginTop: '110px' }}>My Orders</h2>
@@ -216,9 +232,7 @@ const ProfileScreen = ({ history }) => {
                                                                             className="mt-2"
                                                                             ref={target}
                                                                             onClick={handleClick}
-                                                                        >
-                                                                            <i className="fas fa-check mr-2" style={{ color: 'green', fontSize: '24px' }}></i>
-                                                                            Check
+                                                                        > Check
                                                                         </Button>
                                                                     ) : <i className="fas fa-times" style={{ color: 'red', fontSize: '24px' }}></i>
                                                                 }
@@ -233,7 +247,7 @@ const ProfileScreen = ({ history }) => {
                                                                         <Popover.Title as="h3">Rating: {product.rating}</Popover.Title>
                                                                         {
                                                                             product.reviews.map(review => (
-                                                                                <Popover.Content>
+                                                                                <Popover.Content key={review._id}>
                                                                                     <strong>Feedback: {review.comment}</strong>
                                                                                 </Popover.Content>
                                                                             ))
