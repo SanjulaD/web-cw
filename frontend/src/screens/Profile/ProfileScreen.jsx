@@ -10,7 +10,6 @@ import {
     Overlay,
     Popover
 } from 'react-bootstrap'
-import Geocode from "react-geocode";
 import { Scrollbar } from "react-scrollbars-custom";
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -52,11 +51,6 @@ const ProfileScreen = ({ history }) => {
 
     useEffect(() => {
 
-        Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
-        Geocode.setLanguage("en");
-        Geocode.setRegion("es");
-        Geocode.enableDebug();
-
         if (!userInfo) {
             history.push('/login')
         } else {
@@ -84,15 +78,7 @@ const ProfileScreen = ({ history }) => {
     const handleClick = (event) => {
         setShow(!show);
         setTarget(event.target);
-        Geocode.fromAddress("Eiffel Tower").then(
-            response => {
-                const { lat, lng } = response.results[0].geometry.location;
-                console.log(lat, lng);
-            },
-            error => {
-                console.error(error);
-            }
-        );
+        
     };
 
 

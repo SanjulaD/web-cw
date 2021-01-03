@@ -2,17 +2,17 @@ import express from 'express'
 import asyncHandler from 'express-async-handler'
 import generateToken from './../utils/genarateToken.js'
 import Supplier from './../models/supplierModel.js';
+import nodeGeocoder from 'node-geocoder'
 
 // @desc    Create supplier product
 // @rout    POST /api/supplier/
 // @access  private
 const createSupplierProduct = asyncHandler(async (req, res) => {
+
     const {
         name,
         email,
         address,
-        longitude,
-        latitude,
         image,
         description,
         cropSelection
@@ -22,20 +22,39 @@ const createSupplierProduct = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('No Products Items')
     } else {
-        const supplier = await Supplier.create({
-            user: req.user._id,
-            name,
-            email,
-            address,
-            longitude,
-            latitude,
-            image,
-            description,
-            cropSelection
-        })
-        const createdSupplierProduct = await supplier.save()
+        let options = {
+            provider: 'openstreetmap'
+        };
 
-        res.status(201).json(createdSupplierProduct)
+        let geoCoder = nodeGeocoder(options);
+
+        const getCordinates = geoCoder.geocode(address).then(
+            response => {
+                return response[0]
+            }).catch((err) => {
+                console.log(err);
+            });
+
+        const getLatLong = async () => {
+            const latAndLong = await getCordinates
+
+            const supplier = await Supplier.create({
+                user: req.user._id,
+                name,
+                email,
+                address,
+                longitude: latAndLong.longitude,
+                latitude: latAndLong.latitude,
+                image,
+                description,
+                cropSelection
+            })
+            const createdSupplierProduct = await supplier.save()
+
+            res.status(201).json(createdSupplierProduct)
+        }
+
+        getLatLong()
     }
 })
 
@@ -98,7 +117,7 @@ const createFarmerProductReview = asyncHandler(async (req, res) => {
         product.rating = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length
 
         await product.save()
-        
+
         res.status(201).json({ message: 'Review added' })
 
     } else {
@@ -128,8 +147,8 @@ const updateProductReviewed = asyncHandler(async (req, res) => {
     }
 })
 
-export { 
-    createSupplierProduct, 
+export {
+    createSupplierProduct,
     getMyProducts,
     getProducts,
     getFarmerProductById,
