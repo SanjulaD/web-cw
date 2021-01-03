@@ -32,6 +32,7 @@ import ConsumerListEdit from './screens/ProductListEdit/ConsumerListEdit/Consume
 import OrderListScreen from './screens/Dashboard/OrderListScreen'
 import HarvestScreen from './screens/Dashboard/HarvestScreen';
 import FarmerProduct from './screens/FarmerProducts/FarmerProducts';
+import MapScreen from './screens/Dashboard/MapScreen';
 
 const Layout = () => {
     return (
@@ -59,6 +60,7 @@ const Layout = () => {
                     <Route exact path="/admin/productlist" component={ProductListScreen} />
                     <Route exact path="/admin/orderlist" component={OrderListScreen} />
                     <Route exact path="/admin/supplierproducts" component={HarvestScreen} />
+                    <Route exact path="/admin/map" component={MapScreen} />
                     <Route exact path="/admin/productlist/seed/:id/edit" component={SeedListEdit} />
                     <Route exact path="/admin/productlist/machine/:id/edit" component={MachineListEdit} />
                     <Route exact path="/admin/productlist/consumer/:id/edit" component={ConsumerListEdit} />

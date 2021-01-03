@@ -7,7 +7,6 @@ import {
     Button
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
-import OverLay from './../../components/Map/OverLay'
 import './FarmerStyle.css'
 
 const FarmerScreen = () => {
@@ -45,7 +44,6 @@ const FarmerScreen = () => {
                     </CardDeck>
                 </Row>
             </Container>
-            <OverLay />
         </div>
     )
 }
