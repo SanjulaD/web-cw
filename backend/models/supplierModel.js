@@ -42,11 +42,11 @@ const supplierSchema = mongoose.Schema({
     },
     reviews: [farmerProductReviewSchema],
     longitude: {
-        type: String,
+        type: Number,
         required: false
     },
     latitude: {
-        type: String,
+        type: Number,
         required: false
     },
     cropSelection: {
