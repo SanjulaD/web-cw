@@ -17,7 +17,10 @@ import {
     FARMER_PRODUCT_CREATE_REVIEW_FAIL,
     SUPPLIER_PRODUCT_UPDATE_FAIL,
     SUPPLIER_PRODUCT_UPDATE_REQUEST,
-    SUPPLIER_PRODUCT_UPDATE_SUCCESS
+    SUPPLIER_PRODUCT_UPDATE_SUCCESS,
+    SUPPLIER_PRODUCT_FOR_ALL_REQUEST,
+    SUPPLIER_PRODUCT_FOR_ALL_SUCCESS,
+    SUPPLIER_PRODUCT_FOR_ALL_FAIL
 } from './../constants/supplierConstant'
 import { logout } from './userActions'
 
@@ -234,6 +237,44 @@ export const updateReviewed = (product) => async (dispatch, getState) => {
                 error.response && error.response.data.message
                     ? error.response.data.message
                     : error.message
+        })
+    }
+}
+
+// For all
+export const listSupplierProductsForAll = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: SUPPLIER_PRODUCT_FOR_ALL_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        const { data } = await axios.get(`/api/supplier/all`, config)
+
+        dispatch({
+            type: SUPPLIER_PRODUCT_FOR_ALL_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+        }
+        dispatch({
+            type: SUPPLIER_PRODUCT_FOR_ALL_FAIL,
+            payload: message,
         })
     }
 }

@@ -18,7 +18,10 @@ import {
     SUPPLIER_PRODUCT_UPDATE_REQUEST,
     SUPPLIER_PRODUCT_UPDATE_SUCCESS,
     SUPPLIER_PRODUCT_UPDATE_FAIL,
-    SUPPLIER_PRODUCT_UPDATE_RESET
+    SUPPLIER_PRODUCT_UPDATE_RESET,
+    SUPPLIER_PRODUCT_FOR_ALL_REQUEST,
+    SUPPLIER_PRODUCT_FOR_ALL_SUCCESS,
+    SUPPLIER_PRODUCT_FOR_ALL_FAIL
 } from './../constants/supplierConstant'
 
 export const productCreateReducer = (state = {}, action) => {
@@ -115,6 +118,28 @@ export const farmerProductUpdateReducer = (state = { productReviewed: {} }, acti
         case SUPPLIER_PRODUCT_UPDATE_RESET:
             return {
                 productReviewed: {}
+            }
+        default:
+            return state
+    }
+}
+
+// For all
+export const supplierProductForAllListReducer = (state = { products: [] }, action) => {
+    switch (action.type) {
+        case SUPPLIER_PRODUCT_FOR_ALL_REQUEST:
+            return {
+                loading: true,
+            }
+        case SUPPLIER_PRODUCT_FOR_ALL_SUCCESS:
+            return {
+                loading: false,
+                products: action.payload,
+            }
+        case SUPPLIER_PRODUCT_FOR_ALL_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
             }
         default:
             return state

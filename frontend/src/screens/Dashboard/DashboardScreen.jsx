@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import BarChart from '../../components/DashBoard/BarChart/Bar'
 import StatCards from '../../components/DashBoard/StatCards/StatCards'
 import SideBarComponents from '../../components/SideBar/SideBarComponents'
 
@@ -21,6 +22,7 @@ const DashboardScreen = () => {
                     </Col>
                     <Col md={9}>
                         <StatCards />
+                        <BarChart />
                     </Col>
                 </Row>
             </Container>

@@ -6,7 +6,8 @@ import {
     getProducts,
     getFarmerProductById,
     createFarmerProductReview,
-    updateProductReviewed
+    updateProductReviewed,
+    getMyProductsForPublic
 } from './../controllers/supplierController.js'
 const router = express.Router()
 
@@ -14,6 +15,10 @@ router
     .route('/')
     .post(protect, createSupplierProduct)
     .get(protect, admin, getProducts)
+
+router
+    .route('/all')
+    .get(protect, getMyProductsForPublic)
 
 router
     .route('/myproducts')

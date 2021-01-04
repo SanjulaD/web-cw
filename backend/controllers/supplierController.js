@@ -66,7 +66,15 @@ const getMyProducts = asyncHandler(async (req, res) => {
     res.json(products)
 })
 
-// @desc    Get all orders
+// @desc    Get all Products
+// @route   GET /api/supplier
+// @access  Public
+const getMyProductsForPublic = asyncHandler(async (req, res) => {
+    const products = await Supplier.find({}).populate('user', 'id name')
+    res.json(products)
+})
+
+// @desc    Get all Products
 // @route   GET /api/supplier
 // @access  Private/Admin
 const getProducts = asyncHandler(async (req, res) => {
@@ -153,5 +161,6 @@ export {
     getProducts,
     getFarmerProductById,
     createFarmerProductReview,
-    updateProductReviewed
+    updateProductReviewed,
+    getMyProductsForPublic
 }
