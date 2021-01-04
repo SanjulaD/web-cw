@@ -4,7 +4,10 @@ const MapStyles = [
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#004358"
+                "color": "#e9e9e9"
+            },
+            {
+                "lightness": 17
             }
         ]
     },
@@ -13,25 +16,37 @@ const MapStyles = [
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#1f8a70"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
+                "color": "#f5f5f5"
+            },
             {
-                "color": "#1f8a70"
+                "lightness": 20
             }
         ]
     },
     {
         "featureType": "road.highway",
-        "elementType": "geometry",
+        "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#fd7400"
+                "color": "#ffffff"
+            },
+            {
+                "lightness": 17
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            },
+            {
+                "lightness": 29
+            },
+            {
+                "weight": 0.2
             }
         ]
     },
@@ -40,10 +55,10 @@ const MapStyles = [
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#1f8a70"
+                "color": "#ffffff"
             },
             {
-                "lightness": -20
+                "lightness": 18
             }
         ]
     },
@@ -52,10 +67,34 @@ const MapStyles = [
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#1f8a70"
+                "color": "#ffffff"
             },
             {
-                "lightness": -17
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#f5f5f5"
+            },
+            {
+                "lightness": 21
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#dedede"
+            },
+            {
+                "lightness": 21
             }
         ]
     },
@@ -63,13 +102,13 @@ const MapStyles = [
         "elementType": "labels.text.stroke",
         "stylers": [
             {
-                "color": "#ffffff"
-            },
-            {
                 "visibility": "on"
             },
             {
-                "weight": 0.9
+                "color": "#ffffff"
+            },
+            {
+                "lightness": 16
             }
         ]
     },
@@ -77,19 +116,13 @@ const MapStyles = [
         "elementType": "labels.text.fill",
         "stylers": [
             {
-                "visibility": "on"
+                "saturation": 36
             },
             {
-                "color": "#ffffff"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "labels",
-        "stylers": [
+                "color": "#333333"
+            },
             {
-                "visibility": "simplified"
+                "lightness": 40
             }
         ]
     },
@@ -106,23 +139,37 @@ const MapStyles = [
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#1f8a70"
+                "color": "#f2f2f2"
             },
             {
-                "lightness": -10
+                "lightness": 19
             }
         ]
     },
-    {},
     {
         "featureType": "administrative",
-        "elementType": "geometry",
+        "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#1f8a70"
+                "color": "#fefefe"
             },
             {
-                "weight": 0.7
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#fefefe"
+            },
+            {
+                "lightness": 17
+            },
+            {
+                "weight": 1.2
             }
         ]
     }

@@ -13,6 +13,7 @@ import Message from '../../Message/Message'
 import Loader from '../../Loader/Loader'
 import { listSupplierProducts } from '../../../actions/supplierProduct'
 import MapStyles from './MapStyles'
+import Rating from './Rating/Rating'
 
 const Map = () => {
 
@@ -41,27 +42,28 @@ const Map = () => {
             defaultZoom={10}
             defaultOptions={{ styles: MapStyles }}
         >
-            {loadingProducts ? <Loader />
-                : errorProducts
-                    ? <Message variant='danger'>{errorProducts}</Message>
-                    : (
-                        products.map(place => (
-                            <Marker
-                                key={place._id}
-                                position={{
-                                    lat: place.latitude,
-                                    lng: place.longitude
-                                }}
-                                onClick={() => {
-                                    setSelectedPlace(place)
-                                }}
-                                icon={{
-                                    url: '/mapIcon.svg',
-                                    scaledSize: new window.google.maps.Size(35, 35)
-                                }}
-                            />
-                        ))
-                    )
+            {
+                loadingProducts ? <Loader />
+                    : errorProducts
+                        ? <Message variant='danger'>{errorProducts}</Message>
+                        : (
+                            products.map(place => (
+                                <Marker
+                                    key={place._id}
+                                    position={{
+                                        lat: place.latitude,
+                                        lng: place.longitude
+                                    }}
+                                    onClick={() => {
+                                        setSelectedPlace(place)
+                                    }}
+                                    icon={{
+                                        url: '/mapIcon.svg',
+                                        scaledSize: new window.google.maps.Size(25, 25)
+                                    }}
+                                />
+                            ))
+                        )
 
             }
             {
@@ -76,15 +78,20 @@ const Map = () => {
                         }}
                     >
                         <div>
-                            <Image className="mx-auto d-block img-fluid mb-1" rounded width="100px" src={selectedPlace.image} alt={selectedPlace.name} />
-                            <h4 style={{textAlign:"center"}}>{selectedPlace.cropSelection}</h4>
+                            <Image className="mx-auto d-block img-fluid mb-1" rounded width="120px" src={selectedPlace.image} alt={selectedPlace.name} />
+                            <h4 style={{ textAlign: "center" }}>{selectedPlace.cropSelection}</h4>
                             <p>
-                                Farmer: <span style={{fontWeight:"bold"}}>{selectedPlace.name}</span><br />
+                                Farmer: <span style={{ fontWeight: "bold" }}>{selectedPlace.name}</span><br />
                                 Description: {selectedPlace.description}<br />
+                                Address: {selectedPlace.address}<br />
                                 Reviewed: {
-                                    selectedPlace.isReviwed 
-                                        ? <i className="fas fa-check" style={{color: "green"}} />
-                                        : <i className="fas fa-times" style={{color: "red"}} />
+                                    selectedPlace.isReviwed
+                                        ? (<>
+                                            <i className="fas fa-check" style={{ color: "green" }}></i>
+                                            <p><Rating text="Rating" value={selectedPlace.rating} /></p>
+                                        </>
+                                        )
+                                        : (<i className="fas fa-times" style={{ color: "red" }} />)
                                 }
                             </p>
                         </div>
