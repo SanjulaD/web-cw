@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Container } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
-import Message from './../../../components/Message/Message'
-import Loader from './../../../components/Loader/Loader'
-import { listOrders } from './../../../actions/orderAction'
+import Message from '../../../Message/Message'
+import Loader from '../../../Loader/Loader'
+import { listOrders } from '../../../../actions/orderAction'
 
 const BarChart = () => {
 
@@ -45,8 +45,8 @@ const BarChart = () => {
     };
 
     return (
-        <Container style={{ marginTop: "20px" }}>
-            <h1 style={{ marginBottom: '20px' }}>Orders</h1>
+        <Container style={{ marginTop: "40px" }}>
+            <h4>Orders</h4>
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
                     : (
@@ -58,7 +58,7 @@ const BarChart = () => {
                         <Bar
                             data={data}
                             width={100}
-                            height={50}
+                            height={180}
                             options={{
                                 maintainAspectRatio: false
                             }}

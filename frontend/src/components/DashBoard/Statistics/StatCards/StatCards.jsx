@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Card, Row, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import { listUsers } from './../../../actions/userActions'
-import { listOrders } from './../../../actions/orderAction'
+import { listUsers } from '../../../../actions/userActions'
+import { listOrders } from '../../../../actions/orderAction'
 import './StatCard.css'
 
 const StatCards = () => {
