@@ -5,7 +5,7 @@ import './Rating.css'
 const Rating = ({ value, text, color }) => {
     return (
         <div className="rating">
-            <span>{text && text}</span>
+            <span className="text-span">{text && text}: </span>
             <span>
                 <i style={{ color }} className={
                     value >= 1

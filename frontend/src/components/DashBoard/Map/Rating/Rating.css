@@ -1,6 +1,6 @@
-.rating span
+.text-span
 {
-    margin: 0.1rem;
+    margin-left: 0px !important;
 }
 
 h3{
