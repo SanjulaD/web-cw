@@ -1,13 +1,13 @@
-import React from 'react'
-import { Col } from 'react-bootstrap'
+import React, { useEffect } from 'react'
 import { Doughnut } from 'react-chartjs-2';
+import { useHistory } from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux'
+import Message from './../../../../components/Message/Message'
+import Loader from './../../../../components/Loader/Loader'
+import { listSupplierProducts } from './../../../../actions/supplierProduct'
 
 const data = {
-    labels: [
-        'Red',
-        'Green',
-        'Yellow'
-    ],
+    labels: [],
     datasets: [{
         data: [300, 50, 100],
         backgroundColor: [
@@ -25,10 +25,35 @@ const data = {
 
 const DoughnutComponent = () => {
 
+    const dispatch = useDispatch()
+    let history = useHistory()
+
+    const supplierProductList = useSelector(state => state.supplierProductList)
+    const { loading: loadingProducts, error: errorProducts, products } = supplierProductList
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
+    useEffect(() => {
+        if (!userInfo.isAdmin && !userInfo) {
+            history.push('/login')
+        } else {
+            dispatch(listSupplierProducts())
+        }
+    }, [dispatch, history, userInfo])
+
     return (
         <>
-            <h4 style={{marginTop: "40px", textAlign: "center"}}>Doughnut</h4>
-            <Doughnut data={data} />
+            <h4 style={{ marginTop: "40px", textAlign: "center" }}>Suppliers</h4>
+            {loadingProducts ? <Loader />
+                : errorProducts ? <Message variant='danger'>{errorProducts}</Message>
+                    : (
+                        products.map(product => (
+                            data.labels.push(product.cropSelection)
+                        )),
+                        <Doughnut data={data} />
+                    )
+            }
         </>
     )
 }

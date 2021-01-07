@@ -8,9 +8,7 @@ import Loader from '../../../Loader/Loader'
 import { listOrders } from '../../../../actions/orderAction'
 
 const BarChart = () => {
-
-    const [month, setMonth] = useState([])
-
+    
     const dispatch = useDispatch()
     let history = useHistory()
 

@@ -18,7 +18,7 @@ router
 
 router
     .route('/all')
-    .get(protect, getMyProductsForPublic)
+    .get(getMyProductsForPublic)
 
 router
     .route('/myproducts')

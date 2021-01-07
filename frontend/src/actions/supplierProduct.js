@@ -242,23 +242,13 @@ export const updateReviewed = (product) => async (dispatch, getState) => {
 }
 
 // For all
-export const listSupplierProductsForAll = () => async (dispatch, getState) => {
+export const listSupplierProductsForAll = () => async (dispatch) => {
     try {
         dispatch({
             type: SUPPLIER_PRODUCT_FOR_ALL_REQUEST,
         })
 
-        const {
-            userLogin: { userInfo },
-        } = getState()
-
-        const config = {
-            headers: {
-                Authorization: `Bearer ${userInfo.token}`,
-            },
-        }
-
-        const { data } = await axios.get(`/api/supplier/all`, config)
+        const { data } = await axios.get(`/api/supplier/all`)
 
         dispatch({
             type: SUPPLIER_PRODUCT_FOR_ALL_SUCCESS,
@@ -269,9 +259,7 @@ export const listSupplierProductsForAll = () => async (dispatch, getState) => {
             error.response && error.response.data.message
                 ? error.response.data.message
                 : error.message
-        if (message === 'Not authorized, token failed') {
-            dispatch(logout())
-        }
+        
         dispatch({
             type: SUPPLIER_PRODUCT_FOR_ALL_FAIL,
             payload: message,

@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Line } from 'react-chartjs-2';
+import { useDispatch, useSelector } from 'react-redux'
+import Message from './../../../../components/Message/Message'
+import Loader from './../../../../components/Loader/Loader'
+import { listUsers } from './../../../../actions/userActions'
 
 const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: [],
     datasets: [
         {
-            label: 'Dataset of Months',
+            label: 'Users of Months',
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(75,192,192,0.4)',
@@ -23,16 +27,44 @@ const data = {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40]
+            data: [65, 59, 80]
         }
     ]
 };
 
-const LineChart = () => {
+const LineChart = ({ history }) => {
+
+    const dispatch = useDispatch()
+
+    const userList = useSelector(state => state.userList)
+    const { loading, error, users } = userList
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
+    useEffect(() => {
+        if (userInfo && userInfo.isAdmin) {
+            dispatch(listUsers())
+        } else {
+            history.push('/login')
+        }
+    }, [dispatch, history, userInfo])
+
     return (
         <>
-            <h4 style={{ marginTop: "40px", textAlign: "center" }}>LineChart</h4>
-            <Line data={data} />
+            <h4 style={{ marginTop: "40px", textAlign: "center" }}>Users</h4>
+            {loading ? <Loader />
+                : error ? <Message variant='danger'>{error}</Message>
+                    : (
+                        users.filter((item, index) => {
+                            if (users.indexOf(item) === index) {
+                                const month = new Date(item.createdAt)
+                                data.labels.push(month.toLocaleString('default', { month: 'long' }))
+                            }
+                        }),
+                        <Line data={data} />
+                    )
+            }
         </>
     )
 }
