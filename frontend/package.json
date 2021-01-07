@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.1.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.14",
@@ -34,6 +36,7 @@
     "react-scripts": "4.0.1",
     "react-scroll-horizontal": "^1.6.6",
     "react-scrollbars-custom": "^4.0.25",
+    "react-spinners": "^0.10.4",
     "reactstrap": "^8.8.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
