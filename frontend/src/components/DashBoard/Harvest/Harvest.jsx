@@ -33,7 +33,7 @@ const Harvest = () => {
     }, [dispatch, history, userInfo])
 
     return (
-        <Container>
+        <Container fluid>
             <Scrollbar style={{ width: '100%', height: 450 }}>
                 {loadingProducts ? <Loader />
                     : errorProducts ? <Message variant='danger'>{errorProducts}</Message>
@@ -45,6 +45,7 @@ const Harvest = () => {
                                         <td>ADDRESS</td>
                                         <td>IMAGE</td>
                                         <td>DESCRPTION</td>
+                                        <td>CONTACT</td>
                                         <td>CROP</td>
                                         <td>MORE</td>
                                     </tr>
@@ -59,16 +60,22 @@ const Harvest = () => {
                                                     <Image src={product.image} rounded width="60px" />
                                                 </td>
                                                 <td>{product.description}</td>
+                                                {
+                                                    product.phonenumber
+                                                        ? <td>{product.phonenumber}</td>
+                                                        : <td>Null</td>
+                                                }
                                                 <td>{product.cropSelection}</td>
                                                 <td>
                                                     {
                                                         product.isReviwed ? (
-                                                            <Button
-                                                                disabled
-                                                                variant="danger"
-                                                                className="btn-sm mr-2">
-                                                                <i className="fas fa-eye"></i> Reviewed
-                                                            </Button>
+                                                            <LinkContainer to={`/supplierproducts/${product._id}/review`}>
+                                                                <Button
+                                                                    disabled
+                                                                    variant="danger"
+                                                                    className="btn-sm mr-2">Reviewed
+                                                                    </Button>
+                                                            </LinkContainer>
                                                         ) : (
                                                                 <LinkContainer to={`/supplierproducts/${product._id}/review`}>
                                                                     <Button

@@ -13,9 +13,11 @@ const createSupplierProduct = asyncHandler(async (req, res) => {
         name,
         email,
         address,
+        cropSelection,
+        storage,
         image,
-        description,
-        cropSelection
+        phonenumber,
+        description
     } = req.body
 
     if (name & address === '') {
@@ -43,11 +45,13 @@ const createSupplierProduct = asyncHandler(async (req, res) => {
                 name,
                 email,
                 address,
+                cropSelection,
+                storage,
                 longitude: latAndLong.longitude,
                 latitude: latAndLong.latitude,
                 image,
+                phonenumber,
                 description,
-                cropSelection
             })
             const createdSupplierProduct = await supplier.save()
 

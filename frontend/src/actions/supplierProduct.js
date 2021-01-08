@@ -24,7 +24,16 @@ import {
 } from './../constants/supplierConstant'
 import { logout } from './userActions'
 
-export const createSupplierProduct = ({ name, address, email, image, cropSelection, description }) => async (dispatch, getState) => {
+export const createSupplierProduct = ({
+    name,
+    email,
+    address,
+    cropSelection,
+    storage,
+    image,
+    phonenumber,
+    description
+}) => async (dispatch, getState) => {
     try {
         dispatch({
             type: SUPPLIER_PRODUCT_CREATE_REQUEST,
@@ -41,7 +50,16 @@ export const createSupplierProduct = ({ name, address, email, image, cropSelecti
 
         const { data } = await axios.post(
             '/api/supplier',
-            { name, email, address, image, cropSelection, description },
+            {
+                name,
+                email,
+                address,
+                cropSelection,
+                storage,
+                image,
+                phonenumber,
+                description
+            },
             config
         )
 
@@ -259,7 +277,7 @@ export const listSupplierProductsForAll = () => async (dispatch) => {
             error.response && error.response.data.message
                 ? error.response.data.message
                 : error.message
-        
+
         dispatch({
             type: SUPPLIER_PRODUCT_FOR_ALL_FAIL,
             payload: message,

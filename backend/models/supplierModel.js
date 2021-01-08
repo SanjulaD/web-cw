@@ -40,6 +40,14 @@ const supplierSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    phonenumber: {
+        type: String,
+        required: true
+    },
+    storage: {
+        type: String,
+        required: true
+    },
     reviews: [farmerProductReviewSchema],
     longitude: {
         type: Number,
