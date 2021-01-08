@@ -62,7 +62,9 @@ const Harvest = () => {
                                                 <td>{product.description}</td>
                                                 {
                                                     product.phonenumber
-                                                        ? <td>{product.phonenumber}</td>
+                                                        ? <td>
+                                                            <a rel="noreferrer" target='_blank' href={`https://wa.me/${product.phonenumber}`}>{product.phonenumber}</a>
+                                                        </td>
                                                         : <td>Null</td>
                                                 }
                                                 <td>{product.cropSelection}</td>
