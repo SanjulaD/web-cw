@@ -11,7 +11,6 @@ import {
     Button,
     Form
 } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap'
 import { getroductsDetails, createProductReview } from './../../actions/supplierProduct'
 import Loader from '../../components/Loader/Loader';
 import Message from '../../components/Message/Message';

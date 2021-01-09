@@ -29,6 +29,7 @@ import ProductListScreen from './screens/Dashboard/ProductListScreen'
 import SeedListEdit from './screens/ProductListEdit/SeedListEdit/SeedListEdit'
 import MachineListEdit from './screens/ProductListEdit/MachineListEdit/MachineListEdit'
 import ConsumerListEdit from './screens/ProductListEdit/ConsumerListEdit/ConsumerListEdit'
+import SupplierProductEdit from './components/SupplierProductEdit/SupplierProductEdit'
 import OrderListScreen from './screens/Dashboard/OrderListScreen'
 import HarvestScreen from './screens/Dashboard/HarvestScreen';
 import FarmerProduct from './screens/FarmerProducts/FarmerProducts';
@@ -66,6 +67,7 @@ const Layout = () => {
                     <Route exact path="/admin/productlist/consumer/:id/edit" component={ConsumerListEdit} />
                     <Route exact path="/admin/user/:id/edit" component={UserEditScreen} />
                     <Route exact path="/supplierproducts/:id/review" component={FarmerProduct} />
+                    <Route exact path="/supplierproducts/:id/edit" component={SupplierProductEdit} />
 
                     <Route exact path="/farmers/purchaseSeeds" component={Farmer_ProductSeed} />
                     <Route exact path="/farmers/purchaseSeeds/:id" component={SeedProductScreen} />

@@ -78,12 +78,12 @@ const ProfileScreen = ({ history }) => {
     const handleClick = (event) => {
         setShow(!show);
         setTarget(event.target);
-        
+
     };
 
 
     return (
-        <Container style={{ marginBottom: '50px' }}>
+        <Container fluid style={{ marginBottom: '50px' }}>
             <Row>
                 <Col md={3}>
                     <h2 style={{ marginTop: '110px' }}>User Profile</h2>
@@ -199,6 +199,7 @@ const ProfileScreen = ({ history }) => {
                                                         <th>IMAGE</th>
                                                         <th>CROP</th>
                                                         <th>REVIEWED</th>
+                                                        <th>EDIT</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -240,6 +241,13 @@ const ProfileScreen = ({ history }) => {
                                                                         }
                                                                     </Popover>
                                                                 </Overlay>
+                                                            </td>
+                                                            <td>
+                                                                <LinkContainer to={`/supplierproducts/${product._id}/edit`}>
+                                                                    <Button variant="light" className="btn btn-sm">
+                                                                        <i className="fas fa-edit"></i>
+                                                                    </Button>
+                                                                </LinkContainer>
                                                             </td>
                                                         </tr>
                                                     ))}

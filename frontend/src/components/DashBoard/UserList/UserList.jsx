@@ -19,12 +19,12 @@ const UserList = ({ history }) => {
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
-    
+
     const userDelete = useSelector(state => state.userDelete)
     const { success: successDelete } = userDelete
 
     useEffect(() => {
-        if(userInfo && userInfo.isAdmin) {
+        if (userInfo && userInfo.isAdmin) {
             dispatch(listUsers())
         } else {
             history.push('/login')
@@ -32,18 +32,21 @@ const UserList = ({ history }) => {
     }, [dispatch, history, successDelete, userInfo])
 
     const deleteHandler = (id) => {
-        if(window.confirm('Are you sure')) {
+        if (window.confirm('Are you sure')) {
             dispatch(deleteUsers(id))
         }
     }
 
     return (
-        <div style={{ marginTop: '10px' }}>
+        <div>
+            <LinkContainer style={{ float: 'right' }} to='/register'>
+                <Button className="mr-3 mb-3">ADD ADMIN</Button>
+            </LinkContainer>
             <Container>
                 {loading ? <Loader />
                     : error ? <Message variant='danger'>{error}</Message>
                         : (
-                            <Table style={{marginBottom: '223px'}} striped bordered hover responsive className='table-sm'>
+                            <Table style={{ marginBottom: '223px' }} striped bordered hover responsive className='table-sm'>
                                 <thead>
                                     <tr>
                                         <td>ID</td>
@@ -61,9 +64,9 @@ const UserList = ({ history }) => {
                                                 <td>{user._id}</td>
                                                 <td>{user.name}</td>
                                                 {
-                                                    user.cropSelection 
-                                                    ? <td>{user.cropSelection}</td>
-                                                    : <td style={{color: 'red'}}>No Crop Selected</td>
+                                                    user.cropSelection
+                                                        ? <td>{user.cropSelection}</td>
+                                                        : <td style={{ color: 'red' }}>No Crop Selected</td>
                                                 }
                                                 <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
                                                 <td>
