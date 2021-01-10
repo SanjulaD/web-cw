@@ -31,7 +31,6 @@ Create a .env file inside frontend and add the following
 
 ```
 REACT_APP_GOOGLE_KEY = "add google mapp api key"
-
 ```
 
 ### Install Dependencies (frontend & backend)
