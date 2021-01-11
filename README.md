@@ -28,7 +28,7 @@ PAYPAL_CLIENT_ID = your paypal client id
 Create a .env file inside frontend and add the following
 
 ```
-REACT_APP_GOOGLE_KEY = "add google mapp api key"
+REACT_APP_GOOGLE_KEY = "add google map api key"
 ```
 
 ### Install Dependencies (frontend & backend)

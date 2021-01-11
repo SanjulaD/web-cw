@@ -7,11 +7,15 @@ import {
     Button
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
+import Meta from '../../components/Helmet/Meta';
 import './FarmerStyle.css'
 
 const FarmerScreen = () => {
     return (
         <div>
+            <Meta
+                title="AgriCom | Farmers"
+            />
             <Container className='farmerContainer'>
                 <h1 className='title'>FARMER</h1>
                 <h4 className="farmer-title">If you are a farmer then you are at perfect platfrom from where you can order all of your farming related products and you can sell your production also.</h4>
