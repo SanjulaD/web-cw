@@ -98,7 +98,7 @@ const ConsumerListEdit = ({ match }) => {
     return (
         <Container style={{ marginBottom: '50px' }}>
             <Meta
-                title="AgriCom | Admin Consumer Edit"
+                title="Agroic | Admin Consumer Edit"
             />
             <FormContainer>
                 <h2 style={{ marginTop: '120px', textAlign: 'center' }}>Consumer Profile</h2>

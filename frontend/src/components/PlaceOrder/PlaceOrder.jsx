@@ -56,7 +56,7 @@ const PlaceOrder = ({ history }) => {
         <div style={{ marginTop: '100px' }}>
             <Container>
                 <Meta
-                    title="AgriCom | Order"
+                    title="Agroic | Order"
                 />
                 <Row className="justify-content-md-center">
                     <Col xs={12} md={6}>

@@ -37,7 +37,7 @@ const ConsumerScreen = () => {
     return (
         <div className="consumerProductScreen">
             <Meta
-                title="AgriCom | Consumer"
+                title="Agroic | Consumer"
             />
             <Container className='consumerContainer'>
                 <h1 className="title">CONSUMER</h1>

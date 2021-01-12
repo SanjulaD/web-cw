@@ -37,7 +37,7 @@ const LendMachineProduct = ({ history, match }) => {
     return (
         <div className="productScreen">
             <Meta
-                title="AgriCom | Machine"
+                title="Agroic | Machine"
             />
             <Container>
                 <Link className="btn btn-go-back btn-dark" to="/farmers/lendMachines">GO BACK</Link>
@@ -60,7 +60,7 @@ const LendMachineProduct = ({ history, match }) => {
                                                 <h4>Price: {productLendMachines.price}</h4>
                                             </ListGroup.Item>
                                             <ListGroup.Item>
-                                                <p>Description: {productLendMachines.description}</p>
+                                            <p><span style={{fontWeight:"bold"}}>Description:</span><br /> {productLendMachines.description}</p>
                                             </ListGroup.Item>
                                             <ListGroup.Item>
                                                 <p>Quantity Available: {productLendMachines.quantity}</p>

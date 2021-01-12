@@ -6,7 +6,7 @@ import Loader from './../../../../components/Loader/Loader'
 import { listUsers } from './../../../../actions/userActions'
 
 const data = {
-    labels: [],
+    labels: ['December', 'January'],
     datasets: [
         {
             label: 'Users of Months',
@@ -27,7 +27,7 @@ const data = {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80]
+            data: [1, 2, 0, 5]
         }
     ]
 };
@@ -37,7 +37,7 @@ const LineChart = ({ history }) => {
     const dispatch = useDispatch()
 
     const userList = useSelector(state => state.userList)
-    const { loading, error, users } = userList
+    const { loading, error } = userList
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -56,13 +56,6 @@ const LineChart = ({ history }) => {
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
                     : (
-                        // eslint-disable-next-line array-callback-return
-                        users.filter((item, index) => {
-                            if (users.indexOf(item) === index) {
-                                const month = new Date(item.createdAt)
-                                data.labels.push(month.toLocaleString('default', { month: 'long' }))
-                            }
-                        }),
                         <Line data={data} />
                     )
             }

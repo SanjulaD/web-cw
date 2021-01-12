@@ -86,7 +86,7 @@ const ProfileScreen = ({ history }) => {
     return (
         <Container fluid style={{ marginBottom: '50px' }}>
             <Meta
-                title="AgriCom | Profile"
+                title="Agroic | Profile"
             />
             <Row>
                 <Col md={3}>

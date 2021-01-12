@@ -35,7 +35,7 @@ const Farmer_LendScreen = () => {
 
         <div className="MachineLendScreen">
             <Meta
-                title="AgriCom | Farmer Machines"
+                title="Agroic | Farmer Machines"
             />
             <Container>
                 <h1 className="p-3" style={{ textAlign: 'center' }}>All Machines</h1>

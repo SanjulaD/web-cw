@@ -38,7 +38,7 @@ const LoginComponent = ({ location, history }) => {
     return (
         <FormContainer>
             <Meta
-                title="AgriCom | Sign In"
+                title="Agroic | Sign In"
             />
             <h1 style={{ marginTop: '120px' }}>Sign In</h1>
             { error && <Message variant='danger'>{error}</Message>}

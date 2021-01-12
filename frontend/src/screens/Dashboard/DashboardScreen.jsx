@@ -8,7 +8,7 @@ const DashboardScreen = () => {
     return (
         <div style={{ marginTop: "110px" }}>
             <Meta
-                title="AgriCom | Admin Dashboard"
+                title="Agroic | Admin Dashboard"
             />
             <Container fluid>
                 <Row>

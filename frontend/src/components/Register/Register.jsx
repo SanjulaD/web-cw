@@ -47,7 +47,7 @@ const Register = ({ location, history }) => {
 
         <FormContainer>
             <Meta
-                title="AgriCom | Register"
+                title="Agroic | Register"
             />
             <h1 style={{ marginTop: '120px' }}>Sign Up</h1>
             {message && <Message variant='danger'>{message}</Message>}

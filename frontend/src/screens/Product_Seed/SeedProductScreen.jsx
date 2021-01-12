@@ -69,7 +69,7 @@ const SeedProductScreen = ({ history, match }) => {
     return (
         <div className="productScreen">
             <Meta
-                title="AgriCom | Seed"
+                title="Agroic | Seed"
             />
             <Container>
                 <Link className="btn btn-go-back btn-dark" to="/farmers/purchaseSeeds">GO BACK</Link>
@@ -81,7 +81,7 @@ const SeedProductScreen = ({ history, match }) => {
                             : (
                                 <Row className="p-3 seed-product" >
                                     <Col md={6}>
-                                        <Image className="mx-auto image-seed" src={productSeed.image} alt={productSeed.name} width={200} />
+                                        <Image className="mx-auto image-seed" src={productSeed.image} alt={productSeed.name} width={350} />
                                     </Col>
                                     <Col md={3}>
                                         <ListGroup className="borderless" variant='flush'>
@@ -95,7 +95,7 @@ const SeedProductScreen = ({ history, match }) => {
                                                 <h4>Price: {productSeed.price}</h4>
                                             </ListGroup.Item>
                                             <ListGroup.Item>
-                                                <p>Description: {productSeed.description}</p>
+                                                <p><span style={{fontWeight:"bold"}}>Description:</span><br /> {productSeed.description}</p>
                                             </ListGroup.Item>
                                         </ListGroup>
                                     </Col>

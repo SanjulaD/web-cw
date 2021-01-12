@@ -39,10 +39,12 @@ const Footer = () => {
                     <MDBRow className="mt-3">
                         <MDBCol md="3" lg="3    " xl="3" className="mb-4 dark-grey-text">
                             <h6 className="text-uppercase font-weight-bold">
-                                <strong>AgriCom</strong>
+                                <strong>Agroic</strong>
                             </h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac nunc non arcu aliquet sollicitudin. Sed elementum placerat ex. Donec a lectus vel lectus faucibus mattis. </p>
+                            <p>
+                                The purpose of Agroic is to provide connections between different roles in the agriculture industry. As the farmers are not getting a fair price for their goods because of contractors. This app removes the requirement of contractors for farmers. Farmers can buy their required needs for farming from Sellers and they can also sell their products to the Consumers
+                            </p>
                         </MDBCol>
                         <MDBCol md="2" lg="2" xl="2" className="mb-4 dark-grey-text">
                             <h6 className="text-uppercase font-weight-bold">
@@ -59,7 +61,7 @@ const Footer = () => {
                                 <strong>Contact</strong>
                             </h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
-                            <p><i className="fa fa-home mr-3" /> New York, NY 10012, US</p>
+                            <p><i className="fa fa-home mr-3" /> Colombo, Sri Lanka</p>
                             <p><i className="fa fa-envelope mr-3" /> info@example.com</p>
                             <p><i className="fa fa-phone mr-3" /> + 01 234 567 88</p>
                             <p><i className="fa fa-print mr-3" /> + 01 234 567 89</p>

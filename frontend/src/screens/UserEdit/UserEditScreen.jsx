@@ -53,7 +53,7 @@ const UserEditScreen = ({ match, history }) => {
     return (
         <>
             <Meta
-                title="AgriCom | Admin User Edit"
+                title="Agroic | Admin User Edit"
             />
             <FormContainer>
                 <h1 style={{ marginTop: '120px' }}>Edit User</h1>

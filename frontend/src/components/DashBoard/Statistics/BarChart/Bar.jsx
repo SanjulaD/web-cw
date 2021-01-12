@@ -8,7 +8,7 @@ import Loader from '../../../Loader/Loader'
 import { listOrders } from '../../../../actions/orderAction'
 
 const BarChart = () => {
-    
+
     const dispatch = useDispatch()
     let history = useHistory()
 
@@ -16,7 +16,7 @@ const BarChart = () => {
     const { userInfo } = userLogin
 
     const orderList = useSelector(state => state.orderList)
-    const { loading, error, orders } = orderList
+    const { loading, error } = orderList
 
     useEffect(() => {
         if (userInfo && userInfo.isAdmin) {
@@ -28,7 +28,7 @@ const BarChart = () => {
 
 
     const data = {
-        labels: [],
+        labels: ['December', 'January'],
         datasets: [
             {
                 label: 'Order List',
@@ -37,7 +37,7 @@ const BarChart = () => {
                 borderWidth: 1,
                 hoverBackgroundColor: 'rgba(255,99,132,0.4)',
                 hoverBorderColor: 'rgba(255,99,132,1)',
-                data: [40, 30, 10]
+                data: [1, 2, 0]
             }
         ]
     };
@@ -48,11 +48,6 @@ const BarChart = () => {
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
                     : (
-                        // eslint-disable-next-line array-callback-return
-                        orders.map(order => {
-                            const month = new Date(order.createdAt)
-                            data.labels.push(month.toLocaleString('default', { month: 'long' }))
-                        }),
                         <Bar
                             data={data}
                             width={100}

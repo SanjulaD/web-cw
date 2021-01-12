@@ -37,7 +37,7 @@ const ConsumerProductDetailScreen = ({ history, match }) => {
     return (
         <div className="productScreen">
             <Meta
-                title="AgriCom | Consumer Product"
+                title="Agroic | Consumer Product"
             />
             <Container>
                 <Link className="btn btn-go-back btn-dark" to="/consumer">GO BACK</Link>

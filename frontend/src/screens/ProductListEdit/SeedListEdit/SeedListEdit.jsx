@@ -95,7 +95,7 @@ const SeedListEdit = ({ match }) => {
     return (
         <Container style={{ marginBottom: '50px' }}>
             <Meta
-                title="AgriCom | Admin Seed Edit"
+                title="Agroic | Admin Seed Edit"
             />
             <FormContainer>
                 <h2 style={{ marginTop: '120px', textAlign: 'center' }}>Seed Profile</h2>

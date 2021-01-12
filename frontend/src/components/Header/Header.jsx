@@ -21,7 +21,7 @@ const Header = () => {
         <Navbar collapseOnSelect expand="lg" fixed="top">
             <LinkContainer to="/">
                 <Navbar.Brand className="nav-cal" >
-                    <Image width="50px" src="favicon/android-chrome-512x512.png" />
+                    <Image width="80px"src="/Logo.png" />
                 </Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />

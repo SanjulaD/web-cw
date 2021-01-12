@@ -7,9 +7,9 @@ import Loader from './../../../../components/Loader/Loader'
 import { listSupplierProducts } from './../../../../actions/supplierProduct'
 
 const data = {
-    labels: [],
+    labels: ['paddy', 'seeds', 'fruits'],
     datasets: [{
-        data: [300, 50, 100],
+        data: [2, 1, 1],
         backgroundColor: [
             '#FF6384',
             '#36A2EB',
@@ -29,7 +29,7 @@ const DoughnutComponent = () => {
     let history = useHistory()
 
     const supplierProductList = useSelector(state => state.supplierProductList)
-    const { loading: loadingProducts, error: errorProducts, products } = supplierProductList
+    const { loading: loadingProducts, error: errorProducts } = supplierProductList
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -48,9 +48,6 @@ const DoughnutComponent = () => {
             {loadingProducts ? <Loader />
                 : errorProducts ? <Message variant='danger'>{errorProducts}</Message>
                     : (
-                        products.map(product => (
-                            data.labels.push(product.cropSelection)
-                        )),
                         <Doughnut data={data} />
                     )
             }
