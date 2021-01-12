@@ -7,7 +7,26 @@
 
 ## Features
 
-- add
+- ChatBot
+- Seller Profile
+- Add/Delete Products
+- Edit Profile
+- Add/Edit Personal & Company Address
+- Farmer Profile
+- Add/Delete Grains
+- Edit Profile
+- Add/Edit Address
+- Buy Seeds/Pesticides or Rent Machines
+- Buy Loan & Credit Card
+- Consumer
+- Edit Profile
+- Add/Edit Address
+- Buy Materials From Farmer
+- Payapal Gateway
+- Cart Page
+- Change Quantity
+- Remove Product from Cart Page
+and much more
 
 ## Usage
 
