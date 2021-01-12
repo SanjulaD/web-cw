@@ -1,4 +1,4 @@
-# 🌱 Agricultural Web Application for University Project Built with Reactjs + ExpressJs + Nodejs + MongoDB (MERN) 💻
+🌱# Agricultural Web Application for University Project Built with Reactjs + Expressjs + Nodejs + MongoDB (MERN) 💻
 
 ## Features
 
