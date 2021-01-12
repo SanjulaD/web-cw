@@ -16,6 +16,7 @@ import './LendMachineScreen.css';
 import { listLendMachineProductsDetails } from './../../actions/productLendMachinesActions'
 import Loader from '../../components/Loader/Loader';
 import Message from '../../components/Message/Message';
+import Meta from '../../components/Helmet/Meta';
 
 const LendMachineProduct = ({ history, match }) => {
     const [qty, setQty] = useState(1);
@@ -35,6 +36,9 @@ const LendMachineProduct = ({ history, match }) => {
     }
     return (
         <div className="productScreen">
+            <Meta
+                title="AgriCom | Machine"
+            />
             <Container>
                 <Link className="btn btn-go-back btn-dark" to="/farmers/lendMachines">GO BACK</Link>
                 {

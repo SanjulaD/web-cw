@@ -16,6 +16,7 @@ import './consumerStyles.css';
 import Loader from '../../components/Loader/Loader';
 import Message from '../../components/Message/Message';
 import { listConsumerProductsDetails } from '../../actions/consumerProductAction.js'
+import Meta from '../../components/Helmet/Meta';
 
 const ConsumerProductDetailScreen = ({ history, match }) => {
     const [qty, setQty] = useState(1);
@@ -35,6 +36,9 @@ const ConsumerProductDetailScreen = ({ history, match }) => {
 
     return (
         <div className="productScreen">
+            <Meta
+                title="AgriCom | Consumer Product"
+            />
             <Container>
                 <Link className="btn btn-go-back btn-dark" to="/consumer">GO BACK</Link>
                 {

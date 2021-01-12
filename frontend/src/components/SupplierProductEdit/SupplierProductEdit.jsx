@@ -14,6 +14,7 @@ import Loader from './../Loader/Loader'
 import FormContainer from './../FormContainer/FormContainer'
 import { updateSupplierProduct, getroductsDetails } from './../../actions/supplierProduct'
 import { SUPPLIER_PRODUCT_UPDATE_RESET } from './../../constants/supplierConstant'
+import Meta from '../Helmet/Meta'
 
 const SupplierProductEdit = ({ match }) => {
 
@@ -99,6 +100,9 @@ const SupplierProductEdit = ({ match }) => {
 
     return (
         <Container style={{ marginBottom: '50px' }}>
+            <Meta
+                title="AgriCom | Supplier Edit"
+            />
             <FormContainer>
                 <h2 style={{ marginTop: '100px', textAlign: 'center' }}>Product Profile</h2>
                 <Link to='/profile' className='btn btn-light my-3'>

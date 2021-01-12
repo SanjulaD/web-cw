@@ -2,10 +2,14 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import SideBarComponents from '../../components/SideBar/SideBarComponents'
 import StatisticsList from '../../components/DashBoard/Statistics/StatisticsList';
+import Meta from '../../components/Helmet/Meta';
 
 const DashboardScreen = () => {
     return (
         <div style={{ marginTop: "110px" }}>
+            <Meta
+                title="AgriCom | Admin Dashboard"
+            />
             <Container fluid>
                 <Row>
                     <Col md={3}>

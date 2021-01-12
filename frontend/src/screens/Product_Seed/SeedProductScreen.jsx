@@ -18,6 +18,7 @@ import { listSeedProductsDetails, createProductReview } from './../../actions/pr
 import Loader from '../../components/Loader/Loader';
 import Message from '../../components/Message/Message';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../../constants/productConstants'
+import Meta from '../../components/Helmet/Meta';
 
 const SeedProductScreen = ({ history, match }) => {
     const [qty, setQty] = useState(1);
@@ -48,7 +49,7 @@ const SeedProductScreen = ({ history, match }) => {
             dispatch(listSeedProductsDetails(match.params.id))
             dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, match, successProductReview])
 
     const addToCartHandler = () => {
@@ -67,6 +68,9 @@ const SeedProductScreen = ({ history, match }) => {
 
     return (
         <div className="productScreen">
+            <Meta
+                title="AgriCom | Seed"
+            />
             <Container>
                 <Link className="btn btn-go-back btn-dark" to="/farmers/purchaseSeeds">GO BACK</Link>
                 {

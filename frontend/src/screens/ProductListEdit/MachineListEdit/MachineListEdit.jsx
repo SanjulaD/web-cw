@@ -14,6 +14,7 @@ import Loader from './../../../components/Loader/Loader'
 import FormContainer from './../../../components/FormContainer/FormContainer'
 import { listLendMachineProductsDetails, updateLendMachine } from './../../../actions/productLendMachinesActions'
 import { MACHINE_UPDATE_RESET } from '../../../constants/productConstants'
+import Meta from '../../../components/Helmet/Meta'
 
 const SeedListEdit = ({ match }) => {
 
@@ -96,6 +97,9 @@ const SeedListEdit = ({ match }) => {
 
     return (
         <Container style={{ marginBottom: '50px' }}>
+            <Meta
+                title="AgriCom | Admin Machine Edit"
+            />
             <FormContainer>
                 <h2 style={{ marginTop: '120px', textAlign: 'center' }}>Lend Machine Profile</h2>
                 <Link to='/admin/productlist' className='btn btn-light my-3'>

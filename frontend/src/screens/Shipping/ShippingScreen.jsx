@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from './../../components/CheckoutSteps/CheckoutSteps'
 import FormContainer from '../../components/FormContainer/FormContainer'
 import { saveShippingAddress } from './../../actions/cartActions.js'
+import Meta from '../../components/Helmet/Meta'
 
 const ShippingScreen = ({ history }) => {
 
@@ -29,6 +30,9 @@ const ShippingScreen = ({ history }) => {
     return (
         <div style={{ marginTop: '100px' }}>
             <FormContainer>
+                <Meta
+                    title="AgriCom | Shipping"
+                />
                 <CheckoutSteps step1 step2 />
                 <h1>Shipping</h1>
                 <Form onSubmit={submitHandler} style={{ marginBottom: '40px' }}>

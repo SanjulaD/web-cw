@@ -11,6 +11,7 @@ import { listConsumerProducts } from './../../actions/consumerProductAction.js'
 import Message from './../../components/Message/Message';
 import Loader from './../../components/Loader/Loader';
 import './ConsumerStyles.css'
+import Meta from '../../components/Helmet/Meta';
 
 const ConsumerScreen = () => {
 
@@ -35,6 +36,9 @@ const ConsumerScreen = () => {
 
     return (
         <div className="consumerProductScreen">
+            <Meta
+                title="AgriCom | Consumer"
+            />
             <Container className='consumerContainer'>
                 <h1 className="title">CONSUMER</h1>
                 <h4 className="consumer-title">

@@ -11,6 +11,7 @@ import Message from '../Message/Message'
 import Loader from '../Loader/Loader'
 import FormContainer from '../FormContainer/FormContainer'
 import { login } from '../../actions/userActions'
+import Meta from '../Helmet/Meta'
 
 const LoginComponent = ({ location, history }) => {
 
@@ -36,12 +37,15 @@ const LoginComponent = ({ location, history }) => {
 
     return (
         <FormContainer>
+            <Meta
+                title="AgriCom | Sign In"
+            />
             <h1 style={{ marginTop: '120px' }}>Sign In</h1>
-            { error && <Message variant='danger'>{error}</Message>} 
-            { loading && <Loader /> }
+            { error && <Message variant='danger'>{error}</Message>}
+            { loading && <Loader />}
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='email'>
-                    <Form.Label>Email Address / NIC <span style={{color:'red'}}>*</span></Form.Label>
+                    <Form.Label>Email Address / NIC <span style={{ color: 'red' }}>*</span></Form.Label>
                     <Form.Control
                         type="email"
                         placeholder="Enter email or NIC"
@@ -51,7 +55,7 @@ const LoginComponent = ({ location, history }) => {
                     ></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='password'>
-                    <Form.Label>Password <span style={{color:'red'}}>*</span></Form.Label>
+                    <Form.Label>Password <span style={{ color: 'red' }}>*</span></Form.Label>
                     <Form.Control
                         type="password"
                         placeholder="Enter password"

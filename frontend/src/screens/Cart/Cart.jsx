@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Message from './../../components/Message/Message';
 import { addToCart, removeFromCart } from './../../actions/cartActions'
 import { Row, Col, ListGroup, Image, Button, Form, Container, Card } from 'react-bootstrap';
+import Meta from '../../components/Helmet/Meta';
 
 const Cart = ({ match, location, history }) => {
 
@@ -31,6 +32,9 @@ const Cart = ({ match, location, history }) => {
 
     return (
         <Container style={{ marginTop: '100px', marginBottom: '50px' }}>
+            <Meta
+                title="AgriCom | Cart"
+            />
             <Row>
                 <Col md={8}>
                     <h1>Shopping Cart</h1>
@@ -42,7 +46,7 @@ const Cart = ({ match, location, history }) => {
                         ) : (
                                 <ListGroup variant='flush' >
                                     {cartItems.map((item) => (
-                                        <ListGroup.Item key={item.seed} style={{marginTop: '10px' }}>
+                                        <ListGroup.Item key={item.seed} style={{ marginTop: '10px' }}>
                                             <Row>
                                                 <Col md={2}>
                                                     <Image src={item.image} alt={item.name} fluid rounded />
@@ -84,7 +88,7 @@ const Cart = ({ match, location, history }) => {
                             )}
                 </Col>
                 <Col md={4}>
-                    <Card style={{marginTop: '50px'}}>
+                    <Card style={{ marginTop: '50px' }}>
                         <ListGroup variant='flush'>
                             <ListGroup.Item>
                                 <h2>Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h2>

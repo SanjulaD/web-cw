@@ -16,6 +16,7 @@ import Loader from './../../components/Loader/Loader'
 import Message from '../../components/Message/Message'
 import { getOrderDetails, payOrder, deliverOrder } from './../../actions/orderAction'
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from './../../constants/orderConstant'
+import Meta from '../../components/Helmet/Meta'
 
 const OrderScreen = ({ match }) => {
 
@@ -82,6 +83,9 @@ const OrderScreen = ({ match }) => {
 
     return (
         <div>
+            <Meta
+                title="AgriCom | Order"
+            />
             {
                 loading
                     ? <Loader />

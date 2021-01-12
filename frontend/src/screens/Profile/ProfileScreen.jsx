@@ -18,6 +18,7 @@ import Loader from './../../components/Loader/Loader'
 import { getUserDetails, updateUserProfile } from '../../actions/userActions'
 import { listMyOrders } from './../../actions/orderAction'
 import { listMyProducts } from './../../actions/supplierProduct'
+import Meta from '../../components/Helmet/Meta';
 
 const ProfileScreen = ({ history }) => {
 
@@ -84,6 +85,9 @@ const ProfileScreen = ({ history }) => {
 
     return (
         <Container fluid style={{ marginBottom: '50px' }}>
+            <Meta
+                title="AgriCom | Profile"
+            />
             <Row>
                 <Col md={3}>
                     <h2 style={{ marginTop: '110px' }}>User Profile</h2>

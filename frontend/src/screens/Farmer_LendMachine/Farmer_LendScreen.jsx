@@ -8,6 +8,7 @@ import Message from './../../components/Message/Message';
 import Loader from './../../components/Loader/Loader';
 
 import { listLendMachineProducts } from './../../actions/productLendMachinesActions'
+import Meta from '../../components/Helmet/Meta';
 
 const Farmer_LendScreen = () => {
     const dispatch = useDispatch()
@@ -33,6 +34,9 @@ const Farmer_LendScreen = () => {
     return (
 
         <div className="MachineLendScreen">
+            <Meta
+                title="AgriCom | Farmer Machines"
+            />
             <Container>
                 <h1 className="p-3" style={{ textAlign: 'center' }}>All Machines</h1>
                 {

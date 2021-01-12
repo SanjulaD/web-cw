@@ -14,6 +14,7 @@ import {
 import { getroductsDetails, createProductReview } from './../../actions/supplierProduct'
 import Loader from '../../components/Loader/Loader';
 import Message from '../../components/Message/Message';
+import Meta from '../../components/Helmet/Meta';
 
 const FarmerProduct = ({ history, match }) => {
 
@@ -56,6 +57,9 @@ const FarmerProduct = ({ history, match }) => {
 
     return (
         <div className="productScreen">
+            <Meta
+                title="AgriCom | Admin Farmer Review"
+            />
             <Container>
                 <Link className="btn btn-go-back btn-dark" to="/admin/supplierproducts">GO BACK</Link>
                 {

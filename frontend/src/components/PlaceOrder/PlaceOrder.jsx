@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from './../../components/CheckoutSteps/CheckoutSteps'
 import Message from '../../components/Message/Message'
 import { createOrder } from './../../actions/orderAction'
+import Meta from '../Helmet/Meta'
 
 const PlaceOrder = ({ history }) => {
 
@@ -54,6 +55,9 @@ const PlaceOrder = ({ history }) => {
     return (
         <div style={{ marginTop: '100px' }}>
             <Container>
+                <Meta
+                    title="AgriCom | Order"
+                />
                 <Row className="justify-content-md-center">
                     <Col xs={12} md={6}>
                         <CheckoutSteps step1 step2 step3 step4 />

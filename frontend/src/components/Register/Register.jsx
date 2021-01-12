@@ -11,6 +11,7 @@ import Message from '../Message/Message'
 import Loader from '../Loader/Loader'
 import FormContainer from '../FormContainer/FormContainer'
 import { register } from '../../actions/userActions'
+import Meta from '../Helmet/Meta'
 
 const Register = ({ location, history }) => {
 
@@ -45,6 +46,9 @@ const Register = ({ location, history }) => {
     return (
 
         <FormContainer>
+            <Meta
+                title="AgriCom | Register"
+            />
             <h1 style={{ marginTop: '120px' }}>Sign Up</h1>
             {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}

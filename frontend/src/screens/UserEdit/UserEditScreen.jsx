@@ -10,6 +10,7 @@ import Loader from '../../components/Loader/Loader'
 import FormContainer from '../../components/FormContainer/FormContainer'
 import { getUserDetails, updateUser } from '../../actions/userActions'
 import { USER_UPDATE_RESET } from './../../constants/userConstants'
+import Meta from '../../components/Helmet/Meta'
 
 const UserEditScreen = ({ match, history }) => {
 
@@ -51,7 +52,9 @@ const UserEditScreen = ({ match, history }) => {
 
     return (
         <>
-
+            <Meta
+                title="AgriCom | Admin User Edit"
+            />
             <FormContainer>
                 <h1 style={{ marginTop: '120px' }}>Edit User</h1>
                 <Link to='/admin/userList' className="btn btn-light my-2">GO BACK</Link>

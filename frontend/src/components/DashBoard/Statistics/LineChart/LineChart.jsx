@@ -56,6 +56,7 @@ const LineChart = ({ history }) => {
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
                     : (
+                        // eslint-disable-next-line array-callback-return
                         users.filter((item, index) => {
                             if (users.indexOf(item) === index) {
                                 const month = new Date(item.createdAt)

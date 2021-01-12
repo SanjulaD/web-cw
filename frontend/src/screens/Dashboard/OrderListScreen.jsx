@@ -1,18 +1,22 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import OrderList from '../../components/DashBoard/OrderList/OrderList'
+import Meta from '../../components/Helmet/Meta'
 import SideBarComponents from '../../components/SideBar/SideBarComponents'
 
 const OrderListScreen = () => {
     return (
         <div style={{ marginTop: "110px" }}>
+            <Meta
+                title="AgriCom | Admin Orders"
+            />
             <Container fluid>
                 <Row>
                     <Col md={3}>
                         <h4>AgriCom Orders</h4>
                     </Col>
                     <Col md={9}>
-                        <h4 style={{marginLeft:"30px"}}>All Orders</h4>
+                        <h4 style={{ marginLeft: "30px" }}>All Orders</h4>
                     </Col>
                 </Row>
                 <Row>

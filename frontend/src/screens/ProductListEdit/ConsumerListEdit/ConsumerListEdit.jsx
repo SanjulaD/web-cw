@@ -14,6 +14,7 @@ import Loader from './../../../components/Loader/Loader'
 import FormContainer from './../../../components/FormContainer/FormContainer'
 import { listConsumerProductsDetails, updateConsumer } from './../../../actions/consumerProductAction'
 import { CONSUMER_UPDATE_RESET } from '../../../constants/productConstants'
+import Meta from '../../../components/Helmet/Meta'
 
 const ConsumerListEdit = ({ match }) => {
 
@@ -96,6 +97,9 @@ const ConsumerListEdit = ({ match }) => {
 
     return (
         <Container style={{ marginBottom: '50px' }}>
+            <Meta
+                title="AgriCom | Admin Consumer Edit"
+            />
             <FormContainer>
                 <h2 style={{ marginTop: '120px', textAlign: 'center' }}>Consumer Profile</h2>
                 <Link to='/admin/productlist' className='btn btn-light my-3'>

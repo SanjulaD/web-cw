@@ -8,6 +8,7 @@ import Message from './../../components/Message/Message';
 import Loader from './../../components/Loader/Loader';
 
 import { listSeedProducts } from './../../actions/productSeedActions'
+import Meta from '../../components/Helmet/Meta';
 
 const Farmer_ProductSeedScreen = () => {
     const dispatch = useDispatch()
@@ -33,6 +34,9 @@ const Farmer_ProductSeedScreen = () => {
     return (
 
         <div className="ProductSeedScreen">
+            <Meta
+                title="AgriCom | Farmer Seeds"
+            />
             <Container>
                 <h1 className="p-3" style={{ textAlign: 'center' }}>Latest Seeds</h1>
                 {

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from './../../components/CheckoutSteps/CheckoutSteps'
 import FormContainer from '../../components/FormContainer/FormContainer'
 import { savePaymentMethod } from './../../actions/cartActions.js'
+import Meta from '../../components/Helmet/Meta'
 
 const PaymentScreen = ({ history }) => {
 
@@ -31,6 +32,9 @@ const PaymentScreen = ({ history }) => {
     return (
         <div style={{ marginTop: '100px' }}>
             <FormContainer>
+                <Meta
+                    title="AgriCom | Payment"
+                />
                 <CheckoutSteps step1 step2 step3 />
                 <h1>Payment Method</h1>
                 <Form onSubmit={submitHandler} style={{ marginBottom: '40px' }}>
