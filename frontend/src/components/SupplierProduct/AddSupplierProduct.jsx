@@ -108,7 +108,7 @@ const AddSupplierProduct = () => {
                         <Form.Group controlId='email'>
                             <Form.Label>Email Address / NIC <span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
-                                type="email"
+                                type="nic"
                                 placeholder="Enter email or NIC"
                                 value={email}
                                 required
