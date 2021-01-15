@@ -9,7 +9,7 @@ import { listSupplierProducts } from './../../../../actions/supplierProduct'
 const data = {
     labels: ['paddy', 'seeds', 'fruits'],
     datasets: [{
-        data: [2, 1, 1],
+        data: [2, 1, 3],
         backgroundColor: [
             '#FF6384',
             '#36A2EB',
