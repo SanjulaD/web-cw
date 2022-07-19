@@ -51,7 +51,6 @@ const ProfileScreen = ({ history }) => {
     const { loading: loadingProducts, error: errorProducts, products } = supplierProdictListMy
 
     useEffect(() => {
-
         if (!userInfo) {
             history.push('/login')
         } else {
@@ -81,7 +80,6 @@ const ProfileScreen = ({ history }) => {
         setTarget(event.target);
 
     };
-
 
     return (
         <Container fluid style={{ marginBottom: '50px' }}>
